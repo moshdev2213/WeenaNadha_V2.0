@@ -1,0 +1,62 @@
+@font-face {
+  font-family: "Ionicons";
+  src: url("../fonts/ionicons/fonts/ionicons.eot?v=4.0.0-19");
+  src: url("../fonts/ionicons/fonts/ionicons.eot?v=4.0.0-19#iefix")
+      format("embedded-opentype"),
+    url("../fonts/ionicons/fonts/ionicons.woff2?v=4.0.0-19") format("woff2"),
+    url("../fonts/ionicons/fonts/ionicons.woff?v=4.0.0-19") format("woff"),
+    url("../fonts/ionicons/fonts/ionicons.ttf?v=4.0.0-19") format("truetype"),
+    url("../fonts/ionicons/fonts/ionicons.svg?v=4.0.0-19#Ionicons")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+.ion,
+.ionicons,
+.ion-logo-google:before,
+.ion-ios-call:before,
+.ion-logo-github:before,
+.ion-logo-linkedin:before,
+.ion-logo-instagram:before,
+.ion-ios-mail:before,
+.ion-ios-pin:before,
+.ion-logo-twitter:before,
+.ion-logo-facebook:before {
+  display: inline-block;
+  font-family: "Ionicons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ion-logo-facebook:before {
+  content: "\f236";
+}
+.ion-logo-twitter:before {
+  content: "\f2b0";
+}
+.ion-logo-instagram:before {
+  content: "\f23e";
+}
+.ion-logo-linkedin:before {
+  content: "\f240";
+}
+.ion-logo-google:before {
+  content: "\f23a";
+}
+.ion-logo-github:before {
+  content: "\f239";
+}
+.ion-ios-call:before {
+  content: "\f13e";
+}
+.ion-ios-mail:before {
+  content: "\f1b8";
+}
+.ion-ios-pin:before {
+  content: "\f1e5";
+}

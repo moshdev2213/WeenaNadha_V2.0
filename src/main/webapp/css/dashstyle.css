@@ -1,0 +1,609 @@
+/********** Template CSS **********/
+:root {
+  --primary: #eb1616;
+  --secondary: #191c24;
+  --light: #6c7293;
+  --dark: #000000;
+}
+
+.back-to-top {
+  position: fixed;
+  display: none;
+  right: 45px;
+  bottom: 45px;
+  z-index: 99;
+}
+
+/* ---------------enlarge image---------------------------- */
+/* .enlarge {
+  width: 20%;
+  float: left;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+.enlarge:hover {
+  width: 80px !important; 
+  height: 80px !important;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+} */
+/* ---------------------------------------------------------- */
+
+/* pop-up image class for product listing tables */
+#myImg {
+  /* border-radius: 5px; */
+  cursor: pointer;
+  transition: 0.3s;
+  width: 40px;
+  height: 40px;
+}
+
+#myImg:hover {
+  opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: absolute;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 0;
+  /* Location of the box */
+  /* left: 25%; */
+  /* top: 30%; */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /*Enable scroll if needed*/
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  position: relative;
+  left: 10%;
+  right: 10%;
+  top: 20%;
+  /* bottom: 50%; */
+  width: 30%;
+  /* height: 30%; */
+  /* max-width: 700px; */
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content,
+#caption {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  /* background-color: #eb1616; */
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  z-index: 999999;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+  .modal-content {
+    width: 100%;
+  }
+}
+
+/* -------------------------------------------------------------------  */
+
+/*** Spinner ***/
+#spinner {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-out, visibility 0s linear 0.5s;
+  z-index: 99999;
+}
+
+#spinner.show {
+  transition: opacity 0.5s ease-out, visibility 0s linear 0s;
+  visibility: visible;
+  opacity: 1;
+}
+
+/*** Button ***/
+.btn {
+  transition: 0.5s;
+}
+
+.btn-square {
+  width: 38px;
+  height: 38px;
+}
+
+.btn-sm-square {
+  width: 32px;
+  height: 32px;
+}
+
+.btn-lg-square {
+  width: 48px;
+  height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  border-radius: 50px;
+}
+
+/*** Layout ***/
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--secondary);
+  transition: 0.5s;
+  z-index: 999;
+}
+
+.content {
+  margin-left: 250px;
+  min-height: 100vh;
+  background: #E3E3E3;
+  transition: 0.5s;
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    margin-left: 0;
+  }
+
+  .sidebar.open {
+    margin-left: -250px;
+  }
+
+  .content {
+    width: calc(100% - 250px);
+  }
+
+  .content.open {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    margin-left: -250px;
+  }
+
+  .sidebar.open {
+    margin-left: 0;
+  }
+
+  .content {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/*** Navbar ***/
+.sidebar .navbar .navbar-nav .nav-link {
+  padding: 7px 20px;
+  /* color: var(--light); */
+  color: white;
+  font-weight: 500;
+  /* border-left: 3px solid var(--secondary); */
+  border-radius: 5px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  outline: none;
+}
+
+.sidebar .navbar .navbar-nav .nav-link:hover,
+.sidebar .navbar .navbar-nav .nav-link.active {
+  /* color: var(--primary); */
+  color: black;
+  /* background: var(--dark); */
+  background-color: white;
+  border-color: var(--primary);
+}
+
+.sidebar .navbar .navbar-nav .nav-link i {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark);
+  border-radius: 40px;
+}
+
+.sidebar .navbar .navbar-nav .nav-link:hover i,
+.sidebar .navbar .navbar-nav .nav-link.active i {
+  background: var(--secondary);
+}
+
+.sidebar .navbar .dropdown-toggle::after {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  transition: 0.5s;
+}
+
+.sidebar .navbar .dropdown-toggle[aria-expanded="true"]::after {
+  transform: rotate(-180deg);
+}
+
+.sidebar .navbar .dropdown-item {
+  padding-left: 25px;
+  border-radius: 0 30px 30px 0;
+  color: var(--light);
+}
+
+.sidebar .navbar .dropdown-item:hover,
+.sidebar .navbar .dropdown-item.active {
+  background: var(--dark);
+}
+
+.content .navbar .navbar-nav .nav-link {
+  margin-left: 25px;
+  padding: 12px 0;
+  color: var(--light);
+  outline: none;
+}
+
+.content .navbar .navbar-nav .nav-link:hover,
+.content .navbar .navbar-nav .nav-link.active {
+  color: #191919;
+}
+
+.content .navbar .sidebar-toggler,
+.content .navbar .navbar-nav .nav-link i {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* background: var(--dark); */
+  border-radius: 40px;
+}
+
+.content .navbar .dropdown-item {
+  color: var(--light);
+}
+
+.content .navbar .dropdown-item:hover,
+.content .navbar .dropdown-item.active {
+  background: var(--dark);
+}
+
+.content .navbar .dropdown-toggle::after {
+  margin-left: 6px;
+  vertical-align: middle;
+  border: none;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  transition: 0.5s;
+}
+
+.content .navbar .dropdown-toggle[aria-expanded="true"]::after {
+  transform: rotate(-180deg);
+}
+
+@media (max-width: 575.98px) {
+  .content .navbar .navbar-nav .nav-link {
+    margin-left: 15px;
+  }
+}
+
+/*** Date Picker ***/
+.bootstrap-datetimepicker-widget.bottom {
+  top: auto !important;
+}
+
+.bootstrap-datetimepicker-widget .table * {
+  border-bottom-width: 0px;
+}
+
+.bootstrap-datetimepicker-widget .table th {
+  font-weight: 500;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu {
+  padding: 10px;
+  border-radius: 2px;
+}
+
+.bootstrap-datetimepicker-widget table td.active,
+.bootstrap-datetimepicker-widget table td.active:hover {
+  background: #696970;
+}
+
+.bootstrap-datetimepicker-widget table td.today::before {
+  border-bottom-color: black;
+}
+
+/*** Testimonial ***/
+.progress .progress-bar {
+  width: 0px;
+  transition: 2s;
+}
+
+/*** Testimonial ***/
+.testimonial-carousel .owl-dots {
+  margin-top: 24px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.testimonial-carousel .owl-dot {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+  width: 15px;
+  height: 15px;
+  border: 5px solid var(--primary);
+  border-radius: 15px;
+  transition: 0.5s;
+}
+
+.testimonial-carousel .owl-dot.active {
+  background: var(--dark);
+  border-color: var(--primary);
+}
+
+/* add product related */
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,500");
+
+/* @color-card-background: #2d3638;
+@color-tag-background: #191e20;
+@color-anchor: #e37544;
+@color-body-copy: #b9bcbd;
+@default-border-radius: 10px;
+@breakpoint-medium: "screen and (min-width: 700px)"; */
+
+/* html,
+body {
+  background-color: #fff;
+} */
+
+.form-popup-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.form-popup-bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(8, 8, 8, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  overflow-y: auto;
+  z-index: 10000;
+}
+
+.form-popup-bg.is-visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+  -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
+  transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+
+.form-container {
+  background-color: #191c24;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  padding: 20px;
+  color: #fff;
+  overflow: auto;
+}
+
+.close-button {
+  background: none;
+  background-color: white;
+  color: red;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+}
+
+.form-popup-bg:before {
+  content: "";
+
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 0.25;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.hidelabel {
+  padding: 7%;
+}
+
+/*  */
+/*------------------------------- i made styes related to mine starts -----------------------------------------*/
+
+/* black gradient */
+.bg-bk {
+  background-image: linear-gradient(195deg, #42424a 0%, #191919 100%);
+
+}
+
+.i-wt {
+  color: white;
+}
+
+.navclz3 {
+  width: 90px;
+  height: 90px;
+  position: relative;
+  top: -40px;
+  left: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.fa::before {
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-search::before {
+  position: relative;
+  top: 10px;
+  left: 200px;
+}
+
+@media (min-width: 992px) {
+
+  .navaclz {
+    border-radius: 5px;
+    /* position: fixed;
+    width: 81%; */
+  }
+
+  .navclz2 {
+    height: 95vh;
+    border-radius: 5px;
+    margin-top: 15px;
+  }
+
+  .navclz3 {
+    /* margin-top: 80px; */
+  }
+
+}
+
+/* @media (min-width: 1200px){
+  .navclz{
+    width: 100%;
+  }
+} */
+@media (max-width: 1200px) {
+  .fa-search::before {
+    visibility: hidden;
+  }
+}
+
+@media(max-width:992px) {
+  /* .fa-user-edit{
+    
+  } */
+
+  .fa-user-edit::before {
+    color: white;
+    background: linear-gradient(195deg, #42424a 0%, #191919 100%);
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
+
+.bg-gry {
+  background-color: #D0D0D0;
+}
+
+.tblconts {
+  text-align: center;
+  vertical-align: middle;
+}

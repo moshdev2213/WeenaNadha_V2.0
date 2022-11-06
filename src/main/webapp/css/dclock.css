@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap');
+
+.clocky{
+  /* background: #131419; */
+  /* height:50px; */
+  width: 250px;
+  margin-left:2%;
+  margin-right:1%;
+  /* line-height: 120px; */
+  text-align: center;
+  padding: 5px;
+  /* box-shadow: -3px -3px 7px rgba(255,255,255,0.05),
+               3px 3px 5px rgba(0,0,0,0.5); */
+}
+.clocky .display{
+  font-size: 20px;
+  color: white;
+  letter-spacing: 5px;
+  font-family: 'Orbitron', sans-serif;
+}
+@media (max-width: 575.98px) {
+  .clocky{
+    display: none;
+  }
+ }

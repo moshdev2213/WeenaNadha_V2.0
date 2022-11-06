@@ -1,0 +1,48 @@
+.dropbtn {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.downyy {
+  position: relative;
+  top: 12px;
+  display: inline-block;
+  padding: 0px;
+  cursor: pointer;
+}
+
+.downyy-content {
+  display: none;
+  position: absolute;
+  left: -10px;
+  top: 40px;
+  background-color: #f1f1f1;
+  width: 150px;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.downyy-content a {
+  color: rgb(100, 98, 98);
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.downyy-content a:hover {
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+
+}
+
+.downyy:hover .downyy-content {
+  display: block;
+}
+
+.downyy:hover .dropbtn {
+  background-color: #3e8e41;
+}

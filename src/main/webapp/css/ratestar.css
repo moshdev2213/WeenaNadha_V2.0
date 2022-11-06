@@ -1,0 +1,66 @@
+
+  .height-100 {
+    height: 100vh;
+  }
+  
+  .card {
+    width: 380px;
+    border: none;
+    height: 510px;
+  }
+  @media (max-width: 420.98px) {
+    .card{
+      width: 380px;
+    }
+    .review-count{
+        font-size: 14px;
+    }
+    .xss1{
+        overflow-x: hidden;
+    }
+  }
+  .ratings {
+    margin-right: 10px;
+  }
+  
+  .ratings i {
+    color: #cecece;
+    font-size: 28px;
+  }
+  @media (max-width: 385.98px) {
+    .ratings i {
+      font-size: 25px;
+    }
+    .card{
+        width: 345px;
+      }
+    .xss2{
+        max-width: 65%;
+    }
+    .xss3{
+        max-width: 35%;
+    }
+    .review-stat{
+        font-size: 10px;
+    }
+  }
+  .rating-color {
+    color: #25292d !important;
+  }
+  
+  .review-count {
+    font-weight: 400;
+    margin-bottom: 2px;
+    font-size: 24px !important;
+  }
+  
+  .small-ratings i {
+    color: #cecece;
+  }
+  
+  .review-stat {
+    font-weight: 300;
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+  
