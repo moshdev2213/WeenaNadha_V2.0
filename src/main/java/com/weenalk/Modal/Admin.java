@@ -33,7 +33,7 @@ public class Admin implements roleInterface{
 
 	@Override
 	public void displayRole() {
-		// TODO Auto-generated method stub
+		System.out.print("Welcome Admin : "+this.email);
 		
 	}
 	

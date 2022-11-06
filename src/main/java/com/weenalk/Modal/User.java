@@ -1,6 +1,8 @@
 package com.weenalk.Modal;
 
-public class User extends Admin {
+import com.weenalk.interfaces.roleInterface;
+
+public class User extends Admin implements roleInterface {
 	private String fname;
 	private String mname;
 	private String lname;
@@ -19,6 +21,11 @@ public class User extends Admin {
 		this.company = company;
 	}
 	
+	@Override
+	public void displayRole() {
+		System.out.println("Welcome User : "+this.fname);
+	}	
+
 	//getters and setters initialized here
 	public String getFname() {
 		return fname;
