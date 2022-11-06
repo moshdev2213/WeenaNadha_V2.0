@@ -1,6 +1,8 @@
 package com.weenalk.Modal;
 
-public class Admin {
+import com.weenalk.interfaces.roleInterface;
+
+public class Admin implements roleInterface{
 	private int addressid;
 	private int tel;
 	private String username;
@@ -29,6 +31,12 @@ public class Admin {
 		this.about = about;
 	}
 
+	@Override
+	public void displayRole() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	public int getAddressid() {
 		return addressid;
 	}
@@ -100,6 +108,8 @@ public class Admin {
 	public void setAbout(String about) {
 		this.about = about;
 	}
+
+	
 	
 	
 
