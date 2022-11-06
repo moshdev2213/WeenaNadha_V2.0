@@ -42,4 +42,28 @@ public class UserDao {
         }
         return user;
     }
+	public boolean userRegister(String email, String password,String lname,String fname,String mname,String username,String tel,String company,String country) {
+		boolean result = false;
+		try {
+			query = "Insert into users (useremail,password,username,phone_no,company,fname,mname,lname) values(?,?,?,?,?,?,?,?)";
+			pst = this.con.prepareStatement(query);
+
+			pst.setString(1, email);
+			pst.setString(2, password);
+			pst.setString(3, username);
+			pst.setString(4, tel);
+			pst.setString(5, company);
+			pst.setString(6, fname);
+			pst.setString(7, mname);
+			pst.setString(8, lname);
+
+			pst.executeUpdate();
+			result = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
 }

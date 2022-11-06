@@ -127,42 +127,7 @@ public class AdminLoginServlet extends HttpServlet {
 						boolean result = lgtime.insertlogs(logtime);
 						
 						//mail forwarding starts from here
-						String to = email;// change accordingly
-						// Get the session object
-						Properties props = new Properties();
-						props.put("mail.smtp.host", "smtp.gmail.com");
-						props.put("mail.smtp.socketFactory.port", "465");
-						props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-						props.put("mail.smtp.auth", "true");
-						props.put("mail.smtp.port", "465");
-						Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-							protected PasswordAuthentication getPasswordAuthentication() {
-								return new PasswordAuthentication("qwwerrrty11@gmail.com", "qbmlxfdztnapfczh");// Put your email
-																												// id and
-																												// password here
-							}
-						});
-						// compose message
-						try {
-							MimeMessage message = new MimeMessage(session);
-							message.setFrom(new InternetAddress(email));// change accordingly
-							message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-							message.setSubject("LOGIN SERVICES");
-							//the below generates the html email body that is created in the html.jaava class 
-							//message.setContent(ht.getHtml(),"text/html");
-							
-							message.setContent(SecurityEmail.getSecure(ip,isp,browser,city,region,country,lat,longs,formatter_year.format(date),formatter_time.format(time),formatter_day.format(day),formatter_month.format(month)),"text/html");
-							
-							//below can be used for text type content to be mailed
-							// message.setText("Hey There User\n Your OTP Requested : " + otpvalue);
-							// send message
-							Transport.send(message);
-							System.out.println("message sent successfully");
-						}
 						
-						catch (MessagingException e) {
-							throw new RuntimeException(e);
-						}
 						//mail forwarding ends here
 						
 						//redirects to index.jsp page

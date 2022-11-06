@@ -199,7 +199,7 @@
 
       <!-- Registeration Form -->
       <div class="col-md-7 col-lg-6 ml-auto p-5 mt-1 rounded shadow-lg" style="background-color: black">
-        <form action="#">
+        <form action="RegistrationServlet" method="POST">
           <div class="row">
             <!-- First Name -->
             <div class="input-group col-lg-6 mb-4">
@@ -208,7 +208,7 @@
                   <i class="fa fa-user text-light"></i>
                 </span>
               </div>
-              <input id="firstName" type="text" name="firstname" placeholder="First Name"
+              <input id="firstName" type="text" name="firstname" placeholder="FirstName"
                 class="form-control border-left-0 border-md" />
             </div>
 
@@ -219,7 +219,7 @@
                   <i class="fa fa-user text-light"></i>
                 </span>
               </div>
-              <input id="lastName" type="text" name="lastname" placeholder="Last Name"
+              <input id="lastName" type="text" name="lastname" placeholder="LastName"
                 class="form-control border-left-0 border-md" />
             </div>
 
@@ -263,7 +263,7 @@
               </div>
               <select id="countryCode" name="countryCode" style="max-width: 80px"
                 class="custom-select spannyy h-100 font-weight-bold text-muted">
-                <option class="lighty" value="">+94</option>
+                <option class="lighty" value="+94">+94</option>
               </select>
               <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" class="form-control pl-3" />
             </div>
@@ -279,21 +279,6 @@
               <input id="job" type="text" name="job" placeholder="Enter Your Job"
                 class="form-control border-left-0 border-md" />
             </div>
-
-            <!-- <div class="input-group col-lg-12 mb-4">
-              <div class="input-group-prepend">
-                <span class="input-group-text px-4 spannyy">
-                  <i class="fa-brands fa-black-tie text-light"></i>
-                </span>
-              </div>
-              <select id="job" name="jobtitle" class="form-control custom-select spannyy">
-                <option class="" value="">Choose your job</option>
-                <option value="">Designer</option>
-                <option value="">Developer</option>
-                <option value="">Manager</option>
-                <option value="">Accountant</option>
-              </select>
-            </div> -->
 
             <!-- Password -->
             <div class="input-group col-lg-6 mb-4">
@@ -316,42 +301,29 @@
               <input id="passwordConfirmation" type="password" name="passwordConfirmation"
                 placeholder="Confirm Password" class="form-control border-left-0 border-md" />
             </div>
-
             <!-- Submit Button -->
             <div class="form-group col-lg-12 mx-auto mb-0">
-              <a href="#" class="btn btn-light btn-block py-2">
-                <span class="font-weight-bold">Create your account</span>
-              </a>
+            	<button type="submit" class="btn btn-light btn-block py-2">
+            	
+            		<span class="font-weight-bold">Create your account</span>
+            	</button>
             </div>
-
-            <!-- Divider Text -->
+          </div>
+        </form>
+        
+         <!-- Divider Text -->
             <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
               <div class="border-bottom w-100 ml-5"></div>
               <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
               <div class="border-bottom w-100 mr-5"></div>
             </div>
-
-            <!-- Social Login -->
-            <!-- <div class="form-group col-lg-12 mx-auto">
-                <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
-                  <i class="fa-brands fa-facebook-f mr-2"></i>
-                  <span class="font-weight-bold">Continue with Facebook</span>
-                </a>
-                <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
-                  <i class="fa-brands fa-twitter mr-2"></i>
-                  <span class="font-weight-bold">Continue with Twitter</span>
-                </a>
-              </div> -->
-
-            <!-- Already Registered -->
+        <!-- Already Registered -->
             <div class="text-center w-100">
               <p class="text-muted font-weight-bold">
                 Already Registered?
                 <a href="login.jsp" class="text-primary ml-2">Login</a>
               </p>
             </div>
-          </div>
-        </form>
       </div>
     </div>
   </div>
