@@ -90,6 +90,22 @@ public class AdminLoginServlet extends HttpServlet {
 				Date day = new Date();
 				Date month = new Date();
 			
+				if(email== null || email.equals("")) {
+					request.setAttribute("stat", "invalidEmail");
+					dis = request.getRequestDispatcher("AdminLogin.jsp");
+					dis.forward(request, response);
+				}
+				if(password== null || password.equals("")) {
+					request.setAttribute("stat", "invalidPassword");
+					dis = request.getRequestDispatcher("AdminLogin.jsp");
+					dis.forward(request, response);
+				}
+				if(code== null || code.equals("")) {
+					request.setAttribute("stat", "invalidcode");
+					dis = request.getRequestDispatcher("AdminLogin.jsp");
+					dis.forward(request, response);
+				}
+				
 				try {
 					
 					//for admin based lodin credentials
@@ -153,7 +169,9 @@ public class AdminLoginServlet extends HttpServlet {
 						response.sendRedirect("dashdex.jsp");
 					}
 					else {
-						out.print("errror Admin");
+						request.setAttribute("stat", "invalidCredentials");
+						dis = request.getRequestDispatcher("AdminLogin.jsp");
+						dis.forward(request, response);
 					}
 				}
 				catch (ClassNotFoundException e) {

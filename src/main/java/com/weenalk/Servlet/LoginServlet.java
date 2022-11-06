@@ -50,6 +50,8 @@ public class LoginServlet extends HttpServlet {
 				//parameter catching from the form
 				String email=request.getParameter("email");
 				String password=request.getParameter("password");
+				String role = "user";
+				
 				String ip =request.getParameter("ip");
 				String isp =request.getParameter("isp");
 				String country =request.getParameter("country");
@@ -105,6 +107,7 @@ public class LoginServlet extends HttpServlet {
 						logtime.setTime(formatter_time.format(time));
 						logtime.setDay(formatter_day.format(day));
 						logtime.setMonth(formatter_month.format(month));
+						logtime.setRole(role);
 						
 						LogTimeDao lgtime= new LogTimeDao(DbCon.getConnection()); 
 						boolean result = lgtime.insertlogs(logtime);
