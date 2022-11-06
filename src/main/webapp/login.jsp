@@ -111,7 +111,8 @@
 
         .btn-facebook:hover,
         .btn-facebook:focus {
-            background: #314879;
+        	color:black;
+            background: #e2e6ea;
         }
 
         .btn-twitter {
@@ -122,7 +123,8 @@
 
         .btn-twitter:hover,
         .btn-twitter:focus {
-            background: #1799e4;
+        	color:black;
+            background: #e2e6ea;
         }
 
         /*
@@ -211,7 +213,7 @@
 					<!-- the end of the ip statuses -->
 					
 					<!-- the session variable thats related to the invalid logins -->
-					<input type="text" value="<%=request.getAttribute("stat")%>" id="inval" name=""/>
+					<input type="hidden" value="<%=request.getAttribute("stat")%>" id="inval" name=""/>
 					
                     <div class="row">
                         <!-- Email Address -->
@@ -291,7 +293,7 @@
 	            text: "Please Enter Valid Email!",
 	            icon: 'warning',
 	            iconColor: '#000000',
-	            showCancelButton: true,
+	            showCancelButton: false,
 	            confirmButtonColor: '#000000',
 	            cancelButtonColor: '#616161',
 	            confirmButtonText: 'OK'
@@ -303,7 +305,7 @@
 	            text: "Please Enter Valid Password!",
 	            icon: 'warning',
 	            iconColor: '#000000',
-	            showCancelButton: true,
+	            showCancelButton: false,
 	            confirmButtonColor: '#000000',
 	            cancelButtonColor: '#616161',
 	            confirmButtonText: 'OK'
@@ -315,7 +317,19 @@
 	            text: "Please Enter Valid Credentials!",
 	            icon: 'warning',
 	            iconColor: '#000000',
-	            showCancelButton: true,
+	            showCancelButton: false,
+	            confirmButtonColor: '#000000',
+	            cancelButtonColor: '#616161',
+	            confirmButtonText: 'OK'
+	          });
+	    }
+	    if( stat=="success"){
+	    	Swal.fire({
+	            title: 'Welcome User',
+	            text: "Login Success!",
+	            icon: 'success',
+	            iconColor: '#000000',
+	            showCancelButton: false,
 	            confirmButtonColor: '#000000',
 	            cancelButtonColor: '#616161',
 	            confirmButtonText: 'OK'

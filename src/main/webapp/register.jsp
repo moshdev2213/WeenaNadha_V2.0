@@ -169,7 +169,7 @@
     }
   </style>
 
-  <!-- Page Preloder -->
+  <!-- Page Preloder 
   <div id="preloder">
     <div class="d-flex justify-content-center"
       style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
@@ -178,7 +178,7 @@
       </div>
     </div>
   </div>
-  <!-- ends herer -->
+   ends herer -->
 
   <div class="container">
     <div class="row py-4 align-items-center">
@@ -304,13 +304,12 @@
             <!-- Submit Button -->
             <div class="form-group col-lg-12 mx-auto mb-0">
             	<button type="submit" class="btn btn-light btn-block py-2">
-            	
             		<span class="font-weight-bold">Create your account</span>
             	</button>
             </div>
           </div>
         </form>
-        
+        <input type="hidden" value="<%=request.getAttribute("registering")%>" id="inval" name=""/>
          <!-- Divider Text -->
             <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
               <div class="border-bottom w-100 ml-5"></div>
@@ -331,6 +330,120 @@
   <!-- preloader -->
   <script src="js/preloader.js"></script>
   <!-- preloader ends script -->
+  <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.6/platform.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    let stat = document.getElementById('inval').value;
+    if( stat=="invalidfname"){
+    	Swal.fire({
+            title: 'Invalid Email',
+            text: "Please Enter Valid Email!",
+            icon: 'warning',
+            iconColor: '#000000',
+            showCancelButton: false,
+            confirmButtonColor: '#000000',
+            cancelButtonColor: '#616161',
+            confirmButtonText: 'OK'
+          });
+    }
+    if( stat=="invalidmname"){
+    	Swal.fire({
+            title: 'Invalid Email',
+            text: "Please Enter Valid Email!",
+            icon: 'warning',
+            iconColor: '#000000',
+            showCancelButton: false,
+            confirmButtonColor: '#000000',
+            cancelButtonColor: '#616161',
+            confirmButtonText: 'OK'
+          });
+    }
+    if( stat=="invalidlname"){
+    	Swal.fire({
+            title: 'Invalid Email',
+            text: "Please Enter Valid Email!",
+            icon: 'warning',
+            iconColor: '#000000',
+            showCancelButton: false,
+            confirmButtonColor: '#000000',
+            cancelButtonColor: '#616161',
+            confirmButtonText: 'OK'
+          });
+    }
+    if( stat=="invalidname"){
+    	Swal.fire({
+            title: 'Invalid Email',
+            text: "Please Enter Valid Email!",
+            icon: 'warning',
+            iconColor: '#000000',
+            showCancelButton: false,
+            confirmButtonColor: '#000000',
+            cancelButtonColor: '#616161',
+            confirmButtonText: 'OK'
+          });
+    }
+    if( stat=="invalidEmail"){
+    	Swal.fire({
+            title: 'Invalid Email',
+            text: "Please Enter Valid Email!",
+            icon: 'warning',
+            iconColor: '#000000',
+            showCancelButton: false,
+            confirmButtonColor: '#000000',
+            cancelButtonColor: '#616161',
+            confirmButtonText: 'OK'
+          });
+    }
+    if( stat=="invalidpwd"){
+    	Swal.fire({
+            title: 'Invalid Email',
+            text: "Please Enter Valid Email!",
+            icon: 'warning',
+            iconColor: '#000000',
+            showCancelButton: false,
+            confirmButtonColor: '#000000',
+            cancelButtonColor: '#616161',
+            confirmButtonText: 'OK'
+          });
+    }
+    if( stat=="invalidreupwd"){
+    	Swal.fire({
+            title: 'Invalid Email',
+            text: "Please Enter Valid Email!",
+            icon: 'warning',
+            iconColor: '#000000',
+            showCancelButton: false,
+            confirmButtonColor: '#000000',
+            cancelButtonColor: '#616161',
+            confirmButtonText: 'OK'
+          });
+    }
+    if( stat=="invalidnumber"){
+    	Swal.fire({
+            title: 'Invalid Email',
+            text: "Please Enter Valid Email!",
+            icon: 'warning',
+            iconColor: '#000000',
+            showCancelButton: false,
+            confirmButtonColor: '#000000',
+            cancelButtonColor: '#616161',
+            confirmButtonText: 'OK'
+          });
+    }
+    if( stat=="invalidlength"){
+    	Swal.fire({
+            title: 'Invalid Email',
+            text: "Please Enter Valid Email!",
+            icon: 'warning',
+            iconColor: '#000000',
+            showCancelButton: false,
+            confirmButtonColor: '#000000',
+            cancelButtonColor: '#616161',
+            confirmButtonText: 'OK'
+          });
+    }
+    </script>
 </body>
 
 </html>

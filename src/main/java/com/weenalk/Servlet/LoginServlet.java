@@ -129,13 +129,16 @@ public class LoginServlet extends HttpServlet {
 						//mail forwarding ends here
 						
 						//redirects to index.jsp page
-						response.sendRedirect("index.jsp");
+						request.setAttribute("stat", "success");
+						dis = request.getRequestDispatcher("index.jsp");
+						dis.forward(request, response);
 					}
 					else {
 						request.setAttribute("stat", "invalidCredentials");
 						dis = request.getRequestDispatcher("login.jsp");
 						dis.forward(request, response);
 					}
+					
 				}
 				catch (ClassNotFoundException e) {
 					e.printStackTrace();

@@ -5,9 +5,7 @@
 	if(session.getAttribute("auth")==null){
 		response.sendRedirect("login.jsp");
 	}
-	else if(session.getAttribute("authadmin")==null){
-		response.sendRedirect("AdminLogin.jsp");
-	}
+
 
 %>
 <head>
