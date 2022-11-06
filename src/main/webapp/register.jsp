@@ -337,8 +337,8 @@
     let stat = document.getElementById('inval').value;
     if( stat=="invalidfname"){
     	Swal.fire({
-            title: 'Invalid Email',
-            text: "Please Enter Valid Email!",
+            title: 'Invalid FirstName',
+            text: "Please Enter Valid FirstName!",
             icon: 'warning',
             iconColor: '#000000',
             showCancelButton: false,
@@ -349,8 +349,8 @@
     }
     if( stat=="invalidmname"){
     	Swal.fire({
-            title: 'Invalid Email',
-            text: "Please Enter Valid Email!",
+            title: 'Invalid MiddleName',
+            text: "Please Enter Valid MiddleName!",
             icon: 'warning',
             iconColor: '#000000',
             showCancelButton: false,
@@ -361,8 +361,8 @@
     }
     if( stat=="invalidlname"){
     	Swal.fire({
-            title: 'Invalid Email',
-            text: "Please Enter Valid Email!",
+            title: 'Invalid LastName',
+            text: "Please Enter Valid LastName!",
             icon: 'warning',
             iconColor: '#000000',
             showCancelButton: false,
@@ -373,8 +373,8 @@
     }
     if( stat=="invalidname"){
     	Swal.fire({
-            title: 'Invalid Email',
-            text: "Please Enter Valid Email!",
+            title: 'Invalid UserName',
+            text: "Please Enter Valid UserName!",
             icon: 'warning',
             iconColor: '#000000',
             showCancelButton: false,
@@ -397,8 +397,8 @@
     }
     if( stat=="invalidpwd"){
     	Swal.fire({
-            title: 'Invalid Email',
-            text: "Please Enter Valid Email!",
+            title: 'Invalid Password',
+            text: "Please Enter Valid Password!",
             icon: 'warning',
             iconColor: '#000000',
             showCancelButton: false,
@@ -409,8 +409,8 @@
     }
     if( stat=="invalidreupwd"){
     	Swal.fire({
-            title: 'Invalid Email',
-            text: "Please Enter Valid Email!",
+            title: 'Password MissMatch',
+            text: "Please Enter Password Correctly!",
             icon: 'warning',
             iconColor: '#000000',
             showCancelButton: false,
@@ -421,8 +421,8 @@
     }
     if( stat=="invalidnumber"){
     	Swal.fire({
-            title: 'Invalid Email',
-            text: "Please Enter Valid Email!",
+            title: 'Invalid Number',
+            text: "Please Enter Valid Number!",
             icon: 'warning',
             iconColor: '#000000',
             showCancelButton: false,
@@ -433,8 +433,8 @@
     }
     if( stat=="invalidlength"){
     	Swal.fire({
-            title: 'Invalid Email',
-            text: "Please Enter Valid Email!",
+            title: 'Number Not Valid',
+            text: "Please Enter Valid Number!",
             icon: 'warning',
             iconColor: '#000000',
             showCancelButton: false,

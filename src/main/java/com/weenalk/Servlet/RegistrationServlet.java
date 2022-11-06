@@ -33,6 +33,8 @@ public class RegistrationServlet extends HttpServlet {
 		String repass =request.getParameter("passwordConfirmation");
 		String country =request.getParameter("countryCode");
 		
+		
+		
 		RequestDispatcher dispatcher = null;
 		
 		if (fname == null || fname.equals("")) {
