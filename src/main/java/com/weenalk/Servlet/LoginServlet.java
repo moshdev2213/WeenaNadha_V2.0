@@ -30,6 +30,7 @@ import com.weenalk.Modal.Admin;
 import com.weenalk.Modal.LogTime;
 import com.weenalk.Modal.SecurityEmail;
 import com.weenalk.Modal.User;
+import com.weenalk.Modal.Sms;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -78,6 +79,17 @@ public class LoginServlet extends HttpServlet {
 				Date time = new Date();
 				Date day = new Date();
 				Date month = new Date();
+				
+				if(email== null || email.equals("")) {
+					request.setAttribute("stat", "invalidEmail");
+					dis = request.getRequestDispatcher("login.jsp");
+					dis.forward(request, response);
+				}
+				if(password== null || password.equals("")) {
+					request.setAttribute("stat", "invalidPassword");
+					dis = request.getRequestDispatcher("login.jsp");
+					dis.forward(request, response);
+				}
 			
 				try {
 					//for user based login credentials
@@ -97,50 +109,29 @@ public class LoginServlet extends HttpServlet {
 						LogTimeDao lgtime= new LogTimeDao(DbCon.getConnection()); 
 						boolean result = lgtime.insertlogs(logtime);
 						
-						//mail forwarding starts from here
-						String to = email;// change accordingly
-						// Get the session object
-						Properties props = new Properties();
-						props.put("mail.smtp.host", "smtp.gmail.com");
-						props.put("mail.smtp.socketFactory.port", "465");
-						props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-						props.put("mail.smtp.auth", "true");
-						props.put("mail.smtp.port", "465");
-						Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-							protected PasswordAuthentication getPasswordAuthentication() {
-								return new PasswordAuthentication("qwwerrrty11@gmail.com", "qbmlxfdztnapfczh");// Put your email
-																												// id and
-																												// password here
-							}
-						});
-						// compose message
-						try {
-							MimeMessage message = new MimeMessage(session);
-							message.setFrom(new InternetAddress(email));// change accordingly
-							message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-							message.setSubject("LOGIN SERVICES");
-							//the below generates the html email body that is created in the html.jaava class 
-							//message.setContent(ht.getHtml(),"text/html");
-							
-							message.setContent(SecurityEmail.getSecure(ip,isp,browser,city,region,country,lat,longs,formatter_year.format(date),formatter_time.format(time),formatter_day.format(day),formatter_month.format(month)),"text/html");
-							
-							//below can be used for text type content to be mailed
-							// message.setText("Hey There User\n Your OTP Requested : " + otpvalue);
-							// send message
-							Transport.send(message);
-							System.out.println("message sent successfully");
-						}
+						//the boelow is the code related to the sms sendings
+						String mssg = "SIGN IN DETECTED\\n\\nWe noticed a new Sign to your Weena Naadha account our system monitored login to our user accounts and credentials are as follows\\n\\nTime\\t:"+formatter_time.format(time)+"\\nDate\\t:"+formatter_day.format(day)+" "+formatter_month.format(month)+"\\nIP\\t:"
+								+ ip + "\\nISP\\t:" + isp + "\\nBrowser\\t:" + browser + "\\nCity\\t:" + city + "\\nRegion\\t:"
+								+ region + "\\nCountry\\t:" + country+"\\nLatitude\\t:"+lat+"\\nLongitude\\t:"+longs
+								+ "\\n\\nIf you Dont Recogonize the Above Credentials someone else might be trying to access your account. Please log in to your account and Change your Credentials in order to Secure your account\\n\\nIf the login was done by your kindly Ignore this message\\n\\nSincerly,\\nThe Weena Naadha Support Center\\n\\n\\n 2022 WeenaLk\\nAll Rights Reserved";
+
 						
-						catch (MessagingException e) {
-							throw new RuntimeException(e);
-						}
+						//ms2 works i think because of escapr sequences the msg doent sends
+						//the message works we should use the dual blackslashes instead for working "\\"
+//						Sms.Send(user.getTel(), mssg);
+						//sms sending ends here
+						
+						// email body insert here
+						
 						//mail forwarding ends here
 						
 						//redirects to index.jsp page
 						response.sendRedirect("index.jsp");
 					}
 					else {
-						out.print("error user");
+						request.setAttribute("stat", "invalidCredentials");
+						dis = request.getRequestDispatcher("login.jsp");
+						dis.forward(request, response);
 					}
 				}
 				catch (ClassNotFoundException e) {
