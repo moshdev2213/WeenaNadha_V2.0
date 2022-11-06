@@ -1,3 +1,10 @@
+<%
+	if(session.getAttribute("authadmin")==null){
+		response.sendRedirect("login.jsp");
+	}
+
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -224,7 +231,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-bk border-0 rounded rounded-bottom m-2">
                             <a href="profile.jsp" class="dropdown-item text-white">My Profile</a>
-                            <a href="#" class="dropdown-item text-white">Log Out</a>
+                            <a href="LogoutServlet" class="dropdown-item text-white">Log Out</a>
                             <a href="login.jsp" class="dropdown-item text-white">Login</a>
                         </div>
                     </div>

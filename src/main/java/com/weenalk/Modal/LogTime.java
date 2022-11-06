@@ -7,11 +7,12 @@ public class LogTime {
 	private String day;
 	private String month;
 	private String date;
+	private String role;
 
 	public LogTime() {
 	}
 
-	public LogTime(int id, String uemail, String time, String day, String month, String date) {
+	public LogTime(int id, String uemail, String time, String day, String month, String date,String role) {
 
 		this.id = id;
 		this.uemail = uemail;
@@ -19,15 +20,17 @@ public class LogTime {
 		this.day = day;
 		this.month = month;
 		this.date = date;
+		this.role = role;
 	}
 
-	public LogTime(String uemail, String time, String day, String month, String date) {
+	public LogTime(String uemail, String time, String day, String month, String date,String role) {
 
 		this.uemail = uemail;
 		this.time = time;
 		this.day = day;
 		this.month = month;
 		this.date = date;
+		this.role = role;
 	}
 
 	public int getId() {
@@ -76,6 +79,13 @@ public class LogTime {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }

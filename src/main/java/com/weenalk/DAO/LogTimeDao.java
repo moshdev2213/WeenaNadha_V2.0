@@ -19,7 +19,7 @@ public class LogTimeDao {
 		boolean result = false;
 
 		try {
-			query = "Insert into logtime (uemail,time,day,month,date) values(?,?,?,?,?)";
+			query = "Insert into logtime (uemail,time,day,month,date,role) values(?,?,?,?,?,?)";
 			pst = this.con.prepareStatement(query);
 
 			pst.setString(1, lgtime.getUemail());
@@ -27,6 +27,7 @@ public class LogTimeDao {
 			pst.setString(3, lgtime.getDay());
 			pst.setString(4, lgtime.getMonth());
 			pst.setString(5, lgtime.getDate());
+			pst.setString(6, lgtime.getRole());
 
 			pst.executeUpdate();
 			result = true;

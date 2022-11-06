@@ -16,13 +16,14 @@ public class AdminDao {
 		this.con = con;
 	}
     
-    public Admin adminLogin(String email, String password) {
+    public Admin adminLogin(String email, String password,String role) {
 		Admin admin = null;
         try {
-            query = "select * from admin where email=? and password=?";
+            query = "select * from admin where email=? and password=? and code=?";
             pst = this.con.prepareStatement(query);
             pst.setString(1, email);
             pst.setString(2, password);
+            pst.setString(3, role);
             rs = pst.executeQuery();
             if(rs.next()){
             	admin = new Admin();

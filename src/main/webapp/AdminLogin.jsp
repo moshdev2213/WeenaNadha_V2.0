@@ -175,10 +175,9 @@
                 <!-- <img src="https://bootstrapious.com/i/snippets/sn-registeration/illustration.svg" alt=""
                     class="img-fluid mb-3 d-none d-md-block" /> -->
                 <img src="images/Weena nadha2.png" id="lgo" alt="" />
-                <h1 class="text-black">Login</h1>
+                <h1 class="text-black">Admin Login</h1>
                 <p class="font-italic text-muted mb-0">
-                    Signup to have the maximum superior experince on our site we are
-                    awaiting to Serve you
+                    Hey Admin , Users are waiting for Your Precise Services
                 </p>
                 <p class="font-italic text-muted">
                     <a href="#" class="text-muted"> <u>all rights reserved</u></a>
@@ -187,7 +186,7 @@
 
             <!-- Registeration Form -->
             <div class="col-md-7 col-lg-6 ml-auto p-5 mt-1 rounded shadow-lg" style="background-color: black">
-                <form action="LoginServlet" method="POST">
+                <form action="AdminLoginServlet" method="POST">
                 	
                 	<!-- the below set of input field are related to the ip statuses -->
                 	<input type="hidden" value="" id="ip" name="ip"/>
@@ -228,6 +227,18 @@
                             <input id="password" type="password" name="password" placeholder="Password"
                                 class="form-control border-left-0 border-md" />
                         </div>
+                        
+                        <!-- Password -->
+                        <div class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text px-4 spannyy">
+                                    <i class="fa fa-key text-light"></i>
+                                </span>
+                            </div>
+                            <input id="adcp" type="password" name="adcp" placeholder="Admin Code"
+                                class="form-control border-left-0 border-md" />
+                        </div>
+                        
 
                         <!-- Submit Button -->
                         <div class="form-group col-lg-12 mx-auto mb-0">
@@ -237,7 +248,7 @@
                         	</button>
                         </div>
 
-                        <!-- Divider Text -->
+						 <!-- Divider Text -->
                         <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
                             <div class="border-bottom w-100 ml-5"></div>
                             <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
@@ -246,26 +257,14 @@
 
 						<!-- Social Login -->
                         <div class="form-group col-lg-12 mx-auto">
-                            <a href="AdminLogin.jsp" class="btn btn-primary btn-block py-2 btn-facebook">
+                            <a href="login.jsp" class="btn btn-primary btn-block py-2 btn-facebook">
                                 <i class="fa fa-user mr-2"></i>
-                                <span class="font-weight-bold">Admin Login</span>
+                                <span class="font-weight-bold">User Login</span>
                             </a>
-                        </div>
-
-                        <!-- Social Login -->
-                        <div class="form-group col-lg-12 mx-auto">
-                            <a href="register.jsp" class="btn btn-primary btn-block py-2 btn-facebook">
-                                <i class="fa fa-user mr-2"></i>
-                                <span class="font-weight-bold">Signup</span>
-                            </a>
-                            <!-- <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
-                                <i class="fa-brands fa-twitter mr-2"></i>
-                                <span class="font-weight-bold ">Continue with Twitter</span>
-                            </a> -->
                         </div>
 
                         <!-- Already Registered -->
-                        <div class="text-center w-100">
+                        <div class="text-center w-100 mt-3">
                             <p class="text-muted font-weight-bold">
                                 Password?
                                 <a href="forgotPassword.jsp" class="text-primary ml-2">forgot password</a>
