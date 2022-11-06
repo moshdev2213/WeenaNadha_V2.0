@@ -83,10 +83,10 @@
 						</div>
 					</div>
 					<div class="card-footer border-0 text-end p-3">
-						<button class="btn bg-dark opacity-50 text-white rounded-0 shadow" type="submit">Get New
+						<button class="btn bg-dark opacity-50 text-white rounded-0 shadow" onclick="times()" type="submit">Get New
 							Password</button>
-						<button class="btn bg-black text-white rounded-0 shadow" type="submit">Back to
-							Login</button>
+						<a href="login.jsp" class="btn bg-black text-white rounded-0 shadow">Back to
+							Login</a>
 					</div>
 				</form>
 			</div>
@@ -103,10 +103,39 @@
 		<p>&copy; WeenaNadha 45/0, St.Peters Street, Colombo.</p>
 	</div>
 	<!-- <script type='text/javascript'
-		src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js'></script>
-	<script type='text/javascript' src=''></script>
-	<script type='text/javascript' src=''></script>
-	<script type='text/Javascript'></script> -->
+		src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js'></script> -->
+		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.6/platform.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script>
+		function times(){
+        	let timerInterval
+        	Swal.fire({
+        	  title: 'We Are Gathering Resources For You !',
+        	  icon: 'info',
+        	  iconColor:'#282C34',
+        	  html: 'Loading Resources  <b></b> .',
+        	  timer: 36000,
+        	  timerProgressBar: true,
+        	  didOpen: () => {
+        	    Swal.showLoading()
+        	    const b = Swal.getHtmlContainer().querySelector('b')
+        	    timerInterval = setInterval(() => {
+        	      b.textContent = Swal.getTimerLeft()
+        	    }, 100)
+        	  },
+        	  willClose: () => {
+        	    clearInterval(timerInterval)
+        	  }
+        	}).then((result) => {
+        	  /* Read more about handling dismissals below */
+        	  if (result.dismiss === Swal.DismissReason.timer) {
+        	    console.log('I was closed by the timer')
+        	  }
+        	})
+        }
+		</script>
+	
 </body>
 
 </html>

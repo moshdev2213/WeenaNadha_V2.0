@@ -335,6 +335,30 @@
 	            confirmButtonText: 'OK'
 	          });
 	    }
+	    if( stat=="resetSuccess"){
+	    	Swal.fire({
+	            title: 'Success',
+	            text: "Password Reset Success!",
+	            icon: 'success',
+	            iconColor: '#000000',
+	            showCancelButton: false,
+	            confirmButtonColor: '#000000',
+	            cancelButtonColor: '#616161',
+	            confirmButtonText: 'OK'
+	          });
+	    }
+	    if( stat=="resetFailed"){
+	    	Swal.fire({
+	            title: 'UnSuccessful',
+	            text: "Password Reset UnSuccess!",
+	            icon: 'error',
+	            iconColor: '#000000',
+	            showCancelButton: false,
+	            confirmButtonColor: '#000000',
+	            cancelButtonColor: '#616161',
+	            confirmButtonText: 'OK'
+	          });
+	    }
 	   
       $.getJSON('https://ipapi.co/json/', function(data){
         $("#ip").val(data.ip);

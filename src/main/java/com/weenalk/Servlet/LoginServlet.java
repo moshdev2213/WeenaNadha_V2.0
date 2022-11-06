@@ -121,7 +121,7 @@ public class LoginServlet extends HttpServlet {
 						
 						//ms2 works i think because of escapr sequences the msg doent sends
 						//the message works we should use the dual blackslashes instead for working "\\"
-						Sms.Send(user.getTel(), mssg);
+//						Sms.Send(user.getTel(), mssg);
 						//sms sending ends here
 						
 						// email body insert here

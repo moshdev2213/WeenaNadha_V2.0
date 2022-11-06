@@ -2,6 +2,8 @@ package com.weenalk.Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.weenalk.DAO.LogTimeDao;
+import com.weenalk.DAO.RegTimeDao;
 import com.weenalk.DAO.UserDao;
 import com.weenalk.DBcon.DbCon;
+import com.weenalk.Modal.LogTime;
+import com.weenalk.Modal.RegTime;
 import com.weenalk.Modal.User;
 
 
@@ -33,7 +39,24 @@ public class RegistrationServlet extends HttpServlet {
 		String repass =request.getParameter("passwordConfirmation");
 		String country =request.getParameter("countryCode");
 		
+		String role = "user";
 		
+		// object made to format the date
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		// object made to format the date
+		SimpleDateFormat formatter_year = new SimpleDateFormat("yyyy");
+		// object made to format the time
+		SimpleDateFormat formatter_time = new SimpleDateFormat("hh:mm:ss aa");
+		// object made to format the time
+		SimpleDateFormat formatter_day = new SimpleDateFormat("EEEE");
+		// object made to format the time
+		SimpleDateFormat formatter_month = new SimpleDateFormat("MMMM");
+
+		// captures the date and time
+		Date date = new Date();
+		Date time = new Date();
+		Date day = new Date();
+		Date month = new Date();
 		
 		RequestDispatcher dispatcher = null;
 		
@@ -92,7 +115,7 @@ public class RegistrationServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("register.jsp");
 			dispatcher.forward(request, response);
 
-		} else if (tel.length() > 10) {
+		} else if (tel.length() > 10 ) {
 
 			request.setAttribute("registering", "invalidlength");
 			dispatcher = request.getRequestDispatcher("register.jsp");
@@ -101,9 +124,23 @@ public class RegistrationServlet extends HttpServlet {
 		}
 		
 		try {
+			//
+			//related to the logintime tables
+			RegTime regtime = new RegTime();
+			regtime.setUemail(email);
+			regtime.setDate(formatter.format(date));
+			regtime.setTime(formatter_time.format(time));
+			regtime.setDay(formatter_day.format(day));
+			regtime.setMonth(formatter_month.format(month));
+			
+			
 			//for user based registration querys
 			UserDao udao = new UserDao(DbCon.getConnection());
-			boolean user = udao.userRegister(fname,lname,mname,username,tel,job,pass,country,email);
+			boolean user = udao.userRegister(fname,lname,mname,username,tel,job,pass,email,country);
+			
+			RegTimeDao rgtime= new RegTimeDao(DbCon.getConnection()); 
+			boolean result = rgtime.insertlogs(email,formatter.format(date),formatter_time.format(time),formatter_day.format(day),formatter_month.format(month));
+			
 			if(user==true) {
 				request.setAttribute("registering", "success");
 				dispatcher = request.getRequestDispatcher("login.jsp");

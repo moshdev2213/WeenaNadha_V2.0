@@ -42,7 +42,7 @@ public class UserDao {
         }
         return user;
     }
-	public boolean userRegister(String email, String password,String lname,String fname,String mname,String username,String tel,String company,String country) {
+	public boolean userRegister(String fname,String lname,String mname,String username,String tel,String company,String password, String email,String country) {
 		boolean result = false;
 		try {
 			query = "Insert into users (useremail,password,username,phone_no,company,fname,mname,lname) values(?,?,?,?,?,?,?,?)";

@@ -20,13 +20,22 @@
 
 <body>
   <style>
-    /*
-*
-* ==========================================
-* CUSTOM UTIL CLASSES
-* ==========================================
-*   
-*/
+ 
+ 	input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}
+ 	
     body {
       /* background-image: url("images/22.png");
             background-size: cover;
@@ -199,7 +208,7 @@
 
       <!-- Registeration Form -->
       <div class="col-md-7 col-lg-6 ml-auto p-5 mt-1 rounded shadow-lg" style="background-color: black">
-        <form action="RegistrationServlet" method="POST">
+        <form action="RegistrationServlet" autocomplete="off" method="POST">
           <div class="row">
             <!-- First Name -->
             <div class="input-group col-lg-6 mb-4">
