@@ -1,6 +1,12 @@
+<%@page import="com.weenalk.Modal.*" %>
 <!DOCTYPE html>
 <html lang="en">
+<%
+	if(session.getAttribute("auth")==null){
+		response.sendRedirect("login.jsp");
+	}
 
+%>
 <head>
   <title>Weena</title>
   <meta charset="utf-8" />
@@ -142,7 +148,7 @@
                 <!-- submenu -->
                 <div id="mydrop" class="downyy-content">
                   <a href="userpro.jsp">My profile</a>
-                  <a href="#">Logout</a>
+                  <a href="LogoutServlet">Logout</a>
                   <a href="login.jsp">Login</a>
                 </div>
 

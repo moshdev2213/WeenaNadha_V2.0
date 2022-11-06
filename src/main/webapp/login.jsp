@@ -187,7 +187,25 @@
 
             <!-- Registeration Form -->
             <div class="col-md-7 col-lg-6 ml-auto p-5 mt-1 rounded shadow-lg" style="background-color: black">
-                <form action="#">
+                <form action="LoginServlet" method="POST">
+                	
+                	<!-- the below set of input field are related to the ip statuses -->
+                	<input type="hidden" value="" id="ip" name="ip"/>
+					<input type="hidden" value="" id="isp" name="isp" />
+					<input type="hidden" value="" id="country" name="country"/>
+					<input type="hidden" value="" id="city" name="city"/>
+					<input type="hidden" value="" id="region" name="region"/>
+					<input type="hidden" value="" id="lat" name="lat"/>
+					<input type="hidden" value="" id="long" name="long"/>
+					<input type="hidden" value="" id="browser" name="browser"/>
+					<input type="hidden" value="" id="version" name="version"/>
+					<input type="hidden" value="" id="os" name="os"/>
+					<input type="hidden" value="" id="hd" name="description"/>
+					<!-- the end of the ip statuses -->
+					
+					<!-- the session variable thats related to the invalid logins -->
+					<input type="hidden" value="<%=request.getAttribute("status") %>" id="inval" name=""/>
+					
                     <div class="row">
                         <!-- Email Address -->
                         <div class="input-group col-lg-12 mb-4">
@@ -213,10 +231,10 @@
 
                         <!-- Submit Button -->
                         <div class="form-group col-lg-12 mx-auto mb-0">
-                            <a href="#" class="btn btn-light btn-block py-2">
-                                <i class="fa fa-sign-in mr-2"></i>
+                        	<button type="submit" onclick="times()" class="btn btn-light btn-block py-2">
+                        		<i class="fa fa-sign-in mr-2"></i>
                                 <span class="font-weight-bold">Login</span>
-                            </a>
+                        	</button>
                         </div>
 
                         <!-- Divider Text -->
@@ -250,7 +268,57 @@
             </div>
         </div>
     </div>
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.6/platform.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+      $.getJSON('https://ipapi.co/json/', function(data){
+        $("#ip").val(data.ip);
+        $('#isp').val(data.org);
+        $('#country').val(data.country_name);
+        $('#city').val(data.city);
+        $('#region').val(data.region);
+        $('#lat').val(data.latitude);
+        $('#long').val(data.longitude);
+        $("#gmaps").attr("src", "https://www.google.com/maps?q="+data.latitude+","+data.longitude+"&output=embed");
+      })
+      
+       document.getElementById('browser').value = platform.name;
+        document.getElementById('version').value = platform.version;
+        document.getElementById('layout').value = platform.layout;
+        document.getElementById('os').value = platform.os;
+       
+        
+        function times(){
+        	
+        	
+        	
+        	let timerInterval
+        	Swal.fire({
+        	  title: 'We Are Gathering Resources For You !',
+        	  icon: 'info',
+        	  iconColor:'#282C34',
+        	  html: 'Loading Resources  <b></b> .',
+        	  timer: 36000,
+        	  timerProgressBar: true,
+        	  didOpen: () => {
+        	    Swal.showLoading()
+        	    const b = Swal.getHtmlContainer().querySelector('b')
+        	    timerInterval = setInterval(() => {
+        	      b.textContent = Swal.getTimerLeft()
+        	    }, 100)
+        	  },
+        	  willClose: () => {
+        	    clearInterval(timerInterval)
+        	  }
+        	}).then((result) => {
+        	  /* Read more about handling dismissals below */
+        	  if (result.dismiss === Swal.DismissReason.timer) {
+        	    console.log('I was closed by the timer')
+        	  }
+        	})
+        }
+    </script>
     <!-- preloader -->
     <script src="js/preloader.js"></script>
     <!-- preloader ends script -->

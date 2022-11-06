@@ -26,9 +26,15 @@ public class AdminDao {
             rs = pst.executeQuery();
             if(rs.next()){
             	admin = new Admin();
-            	admin.setId(rs.getInt("id"));
-            	admin.setName(rs.getString("name"));
+            	admin.setAddressid(rs.getInt("address_ID"));
+            	admin.setTel(rs.getString("phone"));
             	admin.setEmail(rs.getString("email"));
+            	admin.setPassword(rs.getString("password"));
+            	admin.setPropic(rs.getString("propic"));
+            	admin.setCoverpic(rs.getString("coverpic"));
+            	admin.setAbout(rs.getString("about"));
+            	admin.setUsername(rs.getString("username"));
+            	admin.setRole(rs.getString("role"));
             }
         } catch (SQLException e) {
             System.out.print(e.getMessage());

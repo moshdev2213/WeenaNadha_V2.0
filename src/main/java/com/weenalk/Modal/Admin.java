@@ -4,7 +4,7 @@ import com.weenalk.interfaces.roleInterface;
 
 public class Admin implements roleInterface{
 	private int addressid;
-	private int tel;
+	private String tel;
 	private String username;
 	private String email;
 	private String password;
@@ -17,7 +17,7 @@ public class Admin implements roleInterface{
 		
 	}
 	
-	public Admin(int addressid, int tel, String username, String email, String password, String propic, String coverpic,
+	public Admin(int addressid, String tel, String username, String email, String password, String propic, String coverpic,
 			String role, String about) {
 		
 		this.addressid = addressid;
@@ -45,11 +45,11 @@ public class Admin implements roleInterface{
 		this.addressid = addressid;
 	}
 
-	public int getTel() {
+	public String getTel() {
 		return tel;
 	}
 
-	public void setTel(int tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 
