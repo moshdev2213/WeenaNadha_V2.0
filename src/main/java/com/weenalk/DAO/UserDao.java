@@ -1,6 +1,8 @@
 package com.weenalk.DAO;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.weenalk.Modal.*;
 
@@ -64,6 +66,17 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return result;
+		
+	}
+	//to get all users from the DB
+	public List<User> getUser(){
+		List<User> user = new ArrayList<User>();
+		try {
+			query="select * from";
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return user;
 		
 	}
 }

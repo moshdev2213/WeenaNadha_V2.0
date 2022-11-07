@@ -239,7 +239,7 @@ select:-webkit-autofill:active {
                   <i class="fa fa-user text-light"></i>
                 </span>
               </div>
-              <input id="maname" type="email" name="mname" placeholder="Middle Name"
+              <input id="maname" type="text" name="mname" placeholder="Middle Name"
                 class="form-control border-left-0 border-md" />
             </div>
             <!-- User Name -->

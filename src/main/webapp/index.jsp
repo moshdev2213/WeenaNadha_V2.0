@@ -5,6 +5,9 @@
 	if(session.getAttribute("auth")==null){
 		response.sendRedirect("login.jsp");
 	}
+	else{%>
+		  <input type="hidden" value="<%=request.getAttribute("stat") %>" id="namae" />
+	<%}
 
 
 %>
@@ -310,7 +313,7 @@
                     <img src="assets/images/men-03.jpg" alt="" />
                   </div>
                   <div class="down-content">
-                    <h4>Love Nana ‘20</h4>
+                    <h4>Love Nana â20</h4>
                     <span>$150.00</span>
                     <ul class="stars">
                       <li><i class="fa fa-star"></i></li>
@@ -885,6 +888,7 @@
         </div>
       </div>
     </footer>
+   
   </div>
 
   <script src="js/jquery-3.3.1.min.js"></script>
@@ -922,6 +926,25 @@
   <!-- preloader -->
   <script src="js/preloader.js"></script>
   <!-- preloader ends script -->
+  
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+   <script>
+   let name = document.getElementById("namae").value;
+   if( name=="success"){
+	   setTimeout(Swal.fire({
+		   position: 'top-end',
+		   icon: false,
+		   width: '400px',
+		   padding:'0 10px 10px 0',
+		   text: 'Hey There Mr.'+name+' Welcome :-)',
+		   showConfirmButton: false,
+		   timerProgressBar: true,
+		   timer: 3000
+		 }), 500);
+	   
+   }
+   </script>
   <!-- chatbot  -->
   <!-- below is for test -->
   <!-- <script src="//code.tidio.co/halmfcwuijgdegttcnsrzyhsdnrtlotq.js" async></script> -->

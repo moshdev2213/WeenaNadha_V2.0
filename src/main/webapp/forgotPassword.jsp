@@ -115,6 +115,7 @@
         	  icon: 'info',
         	  iconColor:'#282C34',
         	  html: 'Loading Resources  <b></b> .',
+        	  allowOutsideClick:false,
         	  timer: 36000,
         	  timerProgressBar: true,
         	  didOpen: () => {
