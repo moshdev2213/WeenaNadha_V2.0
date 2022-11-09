@@ -121,7 +121,9 @@ public class AdminLoginServlet extends HttpServlet {
 						//mail forwarding ends here
 						
 						//redirects to index.jsp page
-						response.sendRedirect("dashdex.jsp");
+						request.setAttribute("authadmin", "success");
+						dis = request.getRequestDispatcher("index.jsp");
+						dis.forward(request, response);
 					}
 					else {
 						request.setAttribute("stat", "invalidCredentials");

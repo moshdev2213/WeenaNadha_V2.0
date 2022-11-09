@@ -1,6 +1,22 @@
+<%@page import="com.weenalk.Modal.*" %>
+
 <!DOCTYPE html>
 <html lang="en">
+<%
+	// user details print
+	
+	//(User) syas that it is type casted
+	User authin = (User) request.getSession().getAttribute("auth");
+	//(admin) syas that it is type casted
+	Admin authAdmin = (Admin) request.getSession().getAttribute("authadmin");
+	
+	if (authin != null) {
+		request.setAttribute("authin", authin);%>
+		<input type="hidden" value="<%=request.getAttribute("stat") %>" id="ses" />
+		<input type="hidden" value="<%=authin.getFname()%>" id="namae" />
+	<%}
 
+%>
 <head>
     <meta charset="utf-8">
     <title>Weena</title>
@@ -575,8 +591,27 @@
         <!-- Template Javascript -->
         <script src="js/dash.js"></script>
          <!-- preloader -->
-  <script src="js/preloader.js"></script>
-  <!-- preloader ends script -->
+  		<script src="js/preloader.js"></script>
+  		<!-- preloader ends script -->
+  		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+	   <script>
+	   let session = document.getElementById("ses").value;
+	   let name = document.getElementById("namae").value;
+	   if( session=="success"){
+		   setTimeout(Swal.fire({
+			   position: 'top-end',
+			   icon: false,
+			   width: '400px',
+			   padding:'0 10px 10px 0',
+			   text: 'Hey There Mr.'+name+' Welcome :-)',
+			   showConfirmButton: false,
+			   timerProgressBar: true,
+			   timer: 3000
+			 }), 500);
+		   
+	   }
+	   </script>
    <!-- below is the ween nadha -->
    <script src="//code.tidio.co/r5typbnmc7v1ws5v7zbwyrx8bvqch6xv.js" async></script>
    
