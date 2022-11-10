@@ -1,5 +1,6 @@
 
 
+<%@page import="com.weenalk.Servlet.*" %>
 <%@page import="com.weenalk.Modal.*" %>
 <%@page import="com.weenalk.DAO.*" %>
 <%@page import="com.weenalk.DBcon.*" %>
@@ -214,10 +215,16 @@
                             <span class="d-none d-lg-inline-flex">John Doe</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-bk border-0 rounded rounded-bottom m-2">
-                            <a href="profile.jsp" class="dropdown-item text-white">My Profile</a>
-                            <a href="LogoutServlet" class="dropdown-item text-white">Log Out</a>
-                            <a href="login.jsp" class="dropdown-item text-white">Login</a>
-                        </div>
+                        <%
+                        	if(authAdmin!=null){%>
+                        		<a href="profile.jsp" class="dropdown-item text-white">My Profile</a>
+                                <a href="LogoutServlet" class="dropdown-item text-white">Log Out</a>
+                        		
+                        	<%}
+                        	else{%>
+                        		<a href="login.jsp" class="dropdown-item text-white">Login</a>
+                        <% }%>		
+                         </div>
                     </div>
                 </div>
             </nav>
@@ -554,7 +561,7 @@
 			                                        
 			                                    </tr>
 			                               		<%k=k+1;
-			                            		if(k==5)
+			                            		if(k==3)
 			                            			break;
 			                            	}
 			                            }

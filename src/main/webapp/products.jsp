@@ -7,6 +7,7 @@
 <%
 ProductDao pd = new ProductDao(DbCon.getConnection());
 List<Product> products = pd.getAllProducts();
+ArrayList<String> pimg = pd.getALLImg(request.getParameter("id"));
 
 %>
 <html lang="en">

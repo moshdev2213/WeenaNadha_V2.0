@@ -64,23 +64,23 @@ public class ProductDao {
 		
 	}
 
-	public ProdImg getALLImg(String id) {
-		ProdImg prodimg = null;
+	public ArrayList<String> getALLImg(String id) {
+		ArrayList<String> images = new ArrayList<String>();
 		
         try {
-            query = "select * from image where product_id=?";
+            query = "select path from image where product_id=?";
             pst = this.con.prepareStatement(query);
             pst.setString(1, id);
             rs = pst.executeQuery();
-            if(rs.next()){
-            	prodimg.(rs.getInt("address_ID"));
-            	prodimg.setTel(rs.getString("phone_no"));
-            	prodimg.setEmail(rs.getString("useremail"));
+            while(rs.next()){
+            	String image=rs.getString("path");
+            	images.add(image);
             }
+            return images;
         } catch (SQLException e) {
             System.out.print(e.getMessage());
         }
-        return prodimg;
+        return images;
     }
 	
 	
