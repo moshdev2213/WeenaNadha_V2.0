@@ -1,4 +1,14 @@
+
+<%@page import="com.weenalk.Modal.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
+<%
+ProductDao pd = new ProductDao(DbCon.getConnection());
+List<Product> products = pd.getAllProducts();
+
+%>
 <html lang="en">
 
 <head>
@@ -213,285 +223,59 @@
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-lg-4">
-            <div class="item shadow rounded">
-              <div class="thumb">
-                <div class="hover-content">
-                  <ul>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-heart"></i></a>
-                    </li>
-                    <li>
-                      <a href="shop-single.jsp"><i class="fa fa-money"></i></a>
-                    </li>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-shopping-cart"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <a href="shop-single.jsp"><img src="assets/images/men-01.jpg" alt="" /></a>
-              </div>
-              <div class="down-content p-3 rounded">
-                <h4>Classic Spring</h4>
-                <span>$120.00</span>
-                <ul class="stars p-3">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="item shadow rounded">
-              <div class="thumb">
-                <div class="hover-content">
-                  <ul>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-heart"></i></a>
-                    </li>
-                    <li>
-                      <a href="shop-single.jsp"><i class="fa fa-money"></i></a>
-                    </li>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-shopping-cart"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <a href="shop-single.jsp"><img src="assets/images/men-02.jpg" alt="" /></a>
-              </div>
-              <div class="down-content p-3 rounded">
-                <h4>Air Force 1 X</h4>
-                <span>$90.00</span>
-                <ul class="stars p-3">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="item shadow rounded">
-              <div class="thumb">
-                <div class="hover-content">
-                  <ul>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-heart"></i></a>
-                    </li>
-                    <li>
-                      <a href="shop-single.jsp"><i class="fa fa-money"></i></a>
-                    </li>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-shopping-cart"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <a href="shop-single.jsp"><img src="assets/images/men-03.jpg" alt="" /></a>
-              </div>
-              <div class="down-content p-3 rounded">
-                <h4>Love Nana ‘20</h4>
-                <span>$150.00</span>
-                <ul class="stars p-3">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="item shadow rounded">
-              <div class="thumb">
-                <div class="hover-content">
-                  <ul>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-heart"></i></a>
-                    </li>
-                    <li>
-                      <a href="shop-single.jsp"><i class="fa fa-money"></i></a>
-                    </li>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-shopping-cart"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <a href="shop-single.jsp"><img src="assets/images/women-01.jpg" alt="" /></a>
-              </div>
-              <div class="down-content p-3 rounded">
-                <h4>New Green Jacket</h4>
-                <span>$75.00</span>
-                <ul class="stars p-3">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="item shadow rounded">
-              <div class="thumb">
-                <div class="hover-content">
-                  <ul>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-heart"></i></a>
-                    </li>
-                    <li>
-                      <a href="shop-single.jsp"><i class="fa fa-money"></i></a>
-                    </li>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-shopping-cart"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <a href="shop-single.jsp"><img src="assets/images/women-02.jpg" alt="" /></a>
-              </div>
-              <div class="down-content p-3 rounded">
-                <h4>Classic Dress</h4>
-                <span>$45.00</span>
-                <ul class="stars p-3">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="item rounded shadow">
-              <div class="thumb">
-                <div class="hover-content">
-                  <ul>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-heart"></i></a>
-                    </li>
-                    <li>
-                      <a href="shop-single.jsp"><i class="fa fa-money"></i></a>
-                    </li>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-shopping-cart"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <a href="shop-single.jsp"><img src="assets/images/women-03.jpg" alt="" /></a>
-              </div>
-              <div class="down-content p-3 rounded">
-                <h4>Spring Collection</h4>
-                <span>$130.00</span>
-                <ul class="stars p-3">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="item rounded shadow">
-              <div class="thumb">
-                <div class="hover-content">
-                  <ul>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-heart"></i></a>
-                    </li>
-                    <li>
-                      <a href="shop-single.jsp"><i class="fa fa-money"></i></a>
-                    </li>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-shopping-cart"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <a href="shop-single.jsp"><img src="assets/images/kid-01.jpg" alt="" /></a>
-              </div>
-              <div class="down-content p-3">
-                <h4>School Collection</h4>
-                <span>$80.00</span>
-                <ul class="stars p-3">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="item rounded shadow">
-              <div class="thumb">
-                <div class="hover-content">
-                  <ul>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-heart"></i></a>
-                    </li>
-                    <li>
-                      <a href="shop-single.jsp"><i class="fa fa-money"></i></a>
-                    </li>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-shopping-cart"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <a href="shop-single.jsp"><img src="assets/images/kid-02.jpg" alt="" /></a>
-              </div>
-              <div class="down-content p-3 rounded">
-                <h4>Summer Cap</h4>
-                <span>$12.00</span>
-                <ul class="stars p-3">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="item rounded shadow">
-              <div class="thumb">
-                <div class="hover-content">
-                  <ul>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-heart"></i></a>
-                    </li>
-                    <li>
-                      <a href="shop-single.jsp"><i class="fa fa-money"></i></a>
-                    </li>
-                    <li>
-                      <a href="cart.jsp"><i class="fa fa-shopping-cart"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <a href="shop-single.jsp"><img src="assets/images/kid-03.jpg" alt="" /></a>
-              </div>
-              <div class="down-content p-3 rounded">
-                <h4>Classic Kid</h4>
-                <span>$30.00</span>
-                <ul class="stars p-3">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+        <% 
+				if(!products.isEmpty()){
+					for(Product p:products){%>
+						<div class="col-lg-4">
+				            <div class="item shadow rounded">
+				              <div class="thumb"
+				               style=" width:350px;
+				               			height:320px;
+				               			background-image: url('images/products/<%=p.getImg() %>');
+                      					background-repeat: no-repeat;
+                      					background-size: contain;
+                      					background-position: center;"
+				               >
+				                <div class="hover-content">
+				                  <ul>
+				                    <li>
+				                      <a href="cart.jsp"><i class="fa fa-heart"></i></a>
+				                    </li>
+				                    <li>
+				                      <a href="shop-single.jsp"><i class="fa fa-money"></i></a>
+				                    </li>
+				                    <li>
+				                      <a href="cart.jsp"><i class="fa fa-shopping-cart"></i></a>
+				                    </li>
+				                  </ul>
+				                </div>
+				               </div>
+				              <div class="down-content p-3 rounded">
+				                <a href="shop-single.jsp?id=<%=p.getId()%>"><h4><%=p.getName() %></h4></a>
+				                <a href="shop-single.jsp"><span>RS.<%=p.getPrice() %></span></a>
+				                <ul class="stars p-3">
+				                <%for(int i=1;i<=3;i++){%>
+				                	<li><i class="fa fa-star"></i></li>
+				                <%}%>
+				                  <!-- <li><i class="fa fa-star"></i></li>
+				                  <li><i class="fa fa-star"></i></li>
+				                  <li><i class="fa fa-star"></i></li>
+				                  <li><i class="fa fa-star"></i></li>
+				                  <li><i class="fa fa-star"></i></li>-->
+				                </ul>
+				              </div>
+				            </div>
+				          </div>
+					<%}
+				}
+			
+				else{%>
+					<center><h1>NO PRODUCTS FOUND</h1></center>
+					
+		<%}%>
+          
+          
+          
           <!-- paination starts -->
           <div class="col-lg-12">
             <div class="pagination">

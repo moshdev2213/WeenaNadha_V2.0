@@ -152,10 +152,18 @@
                                 top: -1px;
                                 left: 5px;" class="downyy">
                 <!-- submenu -->
-                <!-- <div id="mydrop" class="downyy-content">
-                  <a href="#">My profile</a>
-                  <a href="#">Logout</a>
-                </div> -->
+                <div id="mydrop" class="downyy-content">
+                 <% if(authin==null && authAdmin==null){%>
+                      <a href="login.jsp">Login</a>
+                <%}else if(authin!=null){%>
+                	<a href="userpro.jsp">My profile</a>
+                    <a href="LogoutServlet">Logout</a>
+                 <%}if(authAdmin!=null){%>
+                 	<a href="dashdex.jsp">Dashboard</a>
+                 	<a href="userpro.jsp">My profile</a>
+                    <a href="LogoutServlet">Logout</a>
+                 <%}%>
+                </div>
                 <!-- submenu end -->
               </div>
             </li>

@@ -112,6 +112,7 @@ public class LoginServlet extends HttpServlet {
 						LogTimeDao lgtime= new LogTimeDao(DbCon.getConnection()); 
 						boolean result = lgtime.insertlogs(logtime);
 						
+						
 						//the boelow is the code related to the sms sendings
 						String mssg = "SIGN IN DETECTED\\n\\nWe noticed a new Sign to your Weena Naadha account our system monitored login to our user accounts and credentials are as follows\\n\\nTime\\t:"+formatter_time.format(time)+"\\nDate\\t:"+formatter_day.format(day)+" "+formatter_month.format(month)+"\\nIP\\t:"
 								+ ip + "\\nISP\\t:" + isp + "\\nBrowser\\t:" + browser + "\\nCity\\t:" + city + "\\nRegion\\t:"

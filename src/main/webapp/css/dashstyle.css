@@ -352,7 +352,7 @@
   margin-left: 6px;
   vertical-align: middle;
   border: none;
-  content: "\f107";
+  /*content: "\f107";*/
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   transition: 0.5s;

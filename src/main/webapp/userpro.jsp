@@ -7,8 +7,10 @@
 	
 	//(User) syas that it is type casted
 	User authin = (User) request.getSession().getAttribute("auth");
-	//(admin) syas that it is type casted
-	Admin authAdmin = (Admin) request.getSession().getAttribute("authadmin");
+	if(authin==null){
+		
+		response.sendRedirect("login.jsp");
+	}
 	
 	if (authin != null) {
 		request.setAttribute("authin", authin);%>
@@ -88,8 +90,8 @@
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0 text-white">Jhon Doe</h6>
-                        <span>User</span>
+                        <h6 class="mb-0 text-white text-capitalize"><%=authin!=null?authin.getFname():"User"%></h6>
+                        <span><%=authin!=null?"User":""%></span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -118,9 +120,9 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-envelope me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Message</span>
+                            <span class="d-none d-lg-inline-flex"><%=authin!=null?authin.getEmail():"email@example.com"%></span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-bk border-0 rounded  m-2">
+                        <!-- <div class="dropdown-menu dropdown-menu-end bg-bk border-0 rounded  m-2">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
                                     <img class="rounded-circle" src="images/user.jpg" alt=""
@@ -155,7 +157,7 @@
                             </a>
                             <hr class="dropdown-divider">
                             <a href="messages.jsp" class="dropdown-item text-center text-white-50">See all message</a>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="clocky bg-bk rounded shadow">
                         <div class="display">
@@ -192,11 +194,11 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="images/user.jpg" alt=""
                                 style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                            <span class="d-none d-lg-inline-flex text-capitalize"><%=authin!=null?authin.getFname():"Guest"%></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-bk rounded m-2 shadow">
                             <a href="userpro.jsp" class="dropdown-item text-white">My Profile</a>
-                            <a href="#" class="dropdown-item text-white">Log Out</a>
+                            <a href="LogoutServlet" class="dropdown-item text-white">Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -213,27 +215,27 @@
                                 <div class="rounded-top text-white d-flex flex-row"
                                     style="background-color: #191C24; height:200px; background-image: url('images/1.jpg'); background-size: cover;">
                                     <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-                                        <img src="images/testimonial-1.jpg" alt="Generic placeholder image"
+                                        <img src="<%=authin!=null?authin.getPropic():"bpro.png"%>" alt="Generic placeholder image"
                                             class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
                                         <div class="h-25"></div>
                                     </div>
                                     <div class="ms-3" style="margin-top: 130px;">
-                                        <h5>Andy Horwitz</h5>
+                                        <h5 class="text-capitalize"><%=authin!=null?authin.getFname():"John"%> <%=authin!=null?authin.getLname():"Doe"%></h5>
                                         <p>New York</p>
                                     </div>
                                 </div>
                                 <div class="p-4 text-white" style="background-color: #191919;">
                                     <div class="d-flex justify-content-evenly text-center py-1">
                                         <div>
-                                            <p class="mb-1 h5 text-white">Doctor</p>
+                                            <p class="mb-1 h5 text-white"><%=authin!=null?authin.getCompany():""%></p>
                                             <p class="small text-muted mb-0 text-white">WorkArea</p>
                                         </div>
                                         <div class="px-3">
-                                            <p class="mb-1 h5 text-white">1026</p>
+                                            <p class="mb-1 h5 text-white"><%=authin!=null?authin.getTel():""%></p>
                                             <p class="small text-muted mb-0">Telephone</p>
                                         </div>
                                         <div>
-                                            <p class="mb-1 h5 text-white">@zilla</p>
+                                            <p class="mb-1 h5 text-white">@<%=authin!=null?authin.getUsername():""%></p>
                                             <p class="small text-muted mb-0">username</p>
                                         </div>
                                     </div>
@@ -242,9 +244,13 @@
                                     <div class="mb-5">
                                         <p class="lead fw-normal mb-1">About</p>
                                         <div class="p-2" >
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
-                                                facere dolorem consequatur nobis voluptates eveniet, sequi facilis illum
-                                                voluptatibus porro?Lorem ipsum dolor sit amet consectetur adip</p>
+                                           	<ul class="list-group list-group-flush">
+											  <li class="list-group-item text-truncate border-0 text-dark"><b>UserName   &ensp; :@</b><%=authin!=null?authin.getUsername():"Aboutme"%></li>
+											  <li class="list-group-item text-truncate border-0 text-dark"><b>Email  &ensp; : </b><%=authin!=null?authin.getEmail():"Aboutme"%></li>
+											  <li class="list-group-item text-truncate border-0 text-dark"><b>Company&ensp; : </b><%=authin!=null?authin.getCompany():"Aboutme"%></li>
+											  <li class="list-group-item text-truncate border-0 text-dark"><b>Phone &ensp; : </b><%=authin!=null?authin.getTel():"Aboutme"%></li>
+											  <li class="list-group-item border-0 text-dark"><b>About Me &ensp; : </b><%=authin!=null?authin.getAbout():"Aboutme"%></li>
+											</ul>
                                         </div>
                                     </div>
                                 </div>
@@ -277,23 +283,23 @@
                                     <div class="row g-4">
                                         <div class="form-floating mb-3 col-xl-6 col-md-6">
                                             <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                                                placeholder="name@example.com" />
+                                                placeholder="name@example.com" value="<%=authin!=null?authin.getUsername():""%>" />
                                             <label style="padding-left: 20px" for="floatingInput">UserName</label>
                                         </div>
                                         <div class="form-floating mb-3 col-xl-6 col-md-6">
                                             <input type="number" min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                                                placeholder="Password" />
+                                                placeholder="Password" value="<%=authin!=null?authin.getTel():""%>"/>
                                             <label style="padding-left: 20px" for="floatingPassword">Phone Number</label>
                                         </div>
                                     </div>
                                     <div class="row g-4">
                                         <div class="mb-3 col-xl-6 col-md-6">
-                                            <label for="formFileMultiple" class="form-label text-dark">Profile Picture</label>
+                                            <label for="formFileMultiple" class="form-label text-dark" value="<%=authin!=null?authin.getUsername():""%>">Profile Picture</label>
                                             <input class="form-control bg-gry border-0 shadow" type="file" id="formFileMultiple"
                                                 multiple />
                                         </div>
                                         <div class="mb-3 col-xl-6 col-md-6">
-                                            <label for="formFileMultiple" class="form-label text-dark">Cover Image</label>
+                                            <label for="formFileMultiple" class="form-label text-dark" value="<%=authin!=null?authin.getUsername():""%>">Cover Image</label>
                                             <input class="form-control bg-gry border-0 shadow" type="file" id="formFileMultiple"
                                                 multiple />
                                         </div>
@@ -302,17 +308,17 @@
                                     <div class="row g-4">
                                         <div class="form-floating mb-3 col-xl-4 col-md-4">
                                             <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                                                placeholder="name@example.com" />
+                                                placeholder="name@example.com" value="<%=authin!=null?authin.getFname():""%>"/>
                                             <label style="padding-left: 20px" for="floatingInput">FirstName</label>
                                         </div>
                                         <div class="form-floating mb-3 col-xl-4 col-md-4">
                                             <input type="text"  class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                                                placeholder="Password" />
+                                                placeholder="Password" value="<%=authin!=null?authin.getMname():""%>"/>
                                             <label style="padding-left: 20px" for="floatingPassword">MiddleName</label>
                                         </div>
                                         <div class="form-floating mb-3 col-xl-4 col-md-4">
                                             <input type="text"  class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                                                placeholder="Password" />
+                                                placeholder="Password" value="<%=authin!=null?authin.getLname():""%>"/>
                                             <label style="padding-left: 20px" for="floatingPassword">LastName</label>
                                         </div>
                                     </div>
@@ -320,14 +326,14 @@
                                         
                                         <div class="form-floating mb-3 col-xl-12 col-md-12">
                                             <input type="text"  class="form-control bg-gry border-0 shadow" id="floatingInput"
-                                                placeholder="name@example.com" />
+                                                placeholder="name@example.com" value="<%=authin!=null?authin.getCompany():""%>"/>
                                             <label style="padding-left: 20px" for="floatingInput">Work Area</label>
                                         </div>
                                         
                                     </div>
                                     <div class="form-floating">
                                         <textarea class="form-control bg-gry border-0 shadow" placeholder="Leave a comment here"
-                                            id="floatingTextarea" style="height: 150px"></textarea>
+                                            id="floatingTextarea" style="height: 150px"><%=authin!=null?authin.getAbout():""%></textarea>
                                         <label for="floatingTextarea">About</label>
                                     </div>
                                     <br />
@@ -409,74 +415,74 @@
                 }
                 function myfuncrevert(){
                     document.getElementById('conts').innerHTML=`<form action="" id="conts">
-                                <div class="bg-white rounded h-100 p-4 shadow" >                                
-                                    <div class="row g-4">
-                                        <div class="form-floating mb-3 col-xl-6 col-md-6">
-                                            <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                                                placeholder="name@example.com" />
-                                            <label style="padding-left: 20px" for="floatingInput">UserName</label>
-                                        </div>
-                                        <div class="form-floating mb-3 col-xl-6 col-md-6">
-                                            <input type="number" min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                                                placeholder="Password" />
-                                            <label style="padding-left: 20px" for="floatingPassword">Phone Number</label>
-                                        </div>
-                                    </div>
-                                    <div class="row g-4">
-                                        <div class="mb-3 col-xl-6 col-md-6">
-                                            <label for="formFileMultiple" class="form-label text-dark">Profile Picture</label>
-                                            <input class="form-control bg-gry border-0 shadow" type="file" id="formFileMultiple"
-                                                multiple />
-                                        </div>
-                                        <div class="mb-3 col-xl-6 col-md-6">
-                                            <label for="formFileMultiple" class="form-label text-dark">Cover Image</label>
-                                            <input class="form-control bg-gry border-0 shadow" type="file" id="formFileMultiple"
-                                                multiple />
-                                        </div>
-                                    </div>
-                                    <!--  -->
-                                    <div class="row g-4">
-                                        <div class="form-floating mb-3 col-xl-4 col-md-4">
-                                            <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                                                placeholder="name@example.com" />
-                                            <label style="padding-left: 20px" for="floatingInput">FirstName</label>
-                                        </div>
-                                        <div class="form-floating mb-3 col-xl-4 col-md-4">
-                                            <input type="text"  class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                                                placeholder="Password" />
-                                            <label style="padding-left: 20px" for="floatingPassword">MiddleName</label>
-                                        </div>
-                                        <div class="form-floating mb-3 col-xl-4 col-md-4">
-                                            <input type="text"  class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                                                placeholder="Password" />
-                                            <label style="padding-left: 20px" for="floatingPassword">LastName</label>
-                                        </div>
-                                    </div>
-                                    <div class="row g-4">
-                                        
-                                        <div class="form-floating mb-3 col-xl-12 col-md-12">
-                                            <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                                                placeholder="name@example.com" />
-                                            <label style="padding-left: 20px" for="floatingInput">Work Area</label>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="form-floating">
-                                        <textarea class="form-control bg-gry border-0 shadow" placeholder="Leave a comment here"
-                                            id="floatingTextarea" style="height: 150px"></textarea>
-                                        <label for="floatingTextarea">About</label>
-                                    </div>
-                                    <br />
-                                    <div class="row g-4 p-lg-3">
-                                        <button style="font-size: 16px; background-color: #68686c;" class="btn btn-sm text-white p-2 col-xl-12">
-                                            Update 
-                                        </button>
-                                        <button style="font-size: 16px; background-color: #191919;" class="btn btn-sm text-white p-2 col-xl-12">
-                                            Decline
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>`
+                        <div class="bg-white rounded h-100 p-4 shadow" >                                
+                        <div class="row g-4">
+                            <div class="form-floating mb-3 col-xl-6 col-md-6">
+                                <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
+                                    placeholder="name@example.com" value="<%=authin!=null?authin.getUsername():""%>" />
+                                <label style="padding-left: 20px" for="floatingInput">UserName</label>
+                            </div>
+                            <div class="form-floating mb-3 col-xl-6 col-md-6">
+                                <input type="number" min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
+                                    placeholder="Password" value="<%=authin!=null?authin.getTel():""%>"/>
+                                <label style="padding-left: 20px" for="floatingPassword">Phone Number</label>
+                            </div>
+                        </div>
+                        <div class="row g-4">
+                            <div class="mb-3 col-xl-6 col-md-6">
+                                <label for="formFileMultiple" class="form-label text-dark" value="<%=authin!=null?authin.getUsername():""%>">Profile Picture</label>
+                                <input class="form-control bg-gry border-0 shadow" type="file" id="formFileMultiple"
+                                    multiple />
+                            </div>
+                            <div class="mb-3 col-xl-6 col-md-6">
+                                <label for="formFileMultiple" class="form-label text-dark" value="<%=authin!=null?authin.getUsername():""%>">Cover Image</label>
+                                <input class="form-control bg-gry border-0 shadow" type="file" id="formFileMultiple"
+                                    multiple />
+                            </div>
+                        </div>
+                        <!--  -->
+                        <div class="row g-4">
+                            <div class="form-floating mb-3 col-xl-4 col-md-4">
+                                <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
+                                    placeholder="name@example.com" value="<%=authin!=null?authin.getFname():""%>"/>
+                                <label style="padding-left: 20px" for="floatingInput">FirstName</label>
+                            </div>
+                            <div class="form-floating mb-3 col-xl-4 col-md-4">
+                                <input type="text"  class="form-control bg-gry border-0 shadow" id="floatingPassword"
+                                    placeholder="Password" value="<%=authin!=null?authin.getMname():""%>"/>
+                                <label style="padding-left: 20px" for="floatingPassword">MiddleName</label>
+                            </div>
+                            <div class="form-floating mb-3 col-xl-4 col-md-4">
+                                <input type="text"  class="form-control bg-gry border-0 shadow" id="floatingPassword"
+                                    placeholder="Password" value="<%=authin!=null?authin.getLname():""%>"/>
+                                <label style="padding-left: 20px" for="floatingPassword">LastName</label>
+                            </div>
+                        </div>
+                        <div class="row g-4">
+                            
+                            <div class="form-floating mb-3 col-xl-12 col-md-12">
+                                <input type="text"  class="form-control bg-gry border-0 shadow" id="floatingInput"
+                                    placeholder="name@example.com" value="<%=authin!=null?authin.getCompany():""%>"/>
+                                <label style="padding-left: 20px" for="floatingInput">Work Area</label>
+                            </div>
+                            
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control bg-gry border-0 shadow" placeholder="Leave a comment here"
+                                id="floatingTextarea" style="height: 150px"><%=authin!=null?authin.getAbout():""%></textarea>
+                            <label for="floatingTextarea">About</label>
+                        </div>
+                        <br />
+                        <div class="row g-4 p-lg-3">
+                            <button style="font-size: 16px; background-color: #68686c;" class="btn btn-sm text-white p-2 col-xl-12">
+                                Update 
+                            </button>
+                            <button style="font-size: 16px; background-color: #191919;" class="btn btn-sm text-white p-2 col-xl-12">
+                                Decline
+                            </button>
+                        </div>
+                    </div>
+                </form>`
                 }
                 function myfuncadd(){
                     document.getElementById('conts').innerHTML=` <form action="" id="conts">
