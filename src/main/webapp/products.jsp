@@ -8,6 +8,7 @@
 ProductDao pd = new ProductDao(DbCon.getConnection());
 List<Product> products = pd.getAllProducts();
 ArrayList<String> pimg = pd.getALLImg(request.getParameter("id"));
+int rating = pd.getProuctrating(request.getParameter("id"));
 
 %>
 <html lang="en">
@@ -255,8 +256,10 @@ ArrayList<String> pimg = pd.getALLImg(request.getParameter("id"));
 				                <a href="shop-single.jsp?id=<%=p.getId()%>"><h4><%=p.getName() %></h4></a>
 				                <a href="shop-single.jsp"><span>RS.<%=p.getPrice() %></span></a>
 				                <ul class="stars p-3">
-				                <%for(int i=1;i<=3;i++){%>
+				                <%for(int i=1;i<=rating;i++){%>
 				                	<li><i class="fa fa-star"></i></li>
+				                <%}for(int j=1;j<=(5-rating);j++){%>
+				                	<li><i class="far fa-star" aria-hidden="true"></i></li>
 				                <%}%>
 				                  <!-- <li><i class="fa fa-star"></i></li>
 				                  <li><i class="fa fa-star"></i></li>

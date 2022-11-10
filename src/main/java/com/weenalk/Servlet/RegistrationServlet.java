@@ -25,7 +25,10 @@ import com.weenalk.Modal.User;
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
-	
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String fname=request.getParameter("firstname");

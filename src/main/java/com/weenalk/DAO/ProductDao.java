@@ -82,6 +82,83 @@ public class ProductDao {
         }
         return images;
     }
+	//product rating for stars
+	public int getProuctrating(String id) {
+		int rating=0;
+		
+		try {
+			query="SELECT ROUND((sum(r.rating)/count(r.product_ID)), 0) as rate\r\n"
+					+ "from review r\r\n"
+					+ "where r.product_ID=?\r\n"
+					+ ";";
+			pst = this.con.prepareStatement(query);
+            pst.setString(1, id);
+            rs = pst.executeQuery();
+            while(rs.next()) {
+            	rating=(rs.getInt("rate"));
+            }
+            
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return rating;
+	}
+	//product rating for the decimal and the count
+	public double[] getRating(String id) {
+		double rate[]= {0,0};
+		try {
+			query="SELECT ROUND((sum(r.rating)/count(r.product_ID)), 1) as rate ,sum(r.rating) as count\r\n"
+					+ "from review r\r\n"
+					+ "where r.product_ID=?\r\n"
+					+ ";";
+			pst = this.con.prepareStatement(query);
+            pst.setString(1, id);
+            rs = pst.executeQuery();
+            while(rs.next()) {
+            	rate[0]=(rs.getDouble("rate"));
+            	rate[1]=(rs.getDouble("count"));
+            }
+            
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return rate;
+	}
+	//for  the relevant product id fetching the items
+	public Product getItem(String id) {
+		Product pr1=null;
+		try {
+			query="SELECT  p.product_ID,p.name,p.description,p.design,p.weight,p.category_ID,p.color,p.stock,p.price,p.deal,p.mrp,p.shipping,p.warranty,p.mimg,c.cat_name\r\n"
+					+ "	FROM weena_nadha.product p,weena_nadha.category c\r\n"
+					+ "	where p.category_ID=c.category_ID and p.product_ID=?;";
+			
+			pst=this.con.prepareStatement(query);
+			pst.setString(1, id);
+			rs=pst.executeQuery();
+			while(rs.next()) {
+				pr1 = new Product();
+				 
+				pr1.setId(rs.getInt("product_ID"));
+				pr1.setName(rs.getString("name"));
+				pr1.setDescription(rs.getString("description"));
+				pr1.setDesign(rs.getString("design"));
+				pr1.setWeight(rs.getInt("weight"));
+				pr1.setCategory_ID(rs.getInt("category_ID"));
+				pr1.setColor(rs.getString("color"));
+				pr1.setStock(rs.getInt("stock"));
+				pr1.setPrice(rs.getDouble("price"));
+				pr1.setDeal(rs.getString("deal"));
+				pr1.setMrp(rs.getDouble("mrp"));
+				pr1.setShipping(rs.getInt("shipping"));
+				pr1.setWarranty(rs.getString("warranty"));
+				pr1.setImg(rs.getString("mimg"));
+				pr1.setCategory_name(rs.getString("cat_name"));
+			}	
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return pr1;
 	
+	}
 	
 }

@@ -1,4 +1,4 @@
-
+<%@page import="java.text.DecimalFormat" %>
 <%@page import="com.weenalk.Modal.*" %>
 <%@page import="com.weenalk.DAO.*" %>
 <%@page import="com.weenalk.DBcon.*" %>
@@ -7,9 +7,14 @@
 <html lang="en">
 <%
 
+DecimalFormat df = new DecimalFormat("0.00");
+
 ProductDao pd = new ProductDao(DbCon.getConnection());
 ArrayList<String> pimg = pd.getALLImg(request.getParameter("id"));
-
+int rating = pd.getProuctrating(request.getParameter("id"));
+double rate[]=pd.getRating(request.getParameter("id"));
+Product prod = new Product();
+prod=pd.getItem(request.getParameter("id"));
 
 
 %>
@@ -254,29 +259,26 @@ ArrayList<String> pimg = pd.getALLImg(request.getParameter("id"));
           </div>
           <!-- card right -->
           <div class="product-content">
-            <h2 class="product-title">nike shoes</h2>
-            <a href="#" class="product-link">visit nike store</a>
+            <h2 class="product-title"><%=prod.getName() %></h2>
+            <a href="#" class="product-link">visit WEENALK store</a>
             <div class="product-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-              <span>4.7(21)</span>
+             <%for(int i=1;i<=rating;i++){%>
+			       <i class="fas fa-star"></i>
+			<%}for(int j=1;j<=(5-rating);j++){%>
+				    <i class="far fa-star"></i>
+			 <%}%>
+              <span><%=rate[0] %>(<%=(int)rate[1] %>)</span>
             </div>
 
             <div class="product-price">
-              <p class="last-price">Old Price: <span>$257.00</span></p>
-              <p class="new-price">New Price: <span>$249.00 (5%)</span></p>
+              <p class="last-price">Old Price: <span>Rs<%=df.format(prod.getMrp()) %></span></p>
+              <p class="new-price">New Price: <span>Rs<%=df.format(prod.getPrice()) %> (<%=df.format(((prod.getMrp() - prod.getPrice())/prod.getMrp())*100) %>%)</span></p>
             </div>
 
             <div class="product-detail">
               <h2>about this item:</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
-                eveniet veniam tempora fuga tenetur placeat sapiente
-                architecto illum soluta consequuntur, aspernatur quidem at
-                sequi ipsa!
+               <%=prod.getDescription() %>
               </p>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -319,13 +321,13 @@ ArrayList<String> pimg = pd.getALLImg(request.getParameter("id"));
               <div class="card p-2">
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="ratings" id="first">
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star"></i>
-                  </div>
-                  <h5 class="review-count" id="counts">12 Reviews</h5>
+                   <%for(int i=1;i<=rating;i++){%>
+				             <i class="fa fa-star rating-color"></i>
+				    <%}for(int j=1;j<=(5-rating);j++){%>
+				             <i class="fa fa-star"></i>
+				    <%}%>
+                   </div>
+                  <h5 class="review-count" id="counts"><%=(int)rate[1] %> Reviews</h5>
                 </div>
                 <!-- progress bar starts -->
                 <div class="row mt-4">

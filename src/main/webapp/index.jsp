@@ -87,7 +87,7 @@
       <!-- contact content -->
       <div class="header-content-top">
         <div class="content">
-          <span><i class="fas fa-phone-square-alt"></i> <%=authin!=null?authin.getTel():"+(00)00000" %></span>
+          <span><i class="fas fa-phone-square-alt"></i> <%=authin!=null?authin.getTel():authAdmin!=null?authAdmin.getTel():"+(00)00000" %></span>
           <span><i class="fas fa-envelope-square"></i><%=authin!=null?authin.getEmail():"email@email.com.br" %></span>
         </div>
       </div>
@@ -145,7 +145,7 @@
               <div style="width: 35px;
                                 height: 35px;
                                 border-radius: 100px;
-                                background-image: url('images/<%=authin!=null?authin.getPropic():"bpro.png"%>');
+                                background-image: url('images/pro/<%=authin!=null?authin.getPropic():"bpro.png"%>');
                                 background-repeat: no-repeat;
                                 background-size: cover;
                                 position: relative;
