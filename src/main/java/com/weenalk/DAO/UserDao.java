@@ -72,7 +72,27 @@ public class UserDao {
 	public List<User> getUser(){
 		List<User> user = new ArrayList<User>();
 		try {
-			query="select * from";
+			query="select * from users";
+			pst=this.con.prepareStatement(query);
+			rs=pst.executeQuery();
+			while(rs.next()) {
+				User usr = new User();
+				usr.setAddressid(rs.getInt("address_ID"));
+				usr.setTel(rs.getString("phone_no"));
+				usr.setEmail(rs.getString("useremail"));
+				usr.setPassword(rs.getString("password"));
+				usr.setPropic(rs.getString("propic"));
+				usr.setCoverpic(rs.getString("coverpic"));
+				usr.setAbout(rs.getString("about"));
+				usr.setFname(rs.getString("fname"));
+				usr.setMname(rs.getString("mname"));
+				usr.setLname(rs.getString("lname"));
+				usr.setUsername(rs.getString("username"));
+				usr.setCompany(rs.getString("company"));
+				
+				user.add(usr);
+				
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

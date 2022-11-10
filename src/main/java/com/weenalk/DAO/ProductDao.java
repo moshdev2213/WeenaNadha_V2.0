@@ -4,13 +4,16 @@ import java.sql.Connection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 
+import com.weenalk.Modal.ProdImg;
 import com.weenalk.Modal.Product;
+import com.weenalk.Modal.User;
 
 
 public class ProductDao {
@@ -60,5 +63,25 @@ public class ProductDao {
 		return products;
 		
 	}
+
+	public ProdImg getALLImg(String id) {
+		ProdImg prodimg = null;
+		
+        try {
+            query = "select * from image where product_id=?";
+            pst = this.con.prepareStatement(query);
+            pst.setString(1, id);
+            rs = pst.executeQuery();
+            if(rs.next()){
+            	prodimg.(rs.getInt("address_ID"));
+            	prodimg.setTel(rs.getString("phone_no"));
+            	prodimg.setEmail(rs.getString("useremail"));
+            }
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
+        }
+        return prodimg;
+    }
+	
 	
 }

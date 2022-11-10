@@ -1,6 +1,16 @@
+
+<%@page import="com.weenalk.Modal.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
+<%
+UserDao ud = new UserDao(DbCon.getConnection());
+List<User> usr = ud.getUser();
 
+
+%>
 <head>
     <meta charset="utf-8" />
     <title>Weena</title>
@@ -211,76 +221,45 @@
                                         <th scope="col">Email</th>
                                         <th scope="col">Username</th>
                                         <th scope="col">Contact_No</th>
-                                        <th scope="col">Orders Placed</th>
+                                        <th scope="col">More</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody >
-                                    <tr class="tblconts">
-                                        <th scope="row">
-                                            <!-- popuh related starts here -->
-                                            <img id="myImg" class="rounded-circle" src="images/men.jpg" alt="Snow" />
-                                            <!-- The Modal -->
-                                            <div id="myModal" class="modal">
-                                                <!-- <span class="close">&times;</span> -->
-                                                <img class="modal-content" id="img01" />
-                                                <!-- <div id="caption"></div> -->
-                                            </div>
-                                            <!-- the popup related ends here -->
-                                        </th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>jhon@email.com</td>
-                                        <td>USA</td>
-                                        <td>123</td>
-                                        <td>
-                                            <a id="" class="btn btn-sm text-white" href="#" style="background: #a4a4a9;">Show</a>
-                                        </td>
-                                        <td>
-                                            <a id="" class="btn btn-sm text-white" href="adduser.jsp" style="background: #68686c;">Update</a>
-                                            <a class="btn btn-sm text-white" onclick="rmv()" style="background: #191919;" href="#">Remove</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tblconts">
-                                        <th scope="row">
-                                            <!-- popuh related starts here -->
-                                            <img id="myImg" class="rounded-circle" src="images/user.jpg" alt="Snow" />
-                                            <!-- The Modal -->
-                                            <div id="myModal" class="modal">
-                                                <!-- <span class="close">&times;</span> -->
-                                                <img class="modal-content" id="img01" />
-                                                <!-- <div id="caption"></div> -->
-                                            </div>
-                                            <!-- the popup related ends here -->
-                                        </th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>mark@email.com</td>
-                                        <td>UK</td>
-                                        <td>456</td>
-                                        <td>
-                                            <a id="" class="btn btn-sm text-white" href="#" style="background: #a4a4a9;">Show</a>
-                                        </td>
-                                        <td>
-                                            <a id="" class="btn btn-sm text-white" href="adduser.jsp" style="background: #68686c;">Update</a>
-                                            <a class="btn btn-sm text-white" href="#" onclick="rmv()" style="background: #191919;">Remove</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tblconts">
-                                        <th scope="row">3</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>jacob@email.com</td>
-                                        <td>AU</td>
-                                        <td>789</td>
-                                        <td>
-                                            <a id="" class="btn btn-sm text-white" href="#" style="background: #a4a4a9;">Show</a>
-                                        </td>
-                                        <td>
-                                            <a id="" class="btn btn-sm text-white" href="adduser.jsp" style="background: #68686c;">Update</a>
-                                            <a class="btn btn-sm text-white" href="#" onclick="rmv()" style="background: #191919;">Remove</a>
-                                        </td>
-                                    </tr>
+                                <%
+                            
+		                            if(!usr.isEmpty()){
+		                            	int k=0;
+		                            	for(User u:usr){%>
+		                                    <tr class="tblconts">
+		                                        <th scope="row">
+		                                            <!-- popuh related starts here -->
+		                                            <img id="myImg" class="rounded-circle" src="images/pro/<%=u.getPropic() %>" alt="pic" />
+		                                            <!-- The Modal -->
+		                                            <div id="myModal" class="modal">
+		                                                <!-- <span class="close">&times;</span> -->
+		                                                <img class="modal-content" id="img01" />
+		                                                <!-- <div id="caption"></div> -->
+		                                            </div>
+		                                            <!-- the popup related ends here -->
+		                                        </th>
+		                                        <td><%=u.getFname() %></td>
+		                                        <td><%=u.getLname() %></td>
+		                                        <td><%=u.getEmail() %></td>
+		                                        <td><%=u.getUsername() %></td>
+		                                        <td><%=u.getTel() %></td>
+		                                        <td>
+		                                            <a id="" class="btn btn-sm text-white" href="#" style="background: #a4a4a9;">Show</a>
+		                                        </td>
+		                                        <td>
+		                                            <a id="" class="btn btn-sm text-white" href="adduser.jsp?id=<%=u.getEmail()%>" style="background: #68686c;">Update</a>
+		                                            <a class="btn btn-sm text-white" onclick="rmv()" style="background: #191919;" href="#">Remove</a>
+		                                        </td>
+		                                    </tr>
+		                               
+		                            		<%}
+		                            }
+	                            %>
                                 </tbody>
                             </table>
                         </div>

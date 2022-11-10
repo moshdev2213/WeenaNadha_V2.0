@@ -203,7 +203,7 @@
       </div>
     </div>
 
-    <div class="site-section">
+    <div class="site-section py-1">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -211,7 +211,7 @@
           </div>
           <div class="col-md-7">
 
-            <form action="#" method="post">
+            <form action="ContactServlet" method="POST">
 
               <div class="p-3 p-lg-5 border shadow">
                 <div class="form-group row">
@@ -225,9 +225,13 @@
                   </div>
                 </div>
                 <div class="form-group row">
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     <label for="c_email" class="text-black">Email <span class="text-danger">*</span></label>
                     <input type="email" class="form-control" id="c_email" name="c_email" placeholder="">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="c_tel" class="text-black">TelePhone <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="c_tel" name="c_tel" placeholder="">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -378,6 +382,7 @@
         </div>
       </div>
     </footer>
+    <input type="hidden" value="<%=request.getAttribute("contact") %>" id="namae"/>
   </div>
 
   <script src="js/jquery-3.3.1.min.js"></script>
@@ -392,6 +397,26 @@
    <!-- preloader -->
    <script src="js/preloader.js"></script>
    <!-- preloader ends script -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+   <script>
+   
+   let name = document.getElementById("namae").value;
+   let upper = name.toUpperCase(name);
+   if( contact=="success"){
+	   Swal.fire({
+           title: 'Successful',
+           text: "Submitted Successfully!",
+           icon: 'success',
+           iconColor: '#000000',
+           showCancelButton: false,
+           confirmButtonColor: '#000000',
+           cancelButtonColor: '#616161',
+           confirmButtonText: 'OK'
+         });
+	   
+   }
+   </script>
  <!-- below is the ween nadha -->
  <script src="//code.tidio.co/r5typbnmc7v1ws5v7zbwyrx8bvqch6xv.js" async></script>
 </body>

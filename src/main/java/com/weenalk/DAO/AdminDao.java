@@ -1,6 +1,7 @@
 package com.weenalk.DAO;
 import java.sql.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import com.weenalk.Modal.*;
 
@@ -42,5 +43,33 @@ public class AdminDao {
         }
         return admin;
     }
+  //to get all admins from the DB
+  	public List<Admin> getAdmin(){
+  		List<Admin> admin = new ArrayList<Admin>();
+  		try {
+  			query="select * from admin";
+  			pst=this.con.prepareStatement(query);
+  			rs=pst.executeQuery();
+  			while(rs.next()) {
+  				Admin adm = new Admin();
+  				adm.setAddressid(rs.getInt("address_ID"));
+  				adm.setTel(rs.getString("phone"));
+  				adm.setEmail(rs.getString("email"));
+  				adm.setPassword(rs.getString("password"));
+  				adm.setPropic(rs.getString("propic"));
+  				adm.setCoverpic(rs.getString("coverpic"));
+  				adm.setAbout(rs.getString("about"));
+  				adm.setUsername(rs.getString("username"));
+  				adm.setRole(rs.getString("role"));
+  				adm.setCode(rs.getString("code"));
+  				admin.add(adm);
+  				
+  			}
+  		}catch(Exception e) {
+  			e.printStackTrace();
+  		}
+  		return admin;
+  		
+  	}
 	
 }

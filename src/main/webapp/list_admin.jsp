@@ -1,6 +1,14 @@
+
+<%@page import="com.weenalk.Modal.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<%
+AdminDao admin = new AdminDao(DbCon.getConnection());
+List<Admin> adm = admin.getAdmin();
+%>
 <head>
   <meta charset="utf-8" />
   <title>Weena</title>
@@ -65,7 +73,7 @@
       <nav class="navbar navbar-dark">
         <a href="dashdex.jsp" class="navbar-brand mx-4 mb-3">
           <h3 class="text-white">
-            <i class="fa fa-user-edit me-2"></i>SHOPPER
+            <i class="fa fa-user-edit me-2"></i>WEENALK
           </h3>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
@@ -199,68 +207,40 @@
             <div class="table-responsive">
               <table class="table">
                 <thead>
-                  <tr class="text-dark">
+                  <tr class="text-dark tblconts">
                     <th scope="col">ID</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
+                    <th scope="col">UserName</th>
                     <th scope="col">Admin_Email</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Salary</th>
-                    <th scope="col">Position</th>
+                    <th scope="col">Telephone</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">About</th>
                     <th scope="col">Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">
-                      <!-- popuh related starts here -->
-                      <img id="myImg" class="rounded-circle" src="images/men.jpg" alt="Snow" />
-                      <!-- The Modal -->
-                      <div id="myModal" class="modal">
-                        <!-- <span class="close">&times;</span> -->
-                        <img class="modal-content" id="img01" />
-                        <!-- <div id="caption"></div> -->
-                      </div>
-                      <!-- the popup related ends here -->
-                    </th>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>jhon@email.com</td>
-                    <td>USA</td>
-                    <td>123</td>
-                    <td>$12k</td>
-                    <td>Manager</td>
-                    <td>
-                      <a class="btn btn-sm text-white" href="#" onclick="rmv()" style="background: #191919;">Remove</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>jhon@email.com</td>
-                    <td>USA</td>
-                    <td>123</td>
-                    <td>$12k</td>
-                    <td>Manager</td>
-                    <td>
-                      <a class="btn btn-sm text-white" href="#" onclick="rmv()" style="background: #191919;">Remove</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>jhon@email.com</td>
-                    <td>USA</td>
-                    <td>123</td>
-                    <td>$12k</td>
-                    <td>Manager</td>
-                    <td>
-                      <a class="btn btn-sm text-white" href="#" onclick="rmv()" style="background: #191919;">Remove</a>
-                    </td>
-                  </tr>
+                <%
+                            
+	                  if(!adm.isEmpty()){
+	                        	for(Admin a:adm){%>
+	                                 <tr class="tblconts">
+			                          	 <th scope="row">
+		                              		<img id="myImg" class="rounded-circle" src="images/pro/<%=a.getPropic() %>" alt="pic">
+		                               	</th>
+		                                <td><%=a.getUsername() %></td>
+		                                <td><%=a.getEmail() %></td>
+		                                <td><%=a.getTel() %></td>
+		                                <td><%=a.getCode() %></td>
+		                                <td><%=a.getRole() %></td>
+		                                <td><%=a.getAbout() %></td>
+		                                <td>
+                     					 <a class="btn btn-sm text-white" href="#" onclick="rmv()" style="background: #191919;">Remove</a>
+                    				   </td>
+                            		  </tr>
+	                               
+	                            	<%}
+	                            }
+	                          %>
                 </tbody>
               </table>
             </div>

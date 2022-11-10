@@ -12,13 +12,14 @@ public class Admin implements roleInterface{
 	private String coverpic;
 	private String role;
 	private String about;
+	private String code;
 	
 	public Admin() {
 		
 	}
 	
 	public Admin(int addressid, String tel, String username, String email, String password, String propic, String coverpic,
-			String role, String about) {
+			String role, String about,String code) {
 		
 		this.addressid = addressid;
 		this.tel = tel;
@@ -29,6 +30,7 @@ public class Admin implements roleInterface{
 		this.coverpic = coverpic;
 		this.role = role;
 		this.about = about;
+		this.code = code;
 	}
 
 	@Override
@@ -108,7 +110,13 @@ public class Admin implements roleInterface{
 	public void setAbout(String about) {
 		this.about = about;
 	}
+	public String getCode() {
+		return code;
+	}
 
+	public void setCode(String code) {
+		this.code = code;
+	}
 	
 	
 	

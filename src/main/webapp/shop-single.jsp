@@ -1,6 +1,17 @@
+
+<%@page import="com.weenalk.Modal.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
+<%
 
+ProductDao pd = new ProductDao(DbCon.getConnection());
+
+
+
+%>
 <head>
   <title>Weena</title>
   <meta charset="utf-8" />
@@ -299,7 +310,7 @@
                 <li>Shipping Fee: <span>Free</span></li>
               </ul>
             </div>
-
+			
             <div class="purchase-info">
               <button type="button" class="btn">
                 <a href="cart.jsp" class="text-light">Add to Cart</a>
