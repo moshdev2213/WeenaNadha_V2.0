@@ -259,7 +259,7 @@
         }
       }
     </style>
-     ***** Men Area Starts ***** 
+     <!-- ***** Men Area Starts ***** --> 
     <section class="section pt-md-2" id="men">
       <div class="container">
         <div class="row">
@@ -827,7 +827,7 @@
       <div class="container">
         <div class="row mb-2 pb-3 no-gutters">
           <div class="col-md-4 mb-md-0 mb-4 d-flex">
-            <div class="w-100 py-5 text-black">
+            <div class="w-100 py-3 text-black">
               <div class="con-info w-100 text-center">
                 <div class="icon d-flex align-items-center justify-content-center" style="background-color: white">
                   <span class="ion-ios-call text-dark"></span>
@@ -839,7 +839,7 @@
             </div>
           </div>
           <div class="col-md-4 mb-md-0 mb-4 d-flex">
-            <div class="w-100 py-5">
+            <div class="w-100 py-3">
               <div class="con-info w-100 text-center">
                 <div class="icon d-flex align-items-center justify-content-center icon_pack"
                   style="background-color: white">
@@ -852,7 +852,7 @@
             </div>
           </div>
           <div class="col-md-4 mb-md-0 mb-4 d-flex">
-            <div class="w-100 py-5">
+            <div class="w-100 py-3">
               <div class="con-info w-100 text-center">
                 <div class="icon d-flex align-items-center justify-content-center" style="background-color: white">
                   <span class="ion-ios-pin text-dark"></span>

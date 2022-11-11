@@ -7,10 +7,7 @@ public class Whishlist extends Product{
 		
 	}
 
-	public Whishlist(String status) {
-		super();
-		this.status = status;
-	}
+	
 
 	public String getStatus() {
 		return status;

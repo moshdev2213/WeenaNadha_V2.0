@@ -47,9 +47,9 @@ public class AddToWhishlistServlet extends HttpServlet {
 			//the below conditions means if there is know seesion atribute present in the cart_list
 			if (wish_list == null) {
 				//adds the product to the initially made cartList empty arraylist 
-				wish_list.add(cm);
+				wishList.add(cm);
 				//cartList added to session as cart-list
-				session.setAttribute("wish-list", wish_list);
+				session.setAttribute("wish-list", wishList);
 				//redirects to the index page
 				response.sendRedirect("products.jsp");
 			}

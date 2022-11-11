@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%
-ArrayList<Whishlist> wish_list = (ArrayList<Whishlist>) session.getAttribute("cart-list");
+ArrayList<Whishlist> wish_list = (ArrayList<Whishlist>) session.getAttribute("wish-list");
 List<Whishlist> wishProduct = null;
 if (wish_list != null) {
 	WhishlistDao wsh = new WhishlistDao(DbCon.getConnection());
@@ -58,6 +58,7 @@ if (wish_list != null) {
       font-size: 16px;
     }
   </style>
+  <h1><%=wishProduct%></h1>
   <!-- Page Preloder -->
   <div id="preloder">
     <div class="d-flex justify-content-center"

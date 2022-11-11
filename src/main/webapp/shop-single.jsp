@@ -331,7 +331,7 @@ prod=pd.getItem(request.getParameter("id"));
 			
             <div class="purchase-info">
               <button type="button" class="btn">
-                <a href="cart.jsp" class="text-light">Add to Cart</a>
+                <a href="AddToCartServlet?id=<%=request.getParameter("id")%>" class="text-light">Add to Cart</a>
               </button>
               <button type="button" class="btn">
                 <a href="checkout.jsp" class="text-light">Buy Now</a>
@@ -816,7 +816,7 @@ prod=pd.getItem(request.getParameter("id"));
         </div>
       </div>
     </div>
-	<!-- 
+	
     <div class="site-section block-3 site-blocks-2 bg-white p-4">
       <div class="container" style="max-width: 1350px">
         <div class="row justify-content-center">
@@ -968,7 +968,7 @@ prod=pd.getItem(request.getParameter("id"));
         </div>
       </div>
     </div>
-	-->
+	
     <!-- footer starts here -->
     <footer class="footer-10 shadow">
       <div class="container">

@@ -19,13 +19,13 @@ public class WhishlistDao {
 		this.con = con;
 	}
 
-	public List<Whishlist> getWishProducts(ArrayList<Whishlist> cartList){
+	public List<Whishlist> getWishProducts(ArrayList<Whishlist> Whishlist){
 		//declaring an empty arraylist named product of Cart type
 		List<Whishlist> wish = new ArrayList<Whishlist>();
 		
 		try {
 			//checks if there is anything is in the cartList 
-			if(wish.size()>0) {
+			if(Whishlist.size()>0) {
 				//item is used to iterate from the cartList arraylist of Cart clz 
 				for(Whishlist item:wish) {
 					query = "SELECT * FROM product p,category c\r\n"
