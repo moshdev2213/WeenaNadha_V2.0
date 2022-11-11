@@ -171,14 +171,14 @@ jQuery(document).ready(function ($) {
 	};
 	siteMenuClone();
 
-
+	//plus minus button ekata wenda oona set ekama thiyenaw meeke pennala hri eka balala daagna
 	var sitePlusMinus = function () {
 		$('.js-btn-minus').on('click', function (e) {
 			e.preventDefault();
-			if ($(this).closest('.input-group').find('.form-control').val() != 0) {
+			if ($(this).closest('.input-group').find('.form-control').val() != 1) {
 				$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
 			} else {
-				$(this).closest('.input-group').find('.form-control').val(parseInt(0));
+				$(this).closest('.input-group').find('.form-control').val(parseInt(1));
 			}
 		});
 		$('.js-btn-plus').on('click', function (e) {

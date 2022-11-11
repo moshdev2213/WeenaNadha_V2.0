@@ -1,6 +1,22 @@
+<%@page import="java.text.DecimalFormat" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="java.util.*"%>
+<%@page import="com.weenalk.Modal.*" %>
 <!DOCTYPE html>
 <html lang="en">
+<%
 
+	DecimalFormat df = new DecimalFormat("0.00");
+	//cart list type beins
+	ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+	List<Cart> cartProduct = null;
+	if (cart_list != null) {
+		ProductDao pdao = new ProductDao(DbCon.getConnection());
+		cartProduct = pdao.getCartProducts(cart_list);
+		request.setAttribute("cart_list", cart_list);
+	}	
+%>
 <head>
   <title>Weena</title>
   <meta charset="utf-8" />
@@ -35,13 +51,19 @@
 
 <body>
   <style>
-    @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
-    *{
+    	@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+   		 *{
 
-      font-family: "Poppins";
-      font-weight: 400;
-      font-size: 16px;
-    }
+     	 font-family: "Poppins";
+     	 font-weight: 400;
+    	 font-size: 16px;
+    	}
+    	/* Chrome, Safari, Edge, Opera */
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+  		-webkit-appearance: none;
+  		margin: 0;
+		}
  </style>
   <!-- Page Preloder -->
   <div id="preloder">
@@ -127,7 +149,7 @@
                   style="position: absolute; top: 1%;">1</span></a></li>
             <li class="nav-content-item"><a class="nav-content-link" href="cart.jsp"><i
                   class="fas fa-shopping-cart text-light"></i><span class="badge badge-dark rounded-circle"
-                  style="position: absolute; top: 1%;">1</span></a></li>
+                  style="position: absolute; top: 1%;"><%=cart_list!=null?cart_list.size():0 %></span></a></li>
             <!-- call to action -->
           </ul>
         </nav>
@@ -214,64 +236,43 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="images/cloth_1.jpg" alt="Image" class="img-fluid" />
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Top Up T-Shirt</h2>
-                    </td>
-                    <td>$49.00</td>
-                    <td>
-                      <!-- if the below div instead using mb-3 if we use m-auto the element will be nicely centerd see difference of the below row in line 169 -->
-                      <div class="input-group m-auto" style="max-width: 120px">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-dark rounded-0 js-btn-minus" type="button">
-                            &minus;
-                          </button>
-                          <!-- the below will be wanted at the dynamic proccess of development comment the buton tags and add the <a> tags instead of the buttons -->
-                          <!-- <a href="" class="btn btn-outline-primary js-btn-inus" >&minus;</a> -->
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder=""
-                          aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-dark rounded-0 js-btn-plus" type="button">
-                            &plus;
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-dark rounded-0 btn-sm">X</a></td>
-                  </tr>
-
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="images/cloth_2.jpg" alt="Image" class="img-fluid" />
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Polo Shirt</h2>
-                    </td>
-                    <td>$49.00</td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-dark rounded-0 js-btn-minus" type="button">
-                            &minus;
-                          </button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder=""
-                          aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-dark rounded-0 js-btn-plus" type="button">
-                            &plus;
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-dark rounded-0 btn-sm">X</a></td>
-                  </tr>
+                <%
+                if(cart_list !=null){
+                	for(Cart c: cartProduct){%>
+                		<tr>
+                        <td class="product-thumbnail">
+                          <div style="background-image: url('images/products/<%=c.getImg()%>');
+                                background-repeat: no-repeat;
+                                background-size: contain;
+                                 background-position: center; 
+                                height:100px;"
+                                >
+                           </div>	
+                         
+                        </td>
+                        <td class="product-name">
+                          <h2 class="h5 text-black"><%=c.getName() %></h2>
+                        </td>
+                        <td>RS.<%=df.format(c.getCartPrice()) %></td>
+                        <td>
+                          <!-- if the below div instead using mb-3 if we use m-auto the element will be nicely centerd see difference of the below row in line 169 -->
+                          <div class="input-group m-auto" style="max-width: 120px">
+                            <div class="input-group-prepend">
+                             <a href="" class="btn btn-outline-dark rounded-0 js-btn-minus" >&minus;</a> 
+                           </div>
+                            <input type="number" class="form-control text-center" value="1" placeholder=""
+                              aria-label="Example text with button addon" min="1" aria-describedby="button-addon1" />
+                           <div class="input-group-append">
+                            	<a href="" class="btn btn-outline-dark rounded-0 js-btn-plus" > &plus;</a> 
+                           </div>
+                          </div>
+                        </td>
+                        <td>Rs.<%=df.format(c.getCartPrice()) %></td>
+                        <td><a href="#" class="btn btn-dark rounded-0 btn-sm">X</a></td>
+                      </tr>
+                	<%}
+                }
+                %>
                 </tbody>
               </table>
             </div>

@@ -1,4 +1,6 @@
 
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="java.util.*"%>
 <%@page import="com.weenalk.Modal.*" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +22,13 @@
 			request.setAttribute("authadmin", authAdmin);%>
 			<input type="hidden" value="<%=request.getAttribute("stat") %>" id="namae" />
 	<%}
+
+	//cart list type beins
+	ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+
+	if (cart_list != null) {
+		request.setAttribute("cart_list", cart_list);
+	}	
 
 %>
 <head>
@@ -172,7 +181,7 @@
                   style="position: absolute; top: 1%;">1</span></a></li>
             <li class="nav-content-item"><a class="nav-content-link" href="cart.jsp"><i
                   class="fas fa-shopping-cart text-light"></i><span class="badge badge-dark rounded-circle"
-                  style="position: absolute; top: 1%;">1</span></a></li>
+                  style="position: absolute; top: 1%;"><%=cart_list!=null?cart_list.size():0 %></span></a></li>
             <!-- call to action -->
           </ul>
         </nav>
@@ -250,7 +259,7 @@
         }
       }
     </style>
-    <!-- ***** Men Area Starts ***** 
+     ***** Men Area Starts ***** 
     <section class="section pt-md-2" id="men">
       <div class="container">
         <div class="row">
@@ -391,7 +400,7 @@
         </div>
       </div>
     </section>
-    ***** Men Area Ends ***** -->
+    <!-- ***** Men Area Ends ***** -->
 
     <!-- ***** Explore Area Starts ***** -->
     <section class="section" id="explore">

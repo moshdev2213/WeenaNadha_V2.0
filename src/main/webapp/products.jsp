@@ -279,13 +279,13 @@ int rating = pd.getProuctrating(request.getParameter("id"));
 				                <div class="hover-content">
 				                  <ul>
 				                    <li>
-				                      <a href="cart.jsp"><i class="fa fa-heart"></i></a>
+				                      <a href="AddToWhishlistServlet?id=<%=p.getId()%>"><i class="fa fa-heart"></i></a>
 				                    </li>
 				                    <li>
 				                      <a href="shop-single.jsp"><i class="fa fa-money"></i></a>
 				                    </li>
 				                    <li>
-				                      <a href="cart.jsp"><i class="fa fa-shopping-cart"></i></a>
+				                      <a href="AddToCartServlet?id=<%=p.getId()%>"><i class="fa fa-shopping-cart"></i></a>
 				                    </li>
 				                  </ul>
 				                </div>

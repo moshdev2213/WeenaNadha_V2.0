@@ -1,6 +1,20 @@
+<%@page import="java.text.DecimalFormat" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="java.util.*"%>
+<%@page import="com.weenalk.Modal.*" %>
 <!DOCTYPE html>
 <html lang="en">
+<%
+ArrayList<Whishlist> wish_list = (ArrayList<Whishlist>) session.getAttribute("cart-list");
+List<Whishlist> wishProduct = null;
+if (wish_list != null) {
+	WhishlistDao wsh = new WhishlistDao(DbCon.getConnection());
+	wishProduct = wsh.getWishProducts(wish_list);
+	request.setAttribute("wish_list", wish_list);
+}	
 
+%>
 <head>
   <title>Weena</title>
   <meta charset="utf-8" />
@@ -211,71 +225,38 @@
                   <tr>
                     <th class="product-thumbnail">Image</th>
                     <th class="product-name">Product</th>
-                    <th class="product-price">Price</th>
-                    <th class="product-quantity">Quantity</th>
-                    <th class="product-total">Total</th>
+                    <th class="product-price">Category</th>
+                    <th class="product-quantity">Design</th>
+                    <th class="product-total">Price</th>
                     <th class="product-remove">Remove</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="images/cloth_1.jpg" alt="Image" class="img-fluid" />
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Top Up T-Shirt</h2>
-                    </td>
-                    <td>$49.00</td>
-                    <td>
-                      <!-- if the below div instead using mb-3 if we use m-auto the element will be nicely centerd see difference of the below row in line 169 -->
-                      <div class="input-group m-auto" style="max-width: 120px">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-dark rounded-0 js-btn-minus" type="button">
-                            &minus;
-                          </button>
-                          <!-- the below will be wanted at the dynamic proccess of development comment the buton tags and add the <a> tags instead of the buttons -->
-                          <!-- <a href="" class="btn btn-outline-primary js-btn-inus" >&minus;</a> -->
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder=""
-                          aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-dark rounded-0 js-btn-plus" type="button">
-                            &plus;
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-dark rounded-0 btn-sm">X</a></td>
-                  </tr>
-
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="images/cloth_2.jpg" alt="Image" class="img-fluid" />
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Polo Shirt</h2>
-                    </td>
-                    <td>$49.00</td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-dark rounded-0 js-btn-minus" type="button">
-                            &minus;
-                          </button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder=""
-                          aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-dark rounded-0 js-btn-plus" type="button">
-                            &plus;
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-dark rounded-0 btn-sm">X</a></td>
-                  </tr>
+                  <%
+                	if(wish_list !=null){
+                	for(Whishlist wsh: wishProduct){%>
+                		<tr>
+                        <td class="product-thumbnail">
+                          <div style="background-image: url('images/products/<%=wsh.getImg()%>');
+                                background-repeat: no-repeat;
+                                background-size: contain;
+                                 background-position: center; 
+                                height:100px;"
+                                >
+                           </div>	
+                         
+                        </td>
+                        <td class="product-name">
+                          <h2 class="h5 text-black"><%=wsh.getName() %></h2>
+                        </td>
+                        <td><%=wsh.getCategory_name() %></td>
+                        <td><%=wsh.getDesign() %></td>
+                        <td><%=wsh.getPrice() %></td>
+                        <td><a href="#" class="btn btn-dark rounded-0 btn-sm">X</a></td>
+                      </tr>
+                	<%}
+                }
+                %>
                 </tbody>
               </table>
             </div>
