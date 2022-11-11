@@ -5,6 +5,21 @@
 <%@page import="java.util.*"%>
 <!DOCTYPE html>
 <%
+//(User) syas that it is type casted
+	User authin = (User) request.getSession().getAttribute("auth");
+	//(admin) syas that it is type casted
+	Admin authAdmin = (Admin) request.getSession().getAttribute("authadmin");
+	
+	if (authin != null) {
+		request.setAttribute("authin", authin);%>
+		<input type="hidden" value="<%=request.getAttribute("stat") %>" id="ses" />
+		<input type="hidden" value="<%=authin.getFname()%>" id="namae" />
+	<%}
+	
+	if (authAdmin != null) {
+			request.setAttribute("authadmin", authAdmin);%>
+			<input type="hidden" value="<%=request.getAttribute("stat") %>" id="namae" />
+	<%}
 ProductDao pd = new ProductDao(DbCon.getConnection());
 List<Product> products = pd.getAllProducts();
 ArrayList<String> pimg = pd.getALLImg(request.getParameter("id"));
@@ -85,8 +100,8 @@ int rating = pd.getProuctrating(request.getParameter("id"));
       <!-- contact content -->
       <div class="header-content-top">
         <div class="content">
-          <span><i class="fas fa-phone-square-alt"></i> (00)0000-0000</span>
-          <span><i class="fas fa-envelope-square"></i>email@email.com.br</span>
+          <span><i class="fas fa-phone-square-alt"></i> <%=authin!=null?authin.getTel():authAdmin!=null?authAdmin.getTel():"+(00)00000" %></span>
+          <span><i class="fas fa-envelope-square"></i><%=authin!=null?authin.getEmail():"email@email.com.br" %></span>
         </div>
       </div>
       <!-- / contact content -->
@@ -120,13 +135,21 @@ int rating = pd.getProuctrating(request.getParameter("id"));
           <ul class="nav-content-list">
             <li class="nav-content-item account-login">
               <div class="downyy">
-                <span class="login-text text-light">Hello, Sign in <strong>Create Account</strong></span> <span
+                <span class="login-text text-light">Hello, <%=authin!=null?authin.getFname():"SignIn"%><strong><%=authin!=null?"Welcome":"Create Account"%></strong></span> <span
                   class="item-arrow"></span>
                 <!-- submenu -->
+              
                 <div id="mydrop" class="downyy-content">
-                  <a href="profile.jsp">My profile</a>
-                  <a href="#">Logout</a>
-                  <a href="login.jsp">Login</a>
+                 <% if(authin==null && authAdmin==null){%>
+                      <a href="login.jsp">Login</a>
+                <%}else if(authin!=null){%>
+                	<a href="userpro.jsp">My profile</a>
+                    <a href="LogoutServlet">Logout</a>
+                 <%}if(authAdmin!=null){%>
+                 	<a href="dashdex.jsp">Dashboard</a>
+                 	<a href="userpro.jsp">My profile</a>
+                    <a href="LogoutServlet">Logout</a>
+                 <%}%>
                 </div>
 
               </div>
@@ -135,24 +158,34 @@ int rating = pd.getProuctrating(request.getParameter("id"));
               <div style="width: 35px;
                                 height: 35px;
                                 border-radius: 100px;
-                                background-image: url('images/testimonial-1.jpg');
+                                background-image: url('images/pro/<%=authin!=null?authin.getPropic():"bpro.png"%>');
                                 background-repeat: no-repeat;
                                 background-size: cover;
                                 position: relative;
                                 top: -1px;
                                 left: 5px;" class="downyy">
                 <!-- submenu -->
-                <!-- <div id="mydrop" class="downyy-content">
-                  <a href="profile.jsp">My profile</a>
-                  <a href="#">Logout</a>
-                  <a href="login.jsp">Login</a>
-                </div> -->
+                <div id="mydrop" class="downyy-content">
+                 <% if(authin==null && authAdmin==null){%>
+                      <a href="login.jsp">Login</a>
+                <%}else if(authin!=null){%>
+                	<a href="userpro.jsp">My profile</a>
+                    <a href="LogoutServlet">Logout</a>
+                 <%}if(authAdmin!=null){%>
+                 	<a href="dashdex.jsp">Dashboard</a>
+                 	<a href="userpro.jsp">My profile</a>
+                    <a href="LogoutServlet">Logout</a>
+                 <%}%>
+                </div>
+                <!-- submenu end -->
               </div>
             </li>
-            <li class="nav-content-item"><a class="nav-content-link" href="#"><i
-                  class="fas fa-heart text-light"></i></a></li>
+            <li class="nav-content-item"><a class="nav-content-link" href="whishlist.jsp"><i
+                  class="fas fa-heart text-light"></i><span class="badge badge-dark rounded-circle"
+                  style="position: absolute; top: 1%;">1</span></a></li>
             <li class="nav-content-item"><a class="nav-content-link" href="cart.jsp"><i
-                  class="fas fa-shopping-cart text-light"></i></a></li>
+                  class="fas fa-shopping-cart text-light"></i><span class="badge badge-dark rounded-circle"
+                  style="position: absolute; top: 1%;">1</span></a></li>
             <!-- call to action -->
           </ul>
         </nav>
@@ -168,9 +201,10 @@ int rating = pd.getProuctrating(request.getParameter("id"));
             </span>
 
             <ul class="all-category-list">
-              <li class="all-category-list-item"><a href="#" class="all-category-list-link">Smartphones<i
+            <%if(authAdmin!=null) {%>
+              <li class="all-category-list-item"><a href="dashdex.jsp" class="all-category-list-link">Dashboard<i
                     class="fas fa-angle-right"></i></a>
-                <div class="category-second-list">
+                <!-- <div class="category-second-list">
                   <ul class="category-second-list-ul">
                     <li class="category-second-item"><a href="#">Iphone 10</a></li>
                     <li class="category-second-item"><a href="#">Galaxy Note 10</a></li>
@@ -181,17 +215,18 @@ int rating = pd.getProuctrating(request.getParameter("id"));
                   </ul>
 
                   <div class="img-product-menu"><img src="https://i.ibb.co/Vvndkmy/banner.jpg"></div>
-                </div>
+                </div> -->
               </li>
-              <li class="all-category-list-item"><a href="#" class="all-category-list-link">Furniture <i
+              <%} %>
+              <li class="all-category-list-item"><a href="#" class="all-category-list-link">Guitar <i
                     class="fas fa-angle-right"></i></a></li>
-              <li class="all-category-list-item"><a href="#" class="all-category-list-link">Toys<i
+              <li class="all-category-list-item"><a href="#" class="all-category-list-link">Keyboard<i
                     class="fas fa-angle-right"></i></a></li>
-              <li class="all-category-list-item"><a href="#" class="all-category-list-link">Computing<i
+              <li class="all-category-list-item"><a href="#" class="all-category-list-link">Piano<i
                     class="fas fa-angle-right"></i></a></li>
-              <li class="all-category-list-item"><a href="#" class="all-category-list-link">Games<i
+              <li class="all-category-list-item"><a href="#" class="all-category-list-link">Drum<i
                     class="fas fa-angle-right"></i></a></li>
-              <li class="all-category-list-item"><a href="" class="all-category-list-link">Automotive<i
+              <li class="all-category-list-item"><a href="" class="all-category-list-link">Flute<i
                     class="fas fa-angle-right"></i></a></li>
 
             </ul>
@@ -202,10 +237,13 @@ int rating = pd.getProuctrating(request.getParameter("id"));
           <ul class="nav-row">
             <li class="nav-row-list"><a href="about.jsp" class="nav-row-list-link">About Us</a></li>
             <li class="nav-row-list"><a href="contact.jsp" class="nav-row-list-link">Contact Us</a></li>
-            <li class="nav-row-list"><a href="dashdex.jsp" class="nav-row-list-link">Dashboard</a></li>
+            <%if(authAdmin!=null){%>
+               <li class="nav-row-list"><a href="dashdex.jsp" class="nav-row-list-link">Dashboard</a></li>
+             <%}%>
+          
             <li class="nav-row-list"><a href="products.jsp" class="nav-row-list-link">Shop</a></li>
-            <li class="nav-row-list"><a href="#" class="nav-row-list-link">Games</a></li>
-            <li class="nav-row-list"><a href="#" class="nav-row-list-link">Automotive</a></li>
+            <li class="nav-row-list"><a href="#" class="nav-row-list-link">Guitar</a></li>
+            <li class="nav-row-list"><a href="#" class="nav-row-list-link">Drums</a></li>
           </ul>
         </nav>
       </div>

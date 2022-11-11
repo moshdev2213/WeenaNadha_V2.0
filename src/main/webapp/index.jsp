@@ -250,7 +250,7 @@
         }
       }
     </style>
-    <!-- ***** Men Area Starts ***** -->
+    <!-- ***** Men Area Starts ***** 
     <section class="section pt-md-2" id="men">
       <div class="container">
         <div class="row">
@@ -391,7 +391,7 @@
         </div>
       </div>
     </section>
-    <!-- ***** Men Area Ends ***** -->
+    ***** Men Area Ends ***** -->
 
     <!-- ***** Explore Area Starts ***** -->
     <section class="section" id="explore">

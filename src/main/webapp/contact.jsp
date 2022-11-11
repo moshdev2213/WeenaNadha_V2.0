@@ -1,6 +1,27 @@
+<%@page import="java.text.DecimalFormat" %>
+<%@page import="com.weenalk.Modal.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<%
+//(User) syas that it is type casted
+	User authin = (User) request.getSession().getAttribute("auth");
+	//(admin) syas that it is type casted
+	Admin authAdmin = (Admin) request.getSession().getAttribute("authadmin");
+	
+	if (authin != null) {
+		request.setAttribute("authin", authin);%>
+		<input type="hidden" value="<%=request.getAttribute("stat") %>" id="ses" />
+		<input type="hidden" value="<%=authin.getFname()%>" id="namae" />
+	<%}
+	
+	if (authAdmin != null) {
+			request.setAttribute("authadmin", authAdmin);%>
+			<input type="hidden" value="<%=request.getAttribute("stat") %>" id="namae" />
+	<%}
+%>
 <head>
   <title>Weena</title>
   <meta charset="utf-8">
@@ -66,8 +87,8 @@
       <!-- contact content -->
       <div class="header-content-top">
         <div class="content">
-          <span><i class="fas fa-phone-square-alt"></i> (00)0000-0000</span>
-          <span><i class="fas fa-envelope-square"></i>email@email.com.br</span>
+          <span><i class="fas fa-phone-square-alt"></i> <%=authin!=null?authin.getTel():authAdmin!=null?authAdmin.getTel():"+(00)00000" %></span>
+          <span><i class="fas fa-envelope-square"></i><%=authin!=null?authin.getEmail():"email@email.com.br" %></span>
         </div>
       </div>
       <!-- / contact content -->
@@ -101,13 +122,21 @@
           <ul class="nav-content-list">
             <li class="nav-content-item account-login">
               <div class="downyy">
-                <span class="login-text text-light">Hello, Sign in <strong>Create Account</strong></span> <span
+                <span class="login-text text-light">Hello, <%=authin!=null?authin.getFname():"SignIn"%><strong><%=authin!=null?"Welcome":"Create Account"%></strong></span> <span
                   class="item-arrow"></span>
                 <!-- submenu -->
+              
                 <div id="mydrop" class="downyy-content">
-                  <a href="userpro.jsp">My profile</a>
-                  <a href="#">Logout</a>
-                  <a href="login.jsp">Login</a>
+                 <% if(authin==null && authAdmin==null){%>
+                      <a href="login.jsp">Login</a>
+                <%}else if(authin!=null){%>
+                	<a href="userpro.jsp">My profile</a>
+                    <a href="LogoutServlet">Logout</a>
+                 <%}if(authAdmin!=null){%>
+                 	<a href="dashdex.jsp">Dashboard</a>
+                 	<a href="userpro.jsp">My profile</a>
+                    <a href="LogoutServlet">Logout</a>
+                 <%}%>
                 </div>
 
               </div>
@@ -116,17 +145,25 @@
               <div style="width: 35px;
                                 height: 35px;
                                 border-radius: 100px;
-                                background-image: url('images/bpro.png');
+                                background-image: url('images/pro/<%=authin!=null?authin.getPropic():"bpro.png"%>');
                                 background-repeat: no-repeat;
                                 background-size: cover;
                                 position: relative;
                                 top: -1px;
                                 left: 5px;" class="downyy">
                 <!-- submenu -->
-                <!-- <div id="mydrop" class="downyy-content">
-                  <a href="#">My profile</a>
-                  <a href="#">Logout</a>
-                </div> -->
+                <div id="mydrop" class="downyy-content">
+                 <% if(authin==null && authAdmin==null){%>
+                      <a href="login.jsp">Login</a>
+                <%}else if(authin!=null){%>
+                	<a href="userpro.jsp">My profile</a>
+                    <a href="LogoutServlet">Logout</a>
+                 <%}if(authAdmin!=null){%>
+                 	<a href="dashdex.jsp">Dashboard</a>
+                 	<a href="userpro.jsp">My profile</a>
+                    <a href="LogoutServlet">Logout</a>
+                 <%}%>
+                </div>
                 <!-- submenu end -->
               </div>
             </li>
@@ -151,6 +188,7 @@
             </span>
 
             <ul class="all-category-list">
+            <%if(authAdmin!=null) {%>
               <li class="all-category-list-item"><a href="dashdex.jsp" class="all-category-list-link">Dashboard<i
                     class="fas fa-angle-right"></i></a>
                 <!-- <div class="category-second-list">
@@ -166,6 +204,7 @@
                   <div class="img-product-menu"><img src="https://i.ibb.co/Vvndkmy/banner.jpg"></div>
                 </div> -->
               </li>
+              <%} %>
               <li class="all-category-list-item"><a href="#" class="all-category-list-link">Guitar <i
                     class="fas fa-angle-right"></i></a></li>
               <li class="all-category-list-item"><a href="#" class="all-category-list-link">Keyboard<i
@@ -185,7 +224,10 @@
           <ul class="nav-row">
             <li class="nav-row-list"><a href="about.jsp" class="nav-row-list-link">About Us</a></li>
             <li class="nav-row-list"><a href="contact.jsp" class="nav-row-list-link">Contact Us</a></li>
-            <li class="nav-row-list"><a href="dashdex.jsp" class="nav-row-list-link">Dashboard</a></li>
+            <%if(authAdmin!=null){%>
+               <li class="nav-row-list"><a href="dashdex.jsp" class="nav-row-list-link">Dashboard</a></li>
+             <%}%>
+          
             <li class="nav-row-list"><a href="products.jsp" class="nav-row-list-link">Shop</a></li>
             <li class="nav-row-list"><a href="#" class="nav-row-list-link">Guitar</a></li>
             <li class="nav-row-list"><a href="#" class="nav-row-list-link">Drums</a></li>

@@ -1,6 +1,21 @@
+
+<%@page import="com.weenalk.Modal.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
+<%
+	UserDao ud =new UserDao(DbCon.getConnection());
+	User u = new User();
+	u=ud.userbymail(request.getParameter("id"));
+	
+	AddressDao a =new AddressDao(DbCon.getConnection());
+	Address ad = new Address();
+	ad=a.getaddressemail(request.getParameter("id"));
+	
 
+%>
 <head>
   <meta charset="utf-8" />
   <title>Weena</title>
@@ -64,7 +79,7 @@
       <nav class="navbar  navbar-dark">
         <a href="dashdex.jsp" class="navbar-brand mx-4 mb-3">
           <h3 class="text-white">
-            <i class="fa fa-user-edit me-2"></i>SHOPPERS
+            <i class="fa fa-user-edit me-2"></i>WEENALK
           </h3>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
@@ -191,87 +206,87 @@
       <div class="form-container bg-white shadow" style="margin-top: 25px;">
         <!-- <button id="btnCloseForm" class="close-button">X</button> -->
         <!-- <h1>Product</h1> -->
-        <form action="">
+        <form action="AddImage" method="POST" enctype="multipart/form-data">
           <div class="bg-white rounded h-100 p-1">
             <div class="row g-4">
               <div class="form-floating mb-3 col-xl-6 col-md-6">
                 <input type="email" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
+                  placeholder="name@example.com" name="email" required value="<%=u!=null?u.getEmail():"" %>" />
                 <label style="padding-left: 20px" for="floatingInput" class="text-black-50">UserEmail</label>
               </div>
               <div class="form-floating mb-3 col-xl-6 col-md-6">
-                <input type="password" min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                  placeholder="Password" />
-                <label style="padding-left: 20px" for="floatingPassword" class="text-black-50">Password</label>
+                <input type="password" min="0" required  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" title="8 Digit Password With a,A,9,@" class="form-control bg-gry border-0 shadow" id="floatingPassword"
+                  placeholder="Password" name="Password" value="<%=u!=null?u.getPassword():"" %>" />
+                <label style="padding-left: 20px"  for="floatingPassword" class="text-black-50">Password</label>
               </div>
             </div>
             <div class="row g-4">
               <div class="form-floating mb-3 col-xl-4 col-md-4">
                 <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
-                <label style="padding-left: 20px" for="floatingInput" class="text-black-50">Username</label>
+                  placeholder="name@example.com" required name="Username" value="<%=u!=null?u.getUsername():"" %>" />
+                <label style="padding-left: 20px"  for="floatingInput" class="text-black-50">Username</label>
               </div>
               <div class="form-floating mb-3 col-xl-4 col-md-4">
                 <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
-                <label style="padding-left: 20px" for="floatingInput" class="text-black-50">Telephone</label>
+                  placeholder="name@example.com" name="Telephone" value="<%=u!=null?u.getTel():"" %>" required pattern="[1-7]{1}[0-9]{9}" title="Phone number with 1-7 and remaing 9 digit with 0-9"/>
+                <label style="padding-left: 20px"  for="floatingInput" class="text-black-50">Telephone</label>
               </div>
               <div class="form-floating mb-3 col-xl-4 col-md-4">
                 <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
+                  placeholder="name@example.com" name="WorkArea" value="<%=u!=null?u.getCompany():"" %>"/>
                 <label style="padding-left: 20px" for="floatingInput" class="text-black-50">WorkArea</label>
               </div>
             </div>
             <div class="row g-4">
               <div class="mb-4 col-6">
                 <label for="formFileMultiple" class="form-label text-dark">Profile Picture</label>
-                <input class="form-control bg-gry border-0 shadow" type="file" id="formFileMultiple" multiple />
+                <input class="form-control bg-gry border-0 shadow" type="file" name="propic" id="formFileMultiple" multiple />
               </div>
 
               <div class="mb-4 col-6">
                 <label for="formFileMultiple" class="form-label text-dark">Cover Picture</label>
-                <input class="form-control bg-gry border-0 shadow" type="file" id="formFileMultiple" multiple />
+                <input class="form-control bg-gry border-0 shadow" type="file" name="coverpic" id="formFileMultiple" multiple />
               </div>
             </div>
             <div class="row g-4">
               <div class="form-floating mb-3 col-xl-4 col-md-4">
                 <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
+                  placeholder="name@example.com" name="First" value="<%=u!=null?u.getFname():"" %>"/>
                 <label style="padding-left: 20px" for="floatingInput" class="text-black-50">First Name</label>
               </div>
               <div class="form-floating mb-3 col-xl-4 col-md-4">
                 <input type="text" min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                  placeholder="Password" />
+                  placeholder="Password" name="Middle" value="<%=u!=null?u.getMname():"" %>"/>
                 <label style="padding-left: 20px" for="floatingPassword" class="text-black-50">Middle Name</label>
               </div>
               <div class="form-floating mb-3 col-xl-4 col-md-4">
-                <input type="number" min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                  placeholder="Password" />
+                <input type="text" min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
+                  placeholder="Password" name="Last" value="<%=u!=null?u.getLname():"" %>"/>
                 <label style="padding-left: 20px" for="floatingPassword" class="text-black-50">Last Name</label>
               </div>
             </div>
-            <div class="row g-4">
+            <!-- <div class="row g-4">
               <div class="form-floating mb-3 col-xl-7 col-md-7">
                 <input type="text" min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                  placeholder="Password" />
+                  placeholder="Password" name="City" value=""/>
                 <label style="padding-left: 20px" for="floatingPassword">City</label>
               </div>
 
               <div class="form-floating mb-3 col-xl-3 col-md-3">
                 <input type="number" min=0 class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
+                  placeholder="name@example.com" name="PostalCode" value="/>
                 <label style="padding-left: 20px" for="floatingInput">PostalCode</label>
               </div>
               <div class="form-floating mb-3 col-xl-2 col-md-2">
                 <input type="number" min=0 class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
+                  placeholder="name@example.com" name="ZipCode"/>
                 <label style="padding-left: 20px" for="floatingInput">ZipCode</label>
               </div>
             </div>
             <div class="row g-4">
               <div class="form-floating mb-3 col-xl-4 col-md-4">
                 <select class="form-select bg-gry border-0 shadow" id="floatingSelect"
-                  aria-label="Floating label select example">
+                  aria-label="Floating label select example" name="District value="<">
                   <option selected>District</option>
                   <option value="d001">Colombo</option>
                   <option value="d002">Gampaha</option>
@@ -299,11 +314,11 @@
                   <option value="d024">Ratnapura</option>
                   <option value="d025">Kegalle</option>
                 </select>
-                <!-- <label for="floatingSelect">Works with selects</label> -->
+                
               </div>
               <div class="form-floating mb-3 col-xl-8 col-md-8">
                 <input type="text" min="0" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
+                  placeholder="name@example.com" name="street"/>
                 <label style="padding-left: 20px" for="floatingInput">Street</label>
               </div>
 
@@ -311,7 +326,7 @@
             <div class="row g-4">
               <div class="form-floating mb-3 col-xl-12 col-md-12">
                 <select class="form-select bg-gry border-0 shadow" id="floatingSelect"
-                  aria-label="Floating label select example">
+                  aria-label="Floating label select example" name="province" value="<">
                   <option selected>Province</option>
                   <option value="pv001">Western Province</option>
                   <option value="pv002">Central Province</option>
@@ -323,21 +338,21 @@
                   <option value="pv008">Northern Province</option>
                   <option value="pv009">Eastern Province</option>
                 </select>
-                <!-- <label for="floatingSelect">Works with selects</label> -->
+               
               </div>
             </div>
-            
+             -->
 
             <div class="form-floating">
               <textarea class="form-control bg-gry border-0 shadow" placeholder="Leave a comment here"
-                id="floatingTextarea" style="height: 150px"></textarea>
+                id="floatingTextarea" style="height: 150px" name="about" value="<%=u!=null?u.getAbout():""%>"></textarea>
               <label for="floatingTextarea" class="text-black-50">About</label>
             </div>
             <br />
             <div class="row g-4 p-lg-3">
-              <button type="button" style="font-size: 16px; background-color: #68686c;" onclick="aad()"
+              <button type="submit" style="font-size: 16px; background-color: #68686c;" onclick=""
                 class="btn btn-sm text-white p-2 col-xl-12">
-                Add User
+                <%=u!=null?"Update":"Add" %> User
               </button>
               <button type="button" style="font-size: 16px; background-color: #191919;" onclick="dec()"
                 class="btn btn-sm text-white p-2 col-xl-12">
@@ -348,7 +363,7 @@
         </form>
       </div>
       <!-- Blank End -->
-
+		<input type="hidden" value="<%=request.getAttribute("added") %>" id="stat" />
       <!-- Footer Start -->
       <div class="container-fluid pt-4 px-4">
         <div class="bg-white rounded p-4 shadow">
@@ -368,6 +383,19 @@
     </div>
     <!-- Content End -->
     <script>
+    let stat = document.getElementById('stat').value;
+	    if( stat=="done"){
+	    	Swal.fire({
+	            title: 'Invalid MiddleName',
+	            text: "Please Enter Valid MiddleName!",
+	            icon: 'warning',
+	            iconColor: '#000000',
+	            showCancelButton: false,
+	            confirmButtonColor: '#000000',
+	            cancelButtonColor: '#616161',
+	            confirmButtonText: 'OK'
+	          });
+	    }
       function rmv() {
         Swal.fire({
           title: 'Are you sure?',
@@ -415,7 +443,7 @@
               confirmButtonColor: '#000000'
             }).then(() => {
               setTimeout(() => {
-                // window.location="sweetServlet";
+                 window.location="AddImage";
               }, 500);
             })
           }

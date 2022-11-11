@@ -19,6 +19,12 @@ import com.weenalk.Modal.User;
 @WebServlet("/ContactServlet")
 public class ContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

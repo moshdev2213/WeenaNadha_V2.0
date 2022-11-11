@@ -249,7 +249,7 @@ select:-webkit-autofill:active {
                   <i class="fa fa-user text-light"></i>
                 </span>
               </div>
-              <input id="username" type="text" name="username" placeholder="User Name"
+              <input id="username" required type="text" name="username" placeholder="User Name"
                 class="form-control border-left-0 border-md" />
             </div>
             <!-- Email Address -->
@@ -259,7 +259,7 @@ select:-webkit-autofill:active {
                   <i class="fa fa-envelope text-light"></i>
                 </span>
               </div>
-              <input id="email" type="email" name="email" placeholder="Email Address"
+              <input id="email" type="email" required name="email" placeholder="Email Address"
                 class="form-control border-left-0 border-md" />
             </div>
 
@@ -274,7 +274,7 @@ select:-webkit-autofill:active {
                 class="custom-select spannyy h-100 font-weight-bold text-muted">
                 <option class="lighty" value="+94">+94</option>
               </select>
-              <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" class="form-control pl-3" />
+              <input id="phoneNumber" required pattern="[1-7]{1}[0-9]{9}" title="Phone number with 1-7 and remaing 9 digit with 0-9" type="tel" name="phone" placeholder="Phone Number" class="form-control pl-3" />
             </div>
           
             <!-- Job -->
@@ -296,8 +296,8 @@ select:-webkit-autofill:active {
                   <i class="fa fa-lock text-light"></i>
                 </span>
               </div>
-              <input id="password" type="password" name="password" placeholder="Password"
-                class="form-control border-left-0 border-md" />
+              <input pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" title="8 Digit Password With a,A,9,@" id="password" type="password" name="password" placeholder="Password"
+                class="form-control border-left-0 border-md" required/><i class="fa-solid fa-eye text-light" style="position:relative; top:18px; left:-22px; z-index:999;" onclick="togglePassword()"></i>
             </div>
 
             <!-- Password Confirmation -->
@@ -307,8 +307,8 @@ select:-webkit-autofill:active {
                   <i class="fa fa-lock text-light"></i>
                 </span>
               </div>
-              <input id="passwordConfirmation" type="password" name="passwordConfirmation"
-                placeholder="Confirm Password" class="form-control border-left-0 border-md" />
+              <input pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" title="8 Digit Password With a,A,9,@" id="passwordConfirmation" type="password" name="passwordConfirmation"
+                placeholder="Confirm Password" class="form-control border-left-0 border-md" required/><i class="fa-solid fa-eye text-light" style="position:relative; top:18px; left:-22px; z-index:999;" onclick="togglepasswordConfirmation()"></i> 
             </div>
             <!-- Submit Button -->
             <div class="form-group col-lg-12 mx-auto mb-0">
@@ -343,6 +343,14 @@ select:-webkit-autofill:active {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.6/platform.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+    function togglePassword() {
+    	  var element = document.getElementById("password");
+    	  element.type = element.type == "password" ? "text" : "password";
+    	}
+    function togglepasswordConfirmation() {
+  	  var element = document.getElementById("passwordConfirmation");
+  	  element.type = element.type == "password" ? "text" : "password";
+  	}
     let stat = document.getElementById('inval').value;
     if( stat=="invalidfname"){
     	Swal.fire({

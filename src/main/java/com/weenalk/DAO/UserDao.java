@@ -44,6 +44,34 @@ public class UserDao {
         }
         return user;
     }
+	//getting by email
+	public User userbymail(String email) {
+		User user = null;
+        try {
+            query = "select * from users where useremail=?";
+            pst = this.con.prepareStatement(query);
+            pst.setString(1, email);
+            rs = pst.executeQuery();
+            if(rs.next()){
+            	user = new User();
+            	user.setAddressid(rs.getInt("address_ID"));
+            	user.setTel(rs.getString("phone_no"));
+            	user.setEmail(rs.getString("useremail"));
+            	user.setPassword(rs.getString("password"));
+            	user.setPropic(rs.getString("propic"));
+            	user.setCoverpic(rs.getString("coverpic"));
+            	user.setAbout(rs.getString("about"));
+            	user.setFname(rs.getString("fname"));
+            	user.setMname(rs.getString("mname"));
+            	user.setLname(rs.getString("lname"));
+            	user.setUsername(rs.getString("username"));
+            	user.setCompany(rs.getString("company"));
+            }
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
+        }
+        return user;
+    }
 	public boolean userRegister(String fname,String lname,String mname,String username,String tel,String company,String password, String email,String country) {
 		boolean result = false;
 		try {
@@ -68,6 +96,65 @@ public class UserDao {
 		return result;
 		
 	}
+	//user admin register
+	public boolean useFull(String fname,String lname,String mname,String username,String tel,String company,String password, String email,int address,String cover,String pro,String about) {
+		boolean result = false;
+		try {
+			query = "Insert into users (useremail,password,username,phone_no,company,fname,mname,lname,address_ID,propic,coverpic) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+			pst = this.con.prepareStatement(query);
+
+			pst.setString(1, email);
+			pst.setString(2, password);
+			pst.setString(3, username);
+			pst.setString(4, tel);
+			pst.setString(5, company);
+			pst.setString(6, fname);
+			pst.setString(7, mname);
+			pst.setString(8, lname);
+			pst.setInt(9, address);
+			pst.setString(10, cover);
+			pst.setString(11, pro);
+			pst.setString(12, about);
+
+			pst.executeUpdate();
+			result = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+	
+	//user admin register
+		public boolean updateuser(String fname,String lname,String mname,String username,String tel,String company,String password, String email,String cover,String pro,String about) {
+			boolean result = false;
+			try {
+				query = "update users set password=?,username=?,phone_no=?,company=?,fname=?,mname=?,lname=?,propic=?,coverpic=?,about=? where useremail=?";
+				pst = this.con.prepareStatement(query);
+
+				pst.setString(1, password);
+				pst.setString(2, username);
+				pst.setString(3, tel);
+				pst.setString(4, company);
+				pst.setString(5, fname);
+				pst.setString(6, mname);
+				pst.setString(7, lname);
+				pst.setString(8, pro);
+				pst.setString(9, cover);
+				pst.setString(10, about);
+				pst.setString(11, email);
+
+				pst.executeUpdate();
+				result = true;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return result;
+			
+		}
+	
 	//to get all users from the DB
 	public List<User> getUser(){
 		List<User> user = new ArrayList<User>();

@@ -253,7 +253,8 @@ List<User> usr = ud.getUser();
 		                                        </td>
 		                                        <td>
 		                                            <a id="" class="btn btn-sm text-white" href="adduser.jsp?id=<%=u.getEmail()%>" style="background: #68686c;">Update</a>
-		                                            <a class="btn btn-sm text-white" onclick="rmv()" style="background: #191919;" href="#">Remove</a>
+		                                            <a class="btn btn-sm text-white" onclick="" style="background: #191919;" href="UserRemove?id=<%=u.getEmail()  %>">Remove</a>
+		                                        	 <input type="hidden" value="<%=u.getEmail()%>" id="namae"/>
 		                                        </td>
 		                                    </tr>
 		                               
@@ -308,8 +309,10 @@ List<User> usr = ud.getUser();
      <!-- preloader -->
   <script src="js/preloader.js"></script>
   <!-- preloader ends script -->
+ 
   <script>
     function rmv(){
+    	 let name = document.getElementById("namae").value;
       Swal.fire({
 				  title: 'Are you sure?',
 				  text: "You won't be able to revert this!",
@@ -329,7 +332,7 @@ List<User> usr = ud.getUser();
 								  confirmButtonColor: '#000000'
 						    }).then(()=>{
 								setTimeout(()=>{
-									// window.location="sweetServlet";
+									 window.location= "UserRemove?id="+name
 								},500);
 							})
 						  }
