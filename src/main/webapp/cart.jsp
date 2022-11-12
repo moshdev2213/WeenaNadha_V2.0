@@ -11,10 +11,13 @@
 	//cart list type beins
 	ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 	List<Cart> cartProduct = null;
+	double carttotal=0;
 	if (cart_list != null) {
 		ProductDao pdao = new ProductDao(DbCon.getConnection());
 		cartProduct = pdao.getCartProducts(cart_list);
+		carttotal = pdao.getTotalCartPrice(cart_list);
 		request.setAttribute("cart_list", cart_list);
+		request.setAttribute("cart_total", carttotal);
 	}	
 %>
 <head>
@@ -258,17 +261,17 @@
                           <!-- if the below div instead using mb-3 if we use m-auto the element will be nicely centerd see difference of the below row in line 169 -->
                           <div class="input-group m-auto" style="max-width: 120px">
                             <div class="input-group-prepend">
-                             <a href="" class="btn btn-outline-dark rounded-0 js-btn-minus" >&minus;</a> 
+                             <a href="quantityincdec?action=dec&id=<%=c.getId()%>" class="btn btn-outline-dark rounded-0 btn-decre" >&minus;</a> 
                            </div>
-                            <input type="number" class="form-control text-center" value="1" placeholder=""
+                            <input type="number" class="form-control text-center" value="<%=c.getQuantity() %>" placeholder=""
                               aria-label="Example text with button addon" min="1" aria-describedby="button-addon1" />
                            <div class="input-group-append">
-                            	<a href="" class="btn btn-outline-dark rounded-0 js-btn-plus" > &plus;</a> 
+                            	<a href="quantityincdec?action=inc&id=<%=c.getId()%>" class="btn btn-outline-dark rounded-0 btn-incres" > &plus;</a> 
                            </div>
                           </div>
                         </td>
                         <td>Rs.<%=df.format(c.getCartPrice()) %></td>
-                        <td><a href="#" class="btn btn-dark rounded-0 btn-sm">X</a></td>
+                        <td><a href="removecart?pathh=cart&id=<%=c.getId() %>" class="btn btn-dark rounded-0 btn-sm">X</a></td>
                       </tr>
                 	<%}
                 }
@@ -319,7 +322,7 @@
                     <span class="text-black">Subtotal</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
+                    <strong class="text-black">Rs <%=df.format(cart_list!=null?carttotal:00.000)%></strong>
                   </div>
                 </div>
                 <div class="row mb-5">
@@ -327,7 +330,7 @@
                     <span class="text-black">Total</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
+                    <strong class="text-black">Rs <%=df.format(cart_list!=null?carttotal:00.000)%></strong>
                   </div>
                 </div>
 

@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%
+ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 ArrayList<Whishlist> wish_list = (ArrayList<Whishlist>) session.getAttribute("wish-list");
 List<Whishlist> wishProduct = null;
 if (wish_list != null) {
@@ -58,7 +59,7 @@ if (wish_list != null) {
       font-size: 16px;
     }
   </style>
-  <h1><%=wishProduct%></h1>
+  
   <!-- Page Preloder -->
   <div id="preloder">
     <div class="d-flex justify-content-center"
@@ -140,10 +141,10 @@ if (wish_list != null) {
             </li>
             <li class="nav-content-item"><a class="nav-content-link" href="whishlist.jsp"><i
                   class="fas fa-heart text-light"></i><span class="badge badge-dark rounded-circle"
-                  style="position: absolute; top: 1%;">1</span></a></li>
+                  style="position: absolute; top: 1%;"><%=wish_list!=null?wish_list.size():0 %></span></a></li>
             <li class="nav-content-item"><a class="nav-content-link" href="cart.jsp"><i
                   class="fas fa-shopping-cart text-light"></i><span class="badge badge-dark rounded-circle"
-                  style="position: absolute; top: 1%;">1</span></a></li>
+                  style="position: absolute; top: 1%;"><%=cart_list!=null?cart_list.size():0 %></span></a></li>
             <!-- call to action -->
           </ul>
         </nav>
@@ -217,7 +218,7 @@ if (wish_list != null) {
       <h1 class="text-black m-0">My Whishlist</h1>
     </div>
     <div class="site-section p-lg-0">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row mb-5">
           <form class="col-md-12 p-lg-5 pb-lg-0 pt-lg-0" method="post">
             <div class="site-blocks-table shadow">
@@ -253,7 +254,11 @@ if (wish_list != null) {
                         <td><%=wsh.getCategory_name() %></td>
                         <td><%=wsh.getDesign() %></td>
                         <td><%=wsh.getPrice() %></td>
-                        <td><a href="#" class="btn btn-dark rounded-0 btn-sm">X</a></td>
+                       
+                      	<td>
+                      	 <a href="AddToCartServlet?id=<%=wsh.getId()%>" class="btn btn-dark rounded-0 btn-sm"><i class="fas fa-shopping-cart text-light"></i></a>
+                      	 <a href="removecart?pathh=wish&id=<%=wsh.getId() %>" class="btn btn-dark rounded-0 btn-sm">X</a>
+                      	</td>
                       </tr>
                 	<%}
                 }

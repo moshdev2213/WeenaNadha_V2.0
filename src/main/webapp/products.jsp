@@ -24,6 +24,8 @@ ProductDao pd = new ProductDao(DbCon.getConnection());
 List<Product> products = pd.getAllProducts();
 ArrayList<String> pimg = pd.getALLImg(request.getParameter("id"));
 int rating = pd.getProuctrating(request.getParameter("id"));
+ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+ArrayList<Whishlist> wish_list = (ArrayList<Whishlist>) session.getAttribute("wish-list");
 
 %>
 <html lang="en">
@@ -182,10 +184,10 @@ int rating = pd.getProuctrating(request.getParameter("id"));
             </li>
             <li class="nav-content-item"><a class="nav-content-link" href="whishlist.jsp"><i
                   class="fas fa-heart text-light"></i><span class="badge badge-dark rounded-circle"
-                  style="position: absolute; top: 1%;">1</span></a></li>
+                  style="position: absolute; top: 1%;"><%=wish_list!=null?wish_list.size():0 %></span></a></li>
             <li class="nav-content-item"><a class="nav-content-link" href="cart.jsp"><i
                   class="fas fa-shopping-cart text-light"></i><span class="badge badge-dark rounded-circle"
-                  style="position: absolute; top: 1%;">1</span></a></li>
+                  style="position: absolute; top: 1%;"><%=cart_list!=null?cart_list.size():0 %></span></a></li>
             <!-- call to action -->
           </ul>
         </nav>

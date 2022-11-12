@@ -27,7 +27,7 @@ public class WhishlistDao {
 			//checks if there is anything is in the cartList 
 			if(Whishlist.size()>0) {
 				//item is used to iterate from the cartList arraylist of Cart clz 
-				for(Whishlist item:wish) {
+				for(Whishlist item:Whishlist) {
 					query = "SELECT * FROM product p,category c\r\n"
 							+ "where p.category_ID=c.category_ID and p.product_ID=?;";
 					pst = this.con.prepareStatement(query);
