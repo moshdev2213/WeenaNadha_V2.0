@@ -45,6 +45,7 @@
    <!-- ends -->
   <!-- header -->
   <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/af562a2a63.js" crossorigin="anonymous"></script>
   <!-- header ends -->
@@ -226,22 +227,24 @@
       <div class="container">
         <div class="row mb-5">
           <form class="col-md-12" method="post">
-            <div class="site-blocks-table shadow">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th class="product-thumbnail">Image</th>
-                    <th class="product-name">Product</th>
-                    <th class="product-price">Price</th>
-                    <th class="product-quantity">Quantity</th>
-                    <th class="product-total">Total</th>
-                    <th class="product-remove">Remove</th>
-                  </tr>
-                </thead>
-                <tbody>
+              	<h1 class="shadow-none text-black bold text-center">CART IS EMPTY</h1>
+              	<h1 class="text-black text-center m-5"><i class="fa-solid fa-face-frown fa-2xl"></i></h1>
                 <%
-                if(cart_list !=null){
-                	for(Cart c: cartProduct){%>
+                if(cart_list !=null){%>
+                  <div class="site-blocks-table shadow">
+                	<table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th class="product-thumbnail">Image</th>
+                        <th class="product-name">Product</th>
+                        <th class="product-price">Price</th>
+                        <th class="product-quantity">Quantity</th>
+                        <th class="product-total">Total</th>
+                        <th class="product-remove">Remove</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                	<%for(Cart c: cartProduct){%>
                 		<tr>
                         <td class="product-thumbnail">
                           <div style="background-image: url('images/products/<%=c.getImg()%>');
@@ -273,12 +276,14 @@
                         <td>Rs.<%=df.format(c.getCartPrice()) %></td>
                         <td><a href="removecart?pathh=cart&id=<%=c.getId() %>" class="btn btn-dark rounded-0 btn-sm">X</a></td>
                       </tr>
-                	<%}
-                }
+                	<%}%>
+                	  </tbody>
+                     </table>
+                   </div>
+                <%}
                 %>
-                </tbody>
-              </table>
-            </div>
+               
+          
           </form>
         </div>
 
