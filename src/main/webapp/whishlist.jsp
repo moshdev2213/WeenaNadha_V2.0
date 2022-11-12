@@ -41,6 +41,7 @@ if (wish_list != null) {
   <!-- ends -->
   <!-- header -->
   <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/af562a2a63.js" crossorigin="anonymous"></script>
   <!-- header ends -->
@@ -221,22 +222,27 @@ if (wish_list != null) {
       <div class="container">
         <div class="row mb-5">
           <form class="col-md-12 p-lg-5 pb-lg-0 pt-lg-0" method="post">
-            <div class="site-blocks-table shadow">
-              <table class="table table-borderless">
-                <thead>
-                  <tr>
-                    <th class="product-thumbnail">Image</th>
-                    <th class="product-name">Product</th>
-                    <th class="product-price">Category</th>
-                    <th class="product-quantity">Design</th>
-                    <th class="product-total">Price</th>
-                    <th class="product-remove">Remove</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%
-                	if(wish_list !=null){
-                	for(Whishlist wsh: wishProduct){%>
+          	
+            	<%if(wish_list==null){%>
+          			<h1 class="shadow-none text-black bold text-center">IS EMPTY</h1>
+             		<h1 class="text-black text-center m-5"><i class="fa-solid fa-face-frown fa-2xl"></i></h1>
+          		<%}
+                  
+                	if(wish_list !=null){%>
+                		<div class="site-blocks-table shadow">
+                        <table class="table table-borderless">
+                          <thead>
+                            <tr>
+                              <th class="product-thumbnail">Image</th>
+                              <th class="product-name">Product</th>
+                              <th class="product-price">Category</th>
+                              <th class="product-quantity">Design</th>
+                              <th class="product-total">Price</th>
+                              <th class="product-remove">Remove</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                	<%for(Whishlist wsh: wishProduct){%>
                 		<tr>
                         <td class="product-thumbnail">
                           <div style="background-image: url('images/products/<%=wsh.getImg()%>');
@@ -260,79 +266,17 @@ if (wish_list != null) {
                       	 <a href="removecart?pathh=wish&id=<%=wsh.getId() %>" class="btn btn-dark rounded-0 btn-sm">X</a>
                       	</td>
                       </tr>
-                	<%}
-                }
+                	<%}%>
+                	 </tbody>
+                     </table>
+                   </div>
+                <%}
                 %>
-                </tbody>
-              </table>
-            </div>
+               
           </form>
         </div>
 
-        <!-- <div class="row">
-          <div class="col-md-6">
-            <div class="row mb-5">
-              <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-dark rounded-0 btn-sm btn-block">
-                  Update Cart
-                </button>
-              </div>
-              <div class="col-md-6">
-                <button class="btn btn-outline-dark rounded-0 btn-sm btn-block">
-                  Continue Shopping
-                </button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label class="text-black h4" for="coupon">Coupon</label>
-                <p>Enter your coupon code if you have one.</p>
-              </div>
-              <div class="col-md-8 mb-3 mb-md-0">
-                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code" />
-              </div>
-              <div class="col-md-4">
-                <button class="btn btn-dark btn-sm rounded-0">Apply Coupon</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 pl-5">
-            <div class="row justify-content-end">
-              <div class="col-md-7">
-                <div class="row">
-                  <div class="col-md-12 text-right border-bottom mb-5">
-                    <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <span class="text-black">Subtotal</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
-                  </div>
-                </div>
-                <div class="row mb-5">
-                  <div class="col-md-6">
-                    <span class="text-black">Total</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-12">
-                    <button class="btn bg-black text-white rounded-0 btn-lg py-3 btn-block"
-                      onclick="window.location='checkout.jsp'">
-                      Proceed To Checkout
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
+        
       </div>
     </div>
     <!-- footer starts here -->

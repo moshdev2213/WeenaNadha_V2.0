@@ -225,10 +225,15 @@
 
     <div class="site-section">
       <div class="container">
-        <div class="row mb-5">
-          <form class="col-md-12" method="post">
-              	<h1 class="shadow-none text-black bold text-center">CART IS EMPTY</h1>
-              	<h1 class="text-black text-center m-5"><i class="fa-solid fa-face-frown fa-2xl"></i></h1>
+      	<form action="" method="post">
+      		<div class="row mb-5">
+          	<div class="col-md-12" ">
+          		<%if(cart_list==null){%>
+          			<h1 class="shadow-none text-black bold text-center">CART IS EMPTY</h1>
+                  	<h1 class="text-black text-center m-5"><i class="fa-solid fa-face-frown fa-2xl"></i></h1>
+          		<%}
+          		%>
+              	
                 <%
                 if(cart_list !=null){%>
                   <div class="site-blocks-table shadow">
@@ -259,7 +264,7 @@
                         <td class="product-name">
                           <h2 class="h5 text-black"><%=c.getName() %></h2>
                         </td>
-                        <td>RS.<%=df.format(c.getCartPrice()) %></td>
+                        <td>RS.<%=df.format(c.getPrice()) %></td>
                         <td>
                           <!-- if the below div instead using mb-3 if we use m-auto the element will be nicely centerd see difference of the below row in line 169 -->
                           <div class="input-group m-auto" style="max-width: 120px">
@@ -274,7 +279,10 @@
                           </div>
                         </td>
                         <td>Rs.<%=df.format(c.getCartPrice()) %></td>
-                        <td><a href="removecart?pathh=cart&id=<%=c.getId() %>" class="btn btn-dark rounded-0 btn-sm">X</a></td>
+                        <td>
+                        <a href="AddToWhishlistServlet?id=<%=c.getId()%>" class="btn btn-dark rounded-0 btn-sm"><i class="fa fa-heart text-light"></i></a>
+                        <a href="removecart?pathh=cart&id=<%=c.getId() %>" class="btn btn-dark rounded-0 btn-sm">X</a>
+                        </td>
                       </tr>
                 	<%}%>
                 	  </tbody>
@@ -282,35 +290,26 @@
                    </div>
                 <%}
                 %>
-               
-          
-          </form>
+          </div>
         </div>
 
         <div class="row">
           <div class="col-md-6">
             <div class="row mb-5">
               <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-dark rounded-0 btn-sm btn-block">
-                  Update Cart
-                </button>
+              	<a href="whishlist.jsp" class="btn btn-dark rounded-0 btn-sm btn-block">WishList</a>
               </div>
               <div class="col-md-6">
-                <button class="btn btn-outline-dark rounded-0 btn-sm btn-block">
-                  Continue Shopping
-                </button>
+              	<a href="products.jsp" class="btn btn-outline-dark rounded-0 btn-sm btn-block">Continue Shopping</a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
-                <label class="text-black h4" for="coupon">Coupon</label>
-                <p>Enter your coupon code if you have one.</p>
+                <label class="text-black h4" for="coupon">Coupons</label>
+                <p>Did You Know WEENA NADHA Offers Exclusive Coupons For Thier Loyality Customers Based On The Activness Of The User Purchasing In our Store.</p>
               </div>
               <div class="col-md-8 mb-3 mb-md-0">
-                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code" />
-              </div>
-              <div class="col-md-4">
-                <button class="btn btn-dark btn-sm rounded-0">Apply Coupon</button>
+                <p>Feel Free To <a href="contact.jsp" class="text-black">Contact Us</a>  24/7</p>
               </div>
             </div>
           </div>
@@ -338,19 +337,22 @@
                     <strong class="text-black">Rs <%=df.format(cart_list!=null?carttotal:00.000)%></strong>
                   </div>
                 </div>
-
-                <div class="row">
-                  <div class="col-md-12">
-                    <button class="btn bg-black text-white rounded-0 btn-lg py-3 btn-block"
-                      onclick="window.location='checkout.jsp'">
-                      Proceed To Checkout
-                    </button>
-                  </div>
-                </div>
+				<%if(carttotal!=0){%>
+					<div class="row">
+	                  <div class="col-md-12">
+	                  	<a href="checkout.jsp" class="btn bg-black text-white rounded-0 btn-lg py-3 btn-block">Proceed To Checkout</a>
+	                  </div>
+                	</div>
+				<%}
+				
+				%>
+                
               </div>
             </div>
           </div>
         </div>
+      	</form>
+        
       </div>
     </div>
     <!-- footer starts here -->
