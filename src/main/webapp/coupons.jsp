@@ -1,6 +1,14 @@
+<%@page import="com.weenalk.Modal.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
+<%
+CouponDao coupon = new CouponDao(DbCon.getConnection());
+List<Coupon> cpn = coupon.getCoupon();
 
+%>
 <head>
   <meta charset="utf-8" />
   <title>Weena</title>
@@ -207,30 +215,21 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="tblconts">
-                      <th scope="row">WNCP25</th>
-                      <td>25</td>
-                      <td>
-                        <a id="" class="btn btn-sm text-white" href="#" style="background: #68686c;">Update</a>
-                        <a class="btn btn-sm text-white" href="#" style="background: #191919;">Remove</a>
-                      </td>
-                    </tr>
-                    <tr class="tblconts">
-                      <th scope="row">WNCP25</th>
-                      <td>25</td>
-                      <td>
-                        <a id="" class="btn btn-sm text-white" href="#" style="background: #68686c;">Update</a>
-                        <a class="btn btn-sm text-white" href="#" style="background: #191919;">Remove</a>
-                      </td>
-                    </tr>
-                    <tr class="tblconts">
-                      <th scope="row">WNCP25</th>
-                      <td>25</td>
-                      <td>
-                        <a id="" class="btn btn-sm text-white" href="#" style="background: #68686c;">Update</a>
-                        <a class="btn btn-sm text-white" href="#" style="background: #191919;">Remove</a>
-                      </td>
-                    </tr>
+                  <%
+                  	if(cpn!=null){
+                  		for(Coupon c :cpn){%>
+                  			<tr class="tblconts">
+                            <th scope="row"><%=c.getCouponid() %></th>
+                            <td><%=c.getCoupon() %></td>
+                            <td>
+                              <a id="" class="btn btn-sm text-white" href="coupons.jsp?id=<%=c.getCouponid() %>" style="background: #68686c;">Update</a>
+                              <a class="btn btn-sm text-white" href="coupons.jsp?id=<%=c.getCouponid() %>" style="background: #191919;">Remove</a>
+                            </td>
+                          </tr>
+                  		<%}
+                  	}
+                  
+                  %>
                   </tbody>
                 </table>
               </div>
