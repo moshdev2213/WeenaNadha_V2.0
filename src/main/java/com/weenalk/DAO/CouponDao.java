@@ -5,10 +5,7 @@ import java.util.List;
 
 import com.weenalk.Modal.Admin;
 import com.weenalk.Modal.Coupon;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import com.weenalk.Modal.User;
 
 public class CouponDao {
 	private Connection con;
@@ -33,7 +30,7 @@ public class CouponDao {
   				Coupon cpn = new Coupon();
   				cpn.setCouponid(rs.getInt("cid"));
   				cpn.setCoupon(rs.getString("coupon"));
-  				cpn.setValue(rs.getString("value"));
+  				cpn.setValue(rs.getInt("value"));
   				
   				coupon.add(cpn);
   				
@@ -44,4 +41,24 @@ public class CouponDao {
   		return coupon;
   		
   	}
+  	//get coupon y name
+  	public Coupon getCoupon(String coupon) {
+  		Coupon cpn = null;
+        try {
+            query = "select * from coupon where coupon=?";
+            pst = this.con.prepareStatement(query);
+            pst.setString(1, coupon);
+            rs = pst.executeQuery();
+            if(rs.next()){
+            	cpn = new Coupon();
+            	cpn.setCouponid(rs.getInt("cid"));
+            	cpn.setCoupon(rs.getString("coupon"));
+            	cpn.setValue(rs.getInt("value"));
+            	
+            }
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
+        }
+        return cpn;
+    }
 }

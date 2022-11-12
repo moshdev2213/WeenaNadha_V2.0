@@ -1,4 +1,27 @@
+<%@page import="java.text.DecimalFormat" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="java.util.*"%>
+<%@page import="com.weenalk.Modal.*" %>
 <!DOCTYPE html>
+<%
+
+	DecimalFormat df = new DecimalFormat("0.00");
+	//cart list type beins
+	ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+	Coupon cpn = new Coupon();
+	cpn= (Coupon)session.getAttribute("cpn");
+	List<Cart> cartProduct = null;
+	double carttotal=0;
+	double tot=0;
+	if (cart_list != null) {
+		ProductDao pdao = new ProductDao(DbCon.getConnection());
+		cartProduct = pdao.getCartProducts(cart_list);
+		carttotal = pdao.getTotalCartPrice(cart_list);
+		request.setAttribute("cart_list", cart_list);
+		request.setAttribute("cart_total", carttotal);
+	}	
+%>
 <html lang="en">
 
 <head>
@@ -200,41 +223,59 @@
 
     <div class="site-section py-3">
       <div class="container">
-      	<form action="" method="POST">
+      	<form action="" method="POST" name="form1">
       		<div class="row">
           <div class="col-md-6 mb-5 mb-md-0">
             <h2 class="h3 mb-3 text-black">Billing Details</h2>
             <div class="p-3 p-lg-4 border">
-              <div class="form-group">
-                <label for="c_country" class="text-black">District <span class="text-danger">*</span></label>
-                <select id="c_country" class="form-control">
-                  <option selected>District</option>
-                  <option value="d001">Colombo</option>
-                  <option value="d002">Gampaha</option>
-                  <option value="d003">Kalutara</option>
-                  <option value="d004">Kandy</option>
-                  <option value="d005">Matale</option>
-                  <option value="d006">Nuwara Eliya</option>
-                  <option value="d007">Galle</option>
-                  <option value="d008">Matara</option>
-                  <option value="d009">Hambantota</option>
-                  <option value="d010">Jaffna</option>
-                  <option value="d011">Kilinochchi</option>
-                  <option value="d012">Mannar</option>
-                  <option value="d013">Vavuniya</option>
-                  <option value="d014">Mullativ</option>
-                  <option value="d015">Batticlo</option>
-                  <option value="d016">Ampara</option>
-                  <option value="d017">Trincomalee</option>
-                  <option value="d018">Kurunrgala</option>
-                  <option value="d019">Puttlam</option>
-                  <option value="d020">Anuradhapura</option>
-                  <option value="d021">Polonnaruwa</option>
-                  <option value="d022">Badulla</option>
-                  <option value="d023">Moneragala</option>
-                  <option value="d024">Ratnapura</option>
-                  <option value="d025">Kegalle</option>
-                </select>
+              <div class="form-group row">
+              	 <div class="col-md-6">
+              			<label for="c_country" class="text-black">District <span class="text-danger">*</span></label>
+		                <select id="c_country" class="form-control">
+		                  <option selected>District</option>
+		                  <option value="d001">Colombo</option>
+		                  <option value="d002">Gampaha</option>
+		                  <option value="d003">Kalutara</option>
+		                  <option value="d004">Kandy</option>
+		                  <option value="d005">Matale</option>
+		                  <option value="d006">Nuwara Eliya</option>
+		                  <option value="d007">Galle</option>
+		                  <option value="d008">Matara</option>
+		                  <option value="d009">Hambantota</option>
+		                  <option value="d010">Jaffna</option>
+		                  <option value="d011">Kilinochchi</option>
+		                  <option value="d012">Mannar</option>
+		                  <option value="d013">Vavuniya</option>
+		                  <option value="d014">Mullativ</option>
+		                  <option value="d015">Batticlo</option>
+		                  <option value="d016">Ampara</option>
+		                  <option value="d017">Trincomalee</option>
+		                  <option value="d018">Kurunrgala</option>
+		                  <option value="d019">Puttlam</option>
+		                  <option value="d020">Anuradhapura</option>
+		                  <option value="d021">Polonnaruwa</option>
+		                  <option value="d022">Badulla</option>
+		                  <option value="d023">Moneragala</option>
+		                  <option value="d024">Ratnapura</option>
+		                  <option value="d025">Kegalle</option>
+		                </select>
+              	</div>
+              	 <div class="col-md-6">
+              			<label for="c_country" class="text-black">Province <span class="text-danger">*</span></label>
+		                <select id="c_country" class="form-control">
+		                  <option selected>Province</option>
+		                  <option value="pv001">Western Province</option>
+		                  <option value="pv002">Central Province</option>
+		                  <option value="pv003">Southern Province</option>
+		                  <option value="pv004">Uva Province</option>
+		                  <option value="pv005">Sabaragamuwa Province</option>
+		                  <option value="pv006">North Western Province</option>
+		                  <option value="pv007">North Central Province</option>
+		                  <option value="pv008">Northern Province</option>
+		                  <option value="pv009">Eastern Province</option>
+		                </select>
+              	</div>
+                
               </div>
               <div class="form-group row">
                 <div class="col-md-6">
@@ -262,11 +303,6 @@
                     placeholder="Street address" />
                 </div>
               </div>
-
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)" />
-              </div>
-
               <div class="form-group row">
                 <div class="col-md-6">
                   <label for="c_state_country" class="text-black">State / Country <span
@@ -305,9 +341,17 @@
                   <label for="c_code" class="text-black mb-3">Enter your coupon code if you have one</label>
                   <div class="input-group w-100 text-center">
                     <input type="text" class="form-control" id="c_code" placeholder="Coupon Code"
-                      aria-label="Coupon Code" aria-describedby="button-addon2" />
+                      aria-label="Coupon Code" name="cpn"  oninput="myFunction()" aria-describedby="button-addon2" />
                     <div class="input-group-append">
-                      <a href="https://www.youtube.com/" class="btn btn-dark btn-sm">Apply</a>
+                    	<a href=""  id="dd" target="_blank" class="btn btn-dark btn-sm">Apply</a>
+                      <script>
+                      	function myFunction(){
+            				var x=document.getElementById("c_code").value;
+            				document.getElementById("dd").href ="CouponsServlet?cp="+x;
+            			}
+            			
+        			   </script>
+                     
                      
                     </div>
                   </div>
@@ -319,45 +363,68 @@
               <div class="col-md-12">
                 <h2 class="h3 mb-3 text-black">Your Order</h2>
                 <div class="p-3 p-lg-4 border">
-                  <table class="table site-block-order-table mb-5">
-                    <thead class="text-left">
-                      <th>Image</th>
-                      <th>Product</th>
-                      <th>Total</th>
-                    </thead>
-                    <tbody >
-                   	  <tr>
-                   	  	<td>
-                          Top Up T-Shirt <strong class="mx-2">x</strong> 1
-                        </td>
-                        <td>
-                          Top Up T-Shirt <strong class="mx-2">x</strong> 1
-                        </td>
-                        <td>$250.00</td>
-                      </tr>
-                      <tr>
-                      	<td></td>
-                        <td class="text-black font-weight-bold">
-                          <strong>Cart Subtotal</strong>
-                        </td>
-                        <td class="text-black">$350.00</td>
-                      </tr>
-                      <tr>
-                      	<td></td>
-                        <td class="text-black font-weight-bold">
-                          <strong>Order Total</strong>
-                        </td>
-                        <td class="text-black font-weight-bold">
-                          <strong>$350.00</strong>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div class="form-group">
-                    <button class="btn btn-dark btn-lg py-3 btn-block rounded-0" type="submit" >
-                      Proceed Payment
-                    </button>
-                  </div>
+                <%
+                	if(cart_list !=null){%>
+                		<table class="table site-block-order-table mb-5">
+		                    <thead class="text-center">
+		                      <th>Image</th>
+		                      <th>Product</th>
+		                      <th>Total</th>
+		                    </thead>
+		             <%for(Cart c: cartProduct){%>
+		             		<tbody >
+		                   	  <tr>
+		                   	  	<td >
+		                   	  	  <div style="width: 50px;
+                                		height: 40px;
+                                		border-radius: 3px;
+                                		background-image: url('images/products/<%=c.getImg() %>');
+                                		background-repeat: no-repeat;
+                               			background-size: cover;
+                                		background-position: center;">
+		                   	  	  	</div>
+		                        </td>
+		                        <td>
+		                          <%=c.getName() %><strong class="mx-2">x</strong><%=c.getQuantity() %>
+		                        </td>
+		                        <td>
+		                          Rs <%=df.format(c.getCartPrice()) %>
+		                        </td>
+		                      </tr>
+		              		 <%        tot= tot+c.getCartPrice();
+		             }%>
+		             	   <tr>
+		             	   	    <td></td>
+		                        <td class="text-black font-weight-bold">
+		                          <strong>Subtotal</strong>
+		                        </td>
+		                        <td class="text-black font-weight-bold">Rs <%=df.format(tot) %></td>
+		                   </tr>
+		                   <tr>
+		                      	<td></td>
+		                        <td class="text-black font-weight-bold">
+		                          <strong>Coupon Saving</strong>
+		                        </td>
+		                        <td class="text-black font-weight-bold">
+		                          <strong>Rs <%=cpn!=null?tot*(cpn.getValue())/100:"00.00" %></strong>
+		                        </td>
+		                    </tr>
+		                   <tr>
+		                      	<td></td>
+		                        <td class="text-black font-weight-bold">
+		                          <strong>Order Total</strong>
+		                        </td>
+		                        <td class="text-black font-weight-bold">
+		                          <strong>Rs <%=tot-(tot*(cpn!=null?cpn.getValue():0)/100) %></strong>
+		                        </td>
+		                    </tr>
+		                    </tbody>
+		                  </table>
+		                  <div class="form-group">
+                  			<a href="visa.jsp" class="btn btn-dark btn-lg py-3 btn-block rounded-0" >Proceed Payment</a>
+                  		  </div>
+                	<%} %>
+                  
                 </div>
               </div>
             </div>

@@ -3,12 +3,12 @@ package com.weenalk.Modal;
 public class Coupon {
 	private int couponid;
 	private String coupon;
-	private String value;
+	private int value;
 	
 	public Coupon(){
 		
 	}
-	public Coupon(int couponid, String coupon, String value) {
+	public Coupon(int couponid, String coupon, int value) {
 		super();
 		this.couponid = couponid;
 		this.coupon = coupon;
@@ -26,10 +26,10 @@ public class Coupon {
 	public void setCoupon(String coupon) {
 		this.coupon = coupon;
 	}
-	public String getValue() {
+	public int getValue() {
 		return value;
 	}
-	public void setValue(String value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 	
