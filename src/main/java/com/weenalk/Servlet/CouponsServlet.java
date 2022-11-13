@@ -70,8 +70,8 @@ public class CouponsServlet extends HttpServlet {
 			//the dashboard section delete
 			else if(stat.equals("del"))  {
 				
-				int inresult= cd.deleteCoupon(theid);
-				if(inresult>0) {
+				int iresult= cd.deleteCoupon(iid);
+				if(iresult>0) {
 					System.out.println("DONE");
 				request.setAttribute("inatec", "Success");
 				response.sendRedirect("coupons.jsp");

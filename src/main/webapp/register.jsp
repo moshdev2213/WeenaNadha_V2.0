@@ -274,7 +274,7 @@ select:-webkit-autofill:active {
                 class="custom-select spannyy h-100 font-weight-bold text-muted">
                 <option class="lighty" value="+94">+94</option>
               </select>
-              <input id="phoneNumber" required pattern="[1-7]{1}[0-9]{9}" title="Phone number with 1-7 and remaing 9 digit with 0-9" type="tel" name="phone" placeholder="Phone Number" class="form-control pl-3" />
+              <input id="phoneNumber" required pattern="[0-7]{1}[0-9]{9}" title="Phone number with 1-7 and remaing 9 digit with 0-9" type="tel" name="phone" placeholder="Phone Number" class="form-control pl-3" />
             </div>
           
             <!-- Job -->
