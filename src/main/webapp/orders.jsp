@@ -195,89 +195,81 @@
 
             <!-- Blank Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="col-12">
-                    <div class="bg-white rounded h-100 p-4 shadow">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <h6 class="mb-4">List of Orders</h6>
+                <div class="row">
+                    <div class="col-7">
+                        <div class="bg-white rounded h-100 p-4 shadow">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h6 class="mb-4">List of Orders</h6>
+                                <a class="btn btn-sm bg-bk shadow text-white" href="addCoupon.jsp?stat=in">Add Coupons</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-dark tblconts">
+                                            <th scope="col">UserEmail</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Payment</th>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        <tr class="tblconts">
+                                            <th scope="row">
+                                                <img id="myImg" class="rounded-circle" src="images/men.jpg" alt="Snow" />
+                                            </th>
+                                            <td>John</td>
+                                            <td>Doe</td>
+                                            <td>jhon@email.com</td>
+                                            <td>USA</td>
+                                          
+                                            <td>
+                                                <a class="btn btn-sm text-white" style="background: #191919;" href="#">Update</a>
+                                                <a class="btn btn-sm text-white" style="background: #191919;" href="#">Remove</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr class="text-dark tblconts">
-                                        <th scope="col">Product</th>
-                                        <th scope="col">Item Name</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Payment</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody >
-                                    <tr class="tblconts">
-                                        <th scope="row">
-                                            <!-- popuh related starts here -->
-                                            <img id="myImg" class="rounded-circle" src="images/men.jpg" alt="Snow" />
-                                            <!-- The Modal -->
-                                            <div id="myModal" class="modal">
-                                                <!-- <span class="close">&times;</span> -->
-                                                <img class="modal-content" id="img01" />
-                                                <!-- <div id="caption"></div> -->
-                                            </div>
-                                            <!-- the popup related ends here -->
-                                        </th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>jhon@email.com</td>
-                                        <td>USA</td>
-                                        <td>123</td>
-                                       
-                                        <td>
-                                           
-                                            <a class="btn btn-sm text-white" style="background: #191919;" href="#">Remove</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tblconts">
-                                        <th scope="row">
-                                            <!-- popuh related starts here -->
-                                            <img id="myImg" class="rounded-circle" src="images/user.jpg" alt="Snow" />
-                                            <!-- The Modal -->
-                                            <div id="myModal" class="modal">
-                                                <!-- <span class="close">&times;</span> -->
-                                                <img class="modal-content" id="img01" />
-                                                <!-- <div id="caption"></div> -->
-                                            </div>
-                                            <!-- the popup related ends here -->
-                                        </th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>mark@email.com</td>
-                                        <td>UK</td>
-                                        <td>success</td>
-                                      
-                                        <td>
-                                           
-                                            <a class="btn btn-sm text-white" href="#" style="background: #191919;">Remove</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tblconts">
-                                        <th scope="row">3</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>jacob@email.com</td>
-                                        <td>AU</td>
-                                        <td>789</td>
-                                       
-                                        <td>
-                                           
-                                            <a class="btn btn-sm text-white" href="#" style="background: #191919;">Remove</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    </div>
+    
+                    <div class="col-5">
+                        <div class="bg-white rounded h-100 p-4 shadow">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h6 class="mb-4">Existing Orders</h6>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-dark tblconts">
+                                            <th scope="col">UserEmail</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Payment</th>
+                                            <th scope="col">Product</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        <tr class="tblconts">
+                                            <th scope="row">
+                                                <img id="myImg" class="rounded-circle" src="images/men.jpg" alt="Snow" />
+                                            </th>
+                                            <td>John</td>
+                                            <td>Doe</td>
+                                            <td>jhon@email.com</td>
+                                            <td>USA</td>
+                                        
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
             <!-- Blank End -->
 

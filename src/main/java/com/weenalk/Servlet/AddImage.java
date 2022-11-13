@@ -47,7 +47,8 @@ public class AddImage extends HttpServlet {
 		String tel =request.getParameter("Telephone");
 		String job =request.getParameter("WorkArea");
 		String pass =request.getParameter("Password");
-		int pcode =Integer.parseInt(request.getParameter("PostalCode"));
+		//int pcode =Integer.parseInt(request.getParameter("PostalCode"));
+		int pcode = 2;
 		String district =request.getParameter("District");
 		String street =request.getParameter("street");
 		String province =request.getParameter("province");

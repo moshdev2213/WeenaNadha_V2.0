@@ -27,6 +27,9 @@
 
 	CouponDao coupon = new CouponDao(DbCon.getConnection());
 	List<Coupon> cpn = coupon.getCoupon();
+	
+	RegTimDao regtime = new RegTimDao(DbCon.getConnection());
+	List<RegTim> rg = regtime.getAllReg();
 
 
 %>
@@ -377,6 +380,8 @@
             </div>
             <!-- Recent Sales End -->
 
+
+
             <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-white text-center rounded p-4 shadow">
@@ -575,6 +580,97 @@
                 </div>
             </div>
             <!-- Widgets End -->
+
+            <!--the second widget area starts here-->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-md-12 col-xl-4">
+                        <div class="bg-white rounded h-100 p-4 shadow">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h6 class="mb-0">Register</h6>
+                                <a href="Regtime.jsp">Show All</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-borderless table-hover">
+                                    <thead>
+                                        <tr class="text-dark tblconts">
+                                            <th  scope="col">ID</th>
+                                            <th  scope="col">Name</th>
+                                            <th  scope="col">Value</th>
+                                            <th  scope="col">ID</th>
+                                            <th  scope="col">Name</th>
+                                            <th  scope="col">Value</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         <%
+                                         	if(!cpn.isEmpty()){
+				                            	int k=0;
+				                            	for(Coupon c:cpn){%>
+				                                    <tr class="tblconts">
+						                            	<th scope="row"><%=c.getCouponid() %></th>
+					                                    <td><%=c.getCoupon() %></td>
+					                                    <td><%=c.getValue() %>%</td>
+					                                </tr>
+			                               		   <%k=k+1;
+				                            		if(k==5)
+				                            			break;
+				                            	}
+				                            }
+				                          %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-sm-12 col-md-12 col-xl-8">
+                        <div class="bg-white rounded h-100 p-4 shadow">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h6 class="mb-0">Register</h6>
+                                <a href="Regtime.jsp">Show All</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-dark ">
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Time</th>
+                                            <th scope="col">Day</th>
+                                            <th scope="col">Month</th>
+                                            <th scope="col">Date</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <%
+                                    	if(!rg.isEmpty()){
+			                            	int k=0;
+			                            	for(RegTim r:rg){%>
+			                                    <tr class="">
+			                                      	<td class=""><%=r.getEmail() %></td>
+			                                        <td class=""><%=r.getTime() %></td>
+			                                        <td class=""><%=r.getDay() %></td>
+			                                        <td class=""><%=r.getMonth() %></td>
+			                                        <td class=""><%=r.getDate() %></td>
+			                                    </tr>
+			                               		<%k=k+1;
+			                            		if(k==5)
+			                            			break;
+			                            	}
+			                            }
+			                            %>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <!--the second widget area ends here-->
+
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
