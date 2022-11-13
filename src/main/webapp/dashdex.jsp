@@ -8,9 +8,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <%
-	if(session.getAttribute("authadmin")==null){
-		response.sendRedirect("login.jsp");
-	}
+	//if(session.getAttribute("authadmin")==null){
+	//	response.sendRedirect("login.jsp");
+	//}
 	
 	//(admin) syas that it is type casted
 	Admin authAdmin = (Admin) request.getSession().getAttribute("authadmin");

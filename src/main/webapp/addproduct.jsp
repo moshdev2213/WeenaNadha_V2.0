@@ -1,6 +1,16 @@
+
+<%@page import="com.weenalk.Modal.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<%
+ProductDao pd = new ProductDao(DbCon.getConnection());
+Product pro = new Product();
+if((request.getParameter("id"))!=null)
+pro = pd.getItem(request.getParameter("id"));
+%>
 <head>
   <meta charset="utf-8" />
   <title>Weena</title>
@@ -191,25 +201,27 @@
       <div class="form-container bg-white shadow" style="margin-top: 25px;">
         <!-- <button id="btnCloseForm" class="close-button">X</button> -->
         <!-- <h1>Product</h1> -->
-        <form action="">
+        <form action="AddProduct" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="stat" value="<%=request.getParameter("stat")%>"/>
+        <input type="hidden" name="stat" value="<%=request.getParameter("id")%>"/>
           <div class="bg-white rounded h-100 p-1">
             <div class="row g-4">
               <div class="form-floating mb-3 col-xl-6 col-md-6">
-                <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
+                <input type="text" required class="form-control bg-gry border-0 shadow" id="floatingInput"
+                  placeholder="name@example.com" name="name" value="<%=request.getParameter("id")==null?"":pro.getName()%>"/>
                 <label style="padding-left: 20px" for="floatingInput" class="text-black-50">Name</label>
               </div>
               <div class="form-floating mb-3 col-xl-6 col-md-6">
                 <input type="text" min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                  placeholder="Password" />
+                  placeholder="Password" required name="design" value="<%=request.getParameter("id")==null?"":pro.getDesign()%>"/>
                 <label style="padding-left: 20px" for="floatingPassword" class="text-black-50">Design</label>
               </div>
             </div>
             <div class="row g-4">
               <div class="form-floating mb-3 col-xl-4 col-md-4">
                 <select class="form-select bg-gry border-0 shadow" id="floatingSelect"
-                  aria-label="Floating label select example">
-                  <option selected>Deal</option>
+                  aria-label="Floating label select example" name="deal" >
+                  <option selected value="Epic">Epic</option>
                   <option value="hot">Hot</option>
                   <option value="flash">Flash</option>
                   <option value="limited">Limited</option>
@@ -219,18 +231,16 @@
               </div>
               <div class="form-floating mb-3 col-xl-4 col-md-4">
                 <select class="form-select bg-gry border-0 shadow" id="floatingSelect"
-                  aria-label="Floating label select example">
-                  <option selected>Shipping</option>
-                  <option value="1">Free Shipping</option>
+                  aria-label="Floating label select example" name="shipping">
+                  <option  value="1">Free Shipping</option>
                   <option value="0">Paid Shipping</option>
                 </select>
                 <!-- <label for="floatingSelect">Works with selects</label> -->
               </div>
               <div class="form-floating mb-3 col-xl-4 col-md-4">
                 <select class="form-select bg-gry border-0 shadow" id="floatingSelect"
-                  aria-label="Floating label select example">
-                  <option selected>Warranty</option>
-                  <option value="No">No Warranty</option>
+                  aria-label="Floating label select example" name="warranty">
+                  <option selected>No Warranty</option>
                   <option value="3">3 Month</option>
                   <option value="6">6 Month</option>
                   <option value="1">1 Year</option>
@@ -241,32 +251,32 @@
             <div class="row g-4">
               <div class="mb-4 mt-0">
                 <label for="formFileMultiple" class="form-label">Insert Images</label>
-                <input class="form-control bg-gry border-0 shadow" type="file" id="formFileMultiple" multiple />
+                <input name="img" required value="<%=request.getParameter("id")==null?"":pro.getImg()%>" class="form-control bg-gry border-0 shadow" type="file" id="formFileMultiple" multiple />
               </div>
             </div>
             <div class="row g-4">
               <div class="form-floating mb-3 col-xl-4 col-md-4">
-                <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
+                <input type="number" required class="form-control bg-gry border-0 shadow" id="floatingInput"
+                  placeholder="name@example.com" name="mrp" value="<%=request.getParameter("id")==null?"":pro.getMrp()%>"/>
                 <label style="padding-left: 20px" for="floatingInput" class="text-black-50">Manufacture Price</label>
               </div>
               <div class="form-floating mb-3 col-xl-4 col-md-4">
-                <input type="text" min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                  placeholder="Password" />
+                <input type="number" min="0" required class="form-control bg-gry border-0 shadow" id="floatingPassword"
+                  placeholder="Password" name="price"  value="<%=request.getParameter("id")==null?"":pro.getPrice()%>"/>
                 <label style="padding-left: 20px" for="floatingPassword" class="text-black-50">Selling Price</label>
               </div>
               <div class="form-floating mb-3 col-xl-4 col-md-4">
-                <input type="number" min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                  placeholder="Password" />
+                <input type="number" required min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
+                  placeholder="Password" name="weight" value="<%=request.getParameter("id")==null?"":pro.getWeight()%>"/>
                 <label style="padding-left: 20px" for="floatingPassword" class="text-black-50">Weight</label>
               </div>
             </div>
             <div class="row g-4">
               <div class="form-floating mb-3 col-xl-4 col-md-4">
                 <select class="form-select bg-gry border-0 shadow" id="floatingSelect"
-                  aria-label="Floating label select example">
-                  <option selected>Category_Id</option>
-                  <option value="1">KeyBoard</option>
+                  aria-label="Floating label select example" name="category">
+                  
+                  <option selected value="1">KeyBoard</option>
                   <option value="2">Piano</option>
                   <option value="3">Classical Guitar</option>
                   <option value="4">Electric Guitar</option>
@@ -284,26 +294,26 @@
                 <!-- <label for="floatingSelect">Works with selects</label> -->
               </div>
               <div class="form-floating mb-3 col-xl-4 col-md-4">
-                <input type="number" min="0" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
+                <input type="number" min="0" required class="form-control bg-gry border-0 shadow" id="floatingInput"
+                  placeholder="name@example.com" name="stock" value="<%=request.getParameter("id")==null?"":pro.getStock()%>"/>
                 <label style="padding-left: 20px" for="floatingInput" class="text-black-50">Stock</label>
               </div>
               <div class="form-floating mb-3 col-xl-4 col-md-4">
                 <input type="text" min="0" class="form-control bg-gry border-0 shadow" id="floatingPassword"
-                  placeholder="Password" />
+                  placeholder="Password" required name="color" value="<%=request.getParameter("id")==null?"":pro.getColor()%>"/>
                 <label style="padding-left: 20px" for="floatingPassword" class="text-black-50">Color</label>
               </div>
             </div>
             
             <div class="form-floating">
               <textarea class="form-control bg-gry border-0 shadow" placeholder="Leave a comment here"
-                id="floatingTextarea" style="height: 150px"></textarea>
+                id="floatingTextarea" style="height: 150px" name="about"><%=request.getParameter("id")==null?"":pro.getDescription()%></textarea>
               <label for="floatingTextarea" class="text-black-50">Product description</label>
             </div>
             <br />
             <div class="row g-4 p-lg-3">
-              <button type="button" style="font-size: 16px; background-color: #68686c;" onclick="aad()" class="btn btn-sm text-white p-2 col-xl-12">
-                Add Product
+              <button type="submit" style="font-size: 16px; background-color: #68686c;" onclick="" class="btn btn-sm text-white p-2 col-xl-12">
+                 <%=request.getParameter("id")==null?"Add":"Update"%>
               </button>
               <button type="button" style="font-size: 16px; background-color: #191919;" onclick="dec()" class="btn btn-sm text-white p-2 col-xl-12">
                 Decline
@@ -380,7 +390,7 @@
                     confirmButtonColor: '#000000'
                   }).then(()=>{
                   setTimeout(()=>{
-                    // window.location="sweetServlet";
+                    // window.location="AddProduct";
                   },500);
                 })
                 }

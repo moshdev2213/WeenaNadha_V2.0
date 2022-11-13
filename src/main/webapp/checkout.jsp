@@ -343,13 +343,23 @@
                     <input type="text" class="form-control" id="c_code" placeholder="Coupon Code"
                       aria-label="Coupon Code" name="cpn"  oninput="myFunction()" aria-describedby="button-addon2" />
                     <div class="input-group-append">
-                    	<a href=""  id="dd" target="_blank" class="btn btn-dark btn-sm">Apply</a>
+                    	<a href=""  id="dd"  class="btn btn-dark btn-sm">Apply</a>
                       <script>
                       	function myFunction(){
             				var x=document.getElementById("c_code").value;
             				document.getElementById("dd").href ="CouponsServlet?cp="+x;
             			}
-            			
+                      	function loadXMLDoc() {
+                      	  var xhttp = new XMLHttpRequest();
+                      	  xhttp.onreadystatechange = function() {
+                      	    if (this.readyState == 4 && this.status == 200) {
+                      	      document.getElementById("demo").innerHTML =
+                      	      this.responseText;
+                      	    }
+                      	  };
+                      	  xhttp.open("GET", "xmlhttp_info.txt", true);
+                      	  xhttp.send();
+                      	}
         			   </script>
                      
                      

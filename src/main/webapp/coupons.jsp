@@ -6,9 +6,11 @@
 <html lang="en">
 <%
 CouponDao coupon = new CouponDao(DbCon.getConnection());
-List<Coupon> cpn = coupon.getCoupon();
+List<Coupon> cpn = coupon.getCoupon();%>
+<input type="hidden" name="theid" value="<%=request.getParameter("id")%>" />
 
-%>
+
+
 <head>
   <meta charset="utf-8" />
   <title>Weena</title>
@@ -203,7 +205,7 @@ List<Coupon> cpn = coupon.getCoupon();
             <div class="bg-white rounded h-100 p-4 shadow">
               <div class="d-flex align-items-center justify-content-between mb-2">
                 <h6 class="mb-0 h4">Coupons</h6>
-                <a class="btn btn-sm bg-bk shadow text-white" href="addCoupon.jsp">Add Coupons</a>
+                <a class="btn btn-sm bg-bk shadow text-white" href="addCoupon.jsp?stat=in">Add Coupons</a>
               </div>
               <div class="table-responsive">
                 <table class="table">
@@ -219,13 +221,14 @@ List<Coupon> cpn = coupon.getCoupon();
                   	if(cpn!=null){
                   		for(Coupon c :cpn){%>
                   			<tr class="tblconts">
-                            <th scope="row"><%=c.getCouponid() %></th>
-                            <td><%=c.getCoupon() %></td>
+                            <th scope="row"><%=c.getCoupon() %></th>
+                            <td><%=c.getValue() %></td>
                             <td>
-                              <a id="" class="btn btn-sm text-white" href="coupons.jsp?id=<%=c.getCouponid() %>" style="background: #68686c;">Update</a>
-                              <a class="btn btn-sm text-white" href="coupons.jsp?id=<%=c.getCouponid() %>" style="background: #191919;">Remove</a>
+                              <a id="" class="btn btn-sm text-white" href="addCoupon.jsp?stat=up&id=<%=c.getCouponid() %>" style="background: #68686c;">Update</a>
+                              <a class="btn btn-sm text-white" href="CouponsServlet?stat=del&id=<%=c.getCouponid() %>" style="background: #191919;">Remove</a>
                             </td>
                           </tr>
+                         
                   		<%}
                   	}
                   
@@ -249,21 +252,19 @@ List<Coupon> cpn = coupon.getCoupon();
 
                     </tr>
                   </thead>
+                  
                   <tbody>
-                    <tr class="tblconts">
-                      <th scope="row">WNCP25</th>
-                      <td>25</td>
-
-                    <tr class="tblconts">
-                      <th scope="row">WNCP25</th>
-                      <td>25</td>
-
-                    </tr>
-                    <tr class="tblconts">
-                      <th scope="row">WNCP25</th>
-                      <td>25</td>
-
-                    </tr>
+                  <%
+                  	if(cpn!=null){
+                  		for(Coupon c:cpn){%>
+                  			<tr class="tblconts">
+                      			<th scope="row"><%=c.getCoupon() %></th>
+                      			<td><%=c.getValue() %></td>
+							</tr>
+                  		<%}
+                  	}
+                  
+                  %>
                   </tbody>
                 </table>
               </div>
@@ -271,7 +272,7 @@ List<Coupon> cpn = coupon.getCoupon();
           </div>
         </div>
       </div>
-
+	
 
       <!-- Blank End -->
 
@@ -315,6 +316,26 @@ List<Coupon> cpn = coupon.getCoupon();
   <!-- preloader -->
   <script src="js/preloader.js"></script>
   <!-- preloader ends script -->
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+   <script>
+   
+   let name = document.getElementById("namae").value;
+   
+   if( session=="Success"){
+	   Swal.fire({
+           title: 'Number Not Valid',
+           text: "Please Enter Valid Number!",
+           icon: 'warning',
+           iconColor: '#000000',
+           showCancelButton: false,
+           confirmButtonColor: '#000000',
+           cancelButtonColor: '#616161',
+           confirmButtonText: 'OK'
+         });
+	   
+   }
+   </script>
   <!-- below is the ween nadha -->
   <script src="//code.tidio.co/r5typbnmc7v1ws5v7zbwyrx8bvqch6xv.js" async></script>
 </body>

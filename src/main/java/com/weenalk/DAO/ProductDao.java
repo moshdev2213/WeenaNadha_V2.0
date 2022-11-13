@@ -232,6 +232,75 @@ public class ProductDao {
 		return Double.parseDouble(df.format(sum));
 	}
 	
-	
+	//updating coupons
+  	public int updateProduct(String name,String description,String design,int weight,int catid,String color,int stock,Double price,String deal,Double mrp,int ship,String warranty,String img,String id) {
+  		int result=0;
+  		try {
+  			query="UPDATE product\r\n"
+  					+ "SET name=?,description=?,design=?,weight=?,category_ID=?,color=?,stock=?,price=?,deal=?,mrp=?,shipping=?,warranty=?,mimg=?\r\n"
+  					+ "WHERE product_ID = ?;";
+  			pst = this.con.prepareStatement(query);
+  			pst.setString(1,name);
+            pst.setString(2, description);
+            pst.setString(3,design);
+            pst.setInt(4, weight);
+            pst.setInt(5,catid);
+            pst.setString(6, color);
+            pst.setInt(7,stock);
+            pst.setDouble(8, price);
+            pst.setString(9,deal);
+            pst.setDouble(10, mrp);
+            pst.setInt(11,ship);
+            pst.setString(12, warranty);
+            pst.setString(13,img);
+            pst.setString(14,id);
+            result=pst.executeUpdate();
+  		}catch(Exception e) {
+  			e.printStackTrace();
+  		}
+  		return result;
+  	}
+  //Inserting coupons
+  	public int InsertProduct(String name,String description,String design,int weight,int catid,String color,int stock,Double price,String deal,Double mrp,int ship,String warranty,String img) {
+  		int result=0;
+  		try {
+  			query="INSERT INTO product (name,description,design,weight,category_ID,color,stock,price,deal,mrp,shipping,warranty,mimg)\r\n"
+  					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+  			pst = this.con.prepareStatement(query);
+            pst.setString(1,name);
+            pst.setString(2, description);
+            pst.setString(3,design);
+            pst.setInt(4, weight);
+            pst.setInt(5,catid);
+            pst.setString(6, color);
+            pst.setInt(7,stock);
+            pst.setDouble(8, price);
+            pst.setString(9,deal);
+            pst.setDouble(10, mrp);
+            pst.setInt(11,ship);
+            pst.setString(12, warranty);
+            pst.setString(13,img);
+            result=pst.executeUpdate();
+  		}catch(Exception e) {
+  			e.printStackTrace();
+  		}
+  		return result;
+  	}
+  	
+	//delete
+  	public int deleteprod(String Id) {
+  		int result=0;
+  		try {
+  			query="DELETE FROM product WHERE product_ID=?";
+  			pst = this.con.prepareStatement(query);
+            pst.setString(1,Id);
+            
+            result=pst.executeUpdate();
+  		}catch(Exception e) {
+  			e.printStackTrace();
+  		}
+  		return result;
+  		
+  	}
 	
 }

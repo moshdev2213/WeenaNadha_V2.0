@@ -1,6 +1,16 @@
+
+<%@page import="com.weenalk.Servlet.*" %>
+<%@page import="com.weenalk.Modal.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
+<%
+ProductDao pd = new ProductDao(DbCon.getConnection());
+List<Product> products = pd.getAllProducts();
 
+%>
 <head>
   <meta charset="utf-8" />
   <title>Weena</title>
@@ -193,7 +203,7 @@
           <div class="bg-white rounded h-100 p-4 shadow">
             <div class="d-flex align-items-center justify-content-between mb-2">
               <h6 class="mb-0 h4">Products</h6>
-              <a class="btn btn-sm bg-bk shadow text-white" href="addproduct.jsp">Add Product</a>
+              <a class="btn btn-sm bg-bk shadow text-white" href="addproduct.jsp?stat=in">Add Product</a>
               <!-- <a id="btnOpenForm" class="btn btn-sm btn-success" href="">Add Product</a> -->
               <!-- popup forms begin -->
               <div class="form-popup-bg">
@@ -279,58 +289,28 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="tblconts">
-                    <th scope="row">
-                      <!-- popuh related starts here -->
-                      <img id="myImg" class="rounded-circle" src="images/men.jpg" alt="Snow" />
-                      <!-- The Modal -->
-                      <div id="myModal" class="modal">
-                        <!-- <span class="close">&times;</span> -->
-                        <img class="modal-content" id="img01" />
-                        <!-- <div id="caption"></div> -->
-                      </div>
-                      <!-- the popup related ends here -->
-                    </th>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>jhon@email.com</td>
-                    <td>USA</td>
-                    <td>123</td>
-                    <td>$12k</td>
-                    <td>$12k</td>
-                    <td>
-                      <a id="" class="btn btn-sm text-white" href="addproduct.jsp" style="background: #68686c;">Update</a>
-                      <a class="btn btn-sm text-white" href="#" onclick="rmv()" style="background: #191919;">Remove</a>
-                    </td>
-                  </tr>
-                  <tr class="tblconts">
-                    <th scope="row">2</th>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>jhon@email.com</td>
-                    <td>USA</td>
-                    <td>123</td>
-                    <td>$12k</td>
-                    <td>$12k</td>
-                    <td>
-                      <a id="" class="btn btn-sm text-white" href="addproduct.jsp" style="background: #68686c;">Update</a>
-                      <a class="btn btn-sm text-white" href="#" onclick="rmv()" style="background: #191919;">Remove</a>
-                    </td>
-                  </tr>
-                  <tr class="tblconts">
-                    <th scope="row">3</th>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>jhon@email.com</td>
-                    <td>USA</td>
-                    <td>123</td>
-                    <td>$12k</td>
-                    <td>$12k</td>
-                    <td>
-                      <a id="" class="btn btn-sm text-white" href="addproduct.jsp" style="background: #68686c;">Update</a>
-                      <a class="btn btn-sm text-white" href="#" onclick="rmv()" style="background: #191919;">Remove</a>
-                    </td>
-                  </tr>
+                <% 
+                	if(!products.isEmpty()){
+                		for(Product p :products){%>
+                			<tr class="tblconts">
+			                    <th scope="row">
+			                       	<img id="myImg" class="rounded-circle" src="images/products/<%=p.getImg() %>" alt="pic">
+			                     </th>
+			                    <td><%=p.getName() %></td>
+			                    <td><%=p.getDesign() %></td>
+			                    <td><%=p.getColor() %></td>
+			                    <td><%=p.getStock() %></td>
+			                    <td><%=p.getCategory_name() %></td>
+			                    <td>Rs <%=p.getMrp() %></td>
+			                    <td>Rs <%=p.getPrice() %></td>
+			                    <td>
+			                      <a id="" class="btn btn-sm text-white" href="addproduct.jsp?stat=up&id=<%=p.getId() %>" style="background: #68686c;">Update</a>
+			                      <a class="btn btn-sm text-white" href="AddProduct?stat=del&id=<%= p.getId() %>"  style="background: #191919;">Remove</a>
+			                    </td>
+			                  </tr>
+                		<%}
+                	}
+                %>
                 </tbody>
               </table>
             </div>

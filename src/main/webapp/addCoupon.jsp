@@ -1,6 +1,17 @@
+<%@page import="com.weenalk.Modal.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
+<%
 
+CouponDao coupon = new CouponDao(DbCon.getConnection());
+Coupon cpn = new Coupon();
+if((request.getParameter("id"))!=null)
+cpn=coupon.getCouponId(Integer.parseInt(request.getParameter("id")));
+
+%>
 <head>
   <meta charset="utf-8" />
   <title>Weena</title>
@@ -191,7 +202,7 @@
       <div class="form-container bg-white shadow" style="margin-top: 25px;">
         <!-- <button id="btnCloseForm" class="close-button">X</button> -->
         <!-- <h1>Product</h1> -->
-        <form action="">
+        <form action="CouponsServlet" method="post">
           <div class="bg-white rounded h-100 p-1">
             <div class="row g-4 mb-3">
               <h3 class="text-center">Add Coupons</h3>
@@ -201,8 +212,8 @@
                
               </div>
               <div class="form-floating mb-3 col-xl-8 col-md-8">
-                <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
+                <input type="text" class="form-control bg-gry border-0 shadow" name="cpn_name" id="floatingInput"
+                  placeholder="name@example.com" value="<%=request.getParameter("id")==null?"":cpn.getCoupon()%>"/>
                 <label style="padding-left: 20px" for="floatingInput" class="text-black-50">Coupon Name</label>
               </div>
               <div class="form-floating mb-3 col-xl-2 col-md-2">
@@ -214,8 +225,10 @@
 
               </div>
               <div class="form-floating mb-3 col-xl-8 col-md-8">
-                <input type="text" class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" />
+              	<input type="hidden" name="stat" value="<%=request.getParameter("stat")%>"/>
+              	<input type="hidden" name="iid" value="<%=request.getParameter("id")%>"/>
+                <input type="text" class="form-control bg-gry border-0 shadow" name="cpn_value" id="floatingInput"
+                  placeholder="name@example.com" value="<%=request.getParameter("id")==null?"":cpn.getValue()%>"/>
                 <label style="padding-left: 20px" for="floatingInput" class="text-black-50">Value</label>
               </div>
               <div class="form-floating mb-3 col-xl-2 col-md-2">
@@ -224,9 +237,9 @@
             </div>
             <br />
             <div class="row g-4 p-lg-3">
-              <button type="button" style="font-size: 16px; background-color: #68686c;" onclick="aad()"
+              <button type="submit" style="font-size: 16px; background-color: #68686c;" onclick=""
                 class="btn btn-sm text-white p-2 col-xl-12">
-                Add Coupon
+                <%=request.getParameter("id")==null?"Add":"Update"%>
               </button>
               <button type="button" style="font-size: 16px; background-color: #191919;" onclick="dec()"
                 class="btn btn-sm text-white p-2 col-xl-12">
@@ -237,7 +250,7 @@
         </form>
       </div>
       <!-- Blank End -->
-
+ 
       <!-- Footer Start -->
       <div class="container-fluid pt-4 px-4">
         <div class="bg-white rounded p-4 shadow">
@@ -304,7 +317,7 @@
               confirmButtonColor: '#000000'
             }).then(() => {
               setTimeout(() => {
-                // window.location="sweetServlet";
+                window.location="CouponsServlet";
               }, 500);
             })
           }
