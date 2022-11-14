@@ -1,5 +1,21 @@
+
+<%@page import="com.weenalk.Servlet.*" %>
+<%@page import="com.weenalk.Modal.*" %>
+<%@page import="com.weenalk.DAO.*" %>
+<%@page import="com.weenalk.DBcon.*" %>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
+<%
+	//if(session.getAttribute("authadmin")==null){
+	//	response.sendRedirect("login.jsp");
+	//}
+	Orderfk orfk = new Orderfk(DbCon.getConnection());
+	List<OrderFKM> or = orfk.getOrders();
+
+
+
+%>
 
 <head>
     <meta charset="utf-8" />
@@ -200,38 +216,44 @@
                         <div class="bg-white rounded h-100 p-4 shadow">
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="mb-4">List of Orders</h6>
-                                <a class="btn btn-sm bg-bk shadow text-white" href="addCoupon.jsp?stat=in">Add Coupons</a>
+                                <a class="btn btn-sm bg-bk shadow text-white" href="addCoupon.jsp?stat=in">Edit</a>
                             </div>
                             <div class="table-responsive">
-                                <table class="table">
+                            	<table class="table table-borderless table-hover">
                                     <thead>
                                         <tr class="text-dark tblconts">
-                                            <th scope="col">UserEmail</th>
-                                            <th scope="col">Quantity</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Payment</th>
-                                            <th scope="col">Product</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col"></th>
+                                            
+                                            <th  scope="col">Email</th>
+                                          
+                                            <th  scope="col">Price</th>
+                                            <th  scope="col">Product_ID</th>
+                                            <th  scope="col">Payment_ID</th> 
+                                             <th scope="col">Status</th>
                                         </tr>
                                     </thead>
-                                    <tbody >
-                                        <tr class="tblconts">
-                                            <th scope="row">
-                                                <img id="myImg" class="rounded-circle" src="images/men.jpg" alt="Snow" />
-                                            </th>
-                                            <td>John</td>
-                                            <td>Doe</td>
-                                            <td>jhon@email.com</td>
-                                            <td>USA</td>
-                                          
-                                            <td>
-                                                <a class="btn btn-sm text-white" style="background: #191919;" href="#">Update</a>
-                                                <a class="btn btn-sm text-white" style="background: #191919;" href="#">Remove</a>
-                                            </td>
-                                        </tr>
+                                    <tbody>
+                                         <%
+                                         	if(!or.isEmpty()){
+				                            	int k=0;
+				                            	for(OrderFKM o:or){%>
+				                                    <tr class="tblconts">
+						                            	
+					                                    <td><%=o.getUmail() %></td>
+					                                    <td>Rs<%=o.getAmount() %></td>
+					                                    <td><%=o.getPid() %></td>
+					                                    <td><%=o.getPayid() %></td>
+					                                   	 <td>
+                                                			<a class="btn btn-sm text-white" style="background: #191919;" href="addOrderfk.jsp?stat=up&id=<%= o.getUmail() %>">Update</a>
+                                               				 <a class="btn btn-sm text-white" style="background: #191919;" href="OrderfkSevlet?stat=up&id=<%= o.getUmail() %>">Remove</a>
+                                            			</td>
+					                                </tr>
+			                               		   <%
+				                            	}
+				                            }
+				                          %>
                                     </tbody>
                                 </table>
+                                
                             </div>
                         </div>
                     </div>
@@ -242,27 +264,36 @@
                                 <h6 class="mb-4">Existing Orders</h6>
                             </div>
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table table-borderless table-hover">
                                     <thead>
                                         <tr class="text-dark tblconts">
-                                            <th scope="col">UserEmail</th>
-                                            <th scope="col">Quantity</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Payment</th>
-                                            <th scope="col">Product</th>
+                                            
+                                            <th  scope="col">Email</th>
+                                          
+                                            <th  scope="col">Price</th>
+                                            <th  scope="col">Product_ID</th>
+                                            <th  scope="col">Payment_ID</th> 
                                         </tr>
                                     </thead>
-                                    <tbody >
-                                        <tr class="tblconts">
-                                            <th scope="row">
-                                                <img id="myImg" class="rounded-circle" src="images/men.jpg" alt="Snow" />
-                                            </th>
-                                            <td>John</td>
-                                            <td>Doe</td>
-                                            <td>jhon@email.com</td>
-                                            <td>USA</td>
-                                        
-                                        </tr>
+                                    <tbody>
+                                         <%
+                                         	if(!or.isEmpty()){
+				                            	int k=0;
+				                            	for(OrderFKM o:or){%>
+				                                    <tr class="tblconts">
+						                            	
+					                                    <td><%=o.getUmail() %></td>
+					                                    <td>Rs<%=o.getAmount() %></td>
+					                                    <td><%=o.getPid() %></td>
+					                                    <td><%=o.getPayid() %></td>
+					                                   
+					                                </tr>
+			                               		   <%k=k+1;
+				                            		if(k==5)
+				                            			break;
+				                            	}
+				                            }
+				                          %>
                                     </tbody>
                                 </table>
                             </div>

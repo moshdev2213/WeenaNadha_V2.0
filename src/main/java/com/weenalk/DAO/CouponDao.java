@@ -98,7 +98,7 @@ public class CouponDao {
   		}
   		return result;
   	}
-  //updating coupons
+  //Inserting coupons
   	public int InsertCoupon(int value,String name) {
   		int result=0;
   		try {

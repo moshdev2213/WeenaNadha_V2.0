@@ -208,7 +208,7 @@ pro = pd.getItem(request.getParameter("id"));
             <div class="row g-4">
               <div class="form-floating mb-3 col-xl-6 col-md-6">
                 <input type="text" required class="form-control bg-gry border-0 shadow" id="floatingInput"
-                  placeholder="name@example.com" name="name" value="<%=request.getParameter("id")==null?"":pro.getName()%>"/>
+                  placeholder="name@example.com"  name="name" value="<%=request.getParameter("id")==null?"":pro.getName()%>"/>
                 <label style="padding-left: 20px" for="floatingInput" class="text-black-50">Name</label>
               </div>
               <div class="form-floating mb-3 col-xl-6 col-md-6">

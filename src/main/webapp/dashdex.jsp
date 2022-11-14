@@ -30,6 +30,10 @@
 	
 	RegTimDao regtime = new RegTimDao(DbCon.getConnection());
 	List<RegTim> rg = regtime.getAllReg();
+	
+	Orderfk orfk = new Orderfk(DbCon.getConnection());
+	List<OrderFKM> or = orfk.getOrders();
+
 
 
 %>
@@ -587,30 +591,33 @@
                     <div class="col-sm-12 col-md-12 col-xl-4">
                         <div class="bg-white rounded h-100 p-4 shadow">
                             <div class="d-flex align-items-center justify-content-between mb-2">
-                                <h6 class="mb-0">Register</h6>
-                                <a href="Regtime.jsp">Show All</a>
+                                <h6 class="mb-0">Ordes</h6>
+                                <a href="orders.jsp">Show All</a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-borderless table-hover">
                                     <thead>
                                         <tr class="text-dark tblconts">
-                                            <th  scope="col">ID</th>
-                                            <th  scope="col">Name</th>
-                                            <th  scope="col">Value</th>
-                                            <th  scope="col">ID</th>
-                                            <th  scope="col">Name</th>
-                                            <th  scope="col">Value</th> 
+                                            
+                                            <th  scope="col">Email</th>
+                                          
+                                            <th  scope="col">Price</th>
+                                            <th  scope="col">Product_ID</th>
+                                            <th  scope="col">Payment_ID</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
                                          <%
-                                         	if(!cpn.isEmpty()){
+                                         	if(!or.isEmpty()){
 				                            	int k=0;
-				                            	for(Coupon c:cpn){%>
+				                            	for(OrderFKM o:or){%>
 				                                    <tr class="tblconts">
-						                            	<th scope="row"><%=c.getCouponid() %></th>
-					                                    <td><%=c.getCoupon() %></td>
-					                                    <td><%=c.getValue() %>%</td>
+						                            	
+					                                    <td><%=o.getUmail() %></td>
+					                                    <td>Rs<%=o.getAmount() %></td>
+					                                    <td><%=o.getPid() %></td>
+					                                    <td><%=o.getPayid() %></td>
+					                                   
 					                                </tr>
 			                               		   <%k=k+1;
 				                            		if(k==5)
