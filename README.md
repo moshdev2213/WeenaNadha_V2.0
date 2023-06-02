@@ -1,4 +1,4 @@
-# WeenaLk_2.0
-Hey Mates 😃 This Is the official Project Repo Initialized to OMS(Online Musical Store) on the Date 11-6-2-2022
+# Weena Nadha 2.0
+Weena Nadha 2.0 is an advanced web application developed as part of the Object-Oriented Programming (OOP) module in the second year at SLIIT. Utilizing Bootstrap for responsive design, MySQL for data management, Tomcat for server deployment, and Java for backend development, Weena Nadha is a cutting-edge online musical store. With a revamped interface and enhanced functionality, Weena Nadha 2.0 offers an extensive range of musical instruments for sale. The OOP principles applied in the development process ensure a modular and maintainable codebase, promoting code reusability and scalability. Customers can easily explore the instrument catalog, access detailed information, and securely complete their purchases. Weena Nadha 2.0 represents a significant evolution in providing a seamless and engaging shopping experience for music enthusiasts.
 
 @2022 WeenaLk all rights reserved
