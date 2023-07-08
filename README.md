@@ -1,4 +1,19 @@
 # Weena Nadha 2.0
-Weena Nadha 2.0 is an advanced web application developed as part of the Object-Oriented Programming (OOP) module in the second year at SLIIT. Utilizing Bootstrap for responsive design, MySQL for data management, Tomcat for server deployment, and Java for backend development, Weena Nadha is a cutting-edge online musical store. With a revamped interface and enhanced functionality, Weena Nadha 2.0 offers an extensive range of musical instruments for sale. The OOP principles applied in the development process ensure a modular and maintainable codebase, promoting code reusability and scalability. Customers can easily explore the instrument catalog, access detailed information, and securely complete their purchases. Weena Nadha 2.0 represents a significant evolution in providing a seamless and engaging shopping experience for music enthusiasts.
+🎵🎸 Introducing WEENA NADHA v2.0: Your Ultimate Online Musical Instrument Store! 🎹🪕
+
+Experience the power of music with the enhanced version of WEENA NADHA, a comprehensive platform for both admin and user management. 🛒💻
+
+Tech Stack:
+
+Java Servlet
+🎵MySQL
+🎵JSP
+🎵Bootstrap
+🎵Eclipse IDE
+Developed as a project for the 2nd year, 2nd semester OOP Java course, WEENA NADHA v2.0 showcases the collaborative efforts of Shabeer, Pavith, Wayani, and Supun, bringing their expertise in crafting an exceptional musical instrument shopping experience. 💪👨‍💻👩‍💻
+
+Browse through our vast collection of high-quality musical instruments, from guitars and keyboards to drums and more. With a user-friendly interface, detailed product information, and secure online transactions, WEENA NADHA v2.0 ensures a seamless and satisfying shopping journey for music enthusiasts. 🎶🛍️
+
+Unlock your musical potential, express your creativity, and let the melodies resonate with WEENA NADHA v2.0. Embrace the joy of music and embark on a musical adventure today! 🎵🎉🎻✨
 
 @2022 WeenaLk all rights reserved
